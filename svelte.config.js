@@ -1,3 +1,4 @@
+import path from 'path';
 import adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
@@ -8,7 +9,11 @@ const config = {
 		runes: true
 	},
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		alias: {
+			$comp: path.resolve('./src/components'),
+			'@images': path.resolve('./src/images')
+		}
 	}
 };
 

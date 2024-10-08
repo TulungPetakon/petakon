@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+	.petakon-bg-gradient {
+		@apply bg-gradient-to-br from-cyan-500 to-green-500;
+	}
+}
+
+@layer components {
+	.petakon-button-outline {
+		transform-style: preserve-3d;
+		@apply px-5 py-2 relative flow-root duration-200 rounded-3xl hover:before:opacity-100 active:scale-95;
+	}
+
+	.petakon-button-outline::before {
+		border-radius: inherit;
+		transform: translate3d(0, 0, -1px);
+		@apply content-[''] absolute w-full petakon-bg-gradient h-full top-0 left-0 opacity-0 transition-all duration-300;
+	}
+
+	.petakon-button-outline::after {
+		@apply content-[''] absolute top-0 left-0 right-0 bottom-0 rounded-3xl border-2 border-transparent petakon-bg-gradient bg-clip-border;
+		-webkit-mask:
+			linear-gradient(#fff 0 0) padding-box,
+			linear-gradient(#fff 0 0);
+		-webkit-mask-composite: destination-out;
+		mask-composite: exclude;
+	}
+}
+
+@layer components {
+	.shadowed {
+		transform-style: preserve-3d;
+		@apply before:petakon-bg-gradient before:w-full before:h-full before:absolute before:top-0 before:left-0 before:-z-10 before:-inset-1 before:opacity-25 before:blur-sm;
+	}
+
+	.shadowed::before {
+		transform: translate3d(0, 2px, -1px);
+	}
+}
+
+html,
+body {
+	@apply w-screen max-h-screen overflow-hidden;
+	font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-weight: 500;
+	font-style: normal;
+}
