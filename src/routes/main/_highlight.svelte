@@ -6,7 +6,8 @@
 	import budaya from '@images/beach/jurang-senggani.jpg?format=webp';
 	import edukasi from '@images/beach/kedung-tumpang.webp?format=webp';
 	import hiburan from '@images/beach/pathok.jpeg?format=webp';
-	import taman from '@images/beach/skyview.webp';
+	import taman from '@images/beach/skyview.webp?format=webp';
+	import more from '@images/beach/klatak.jpg?format=webp';
 
 	const kategori = [
 		{ name: 'gunung', img: gunung },
@@ -15,8 +16,8 @@
 		{ name: 'kuliner', img: kuliner },
 		{ name: 'edukasi', img: edukasi },
 		{ name: 'taman', img: taman },
-		{ name: 'relaksasi', img: relaksasi },
-		{ name: 'hiburan', img: hiburan }
+		{ name: 'relaksasi', img: relaksasi }
+		// { name: 'hiburan', img: hiburan }
 	];
 </script>
 
@@ -38,5 +39,18 @@
 				</div>
 			</div>
 		{/each}
+		<div
+			class="basis-1/4 relative aspect-[16/9] groupn bg-cover bg-center"
+			style="background-image: url({hiburan});"
+		>
+			<div class="petakon-bg-gradient h-full opacity-75"></div>
+			<button
+				class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 petakon-button rounded-full text-white border-2 border-white text-lg hover:bg-white group"
+			>
+				<span class="block w-full h-full group-[:hover]:petakon-text-gradient uppercase">
+					Jelajahi
+				</span>
+			</button>
+		</div>
 	</div>
 </section>
