@@ -1,7 +1,7 @@
 <script>
 	import Calendar from './_calendar.svelte';
 	import Hero from './_hero.svelte';
-	import Hightlight from './_hightlight.svelte';
+	import Highlight from './_highlight.svelte';
 	import Homestay from './_homestay.svelte';
 	import Transport from './_transport.svelte';
 </script>
@@ -10,10 +10,8 @@
 
 <Calendar />
 
-<Hightlight />
+<Highlight />
 
 <Homestay />
 
 <Transport />
-
-<!-- <Footer /> -->

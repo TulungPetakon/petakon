@@ -9,9 +9,9 @@
 </script>
 
 <div
-	class="group w-full px-20 fixed top-0 left-0 flex items-center text-white transition-all duration-500 z-50"
+	class="group w-full px-20 fixed top-0 left-0 flex items-center text-white transition-all duration-500 z-50 shadowed"
 	class:scrolled={$scrollTop > 0}
-	class:shadowed={$scrollTop > 0}
+	class:shadowed-active={$scrollTop > 0}
 >
 	<h1 class="font-bold text-xl">PETAKON</h1>
 	<nav class="ml-auto">

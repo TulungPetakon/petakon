@@ -87,9 +87,9 @@
 								voluptatem aspernatur, soluta repellat enim nam tenetur perferendis fugit, quis
 								suscipit sequi harum. Unde soluta dolorem corporis eum eveniet!
 							</p>
-							<button in:fly={{ x: 20, delay: 300 }} class="mt-5 petakon-button-outline"
-								>{wisata[active].tmbl}</button
-							>
+							<button in:fly={{ x: 20, delay: 300 }} class="mt-5 petakon-button-outline">
+								{wisata[active].tmbl}
+							</button>
 						</div>
 					{/key}
 				</div>

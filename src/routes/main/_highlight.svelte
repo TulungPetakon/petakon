@@ -3,8 +3,8 @@
 	import kuliner from '@images/beach/jls2.jpg?format=webp';
 	import pantai from '@images/beach/pantai.webp?format=webp';
 	import gunung from '@images/beach/besuki.jpg?format=webp';
-	import budaya from '@images/beach/jls2.jpg?format=webp';
-	import petualangan from '@images/beach/kedung-tumpang.webp?format=webp';
+	import budaya from '@images/beach/jurang-senggani.jpg?format=webp';
+	import edukasi from '@images/beach/kedung-tumpang.webp?format=webp';
 	import hiburan from '@images/beach/pathok.jpeg?format=webp';
 	import taman from '@images/beach/skyview.webp';
 
@@ -13,7 +13,7 @@
 		{ name: 'pantai', img: pantai },
 		{ name: 'budaya', img: budaya },
 		{ name: 'kuliner', img: kuliner },
-		{ name: 'petualangan', img: petualangan },
+		{ name: 'edukasi', img: edukasi },
 		{ name: 'taman', img: taman },
 		{ name: 'relaksasi', img: relaksasi },
 		{ name: 'hiburan', img: hiburan }
