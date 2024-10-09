@@ -5,8 +5,8 @@
 	import p4 from '@images/partners/jaya-mandiri.png?format=webp';
 </script>
 
-<section class="pt-20 px-60">
-	<h2 class="font-semibold text-center text-xl">Trusted by:</h2>
+<section class="pt-20 px-[5%] md:px-[10%]">
+	<h2 class="font-semibold text-center md:text-xl">Trusted by:</h2>
 	<div class="flex pt-5 justify-center items-center">
 		{#each [p1, p2, p3, p4] as src}
 			<div class="px-2">

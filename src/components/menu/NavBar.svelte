@@ -9,12 +9,12 @@
 </script>
 
 <div
-	class="group w-full px-20 fixed top-0 left-0 flex items-center text-white transition-all duration-500 z-50 shadowed"
+	class="group w-full px-[7.5%] fixed top-0 left-0 flex items-center text-white transition-all duration-500 z-50 shadowed"
 	class:scrolled={$scrollTop > 0}
 	class:shadowed-active={$scrollTop > 0}
 >
-	<h1 class="font-bold text-xl">PETAKON</h1>
-	<nav class="ml-auto">
+	<h1 class="font-bold text-xl py-5">PETAKON</h1>
+	<nav class="ml-auto hidden min-[800px]:block">
 		{#each navLinks as { href, title }}
 			<a
 				{href}

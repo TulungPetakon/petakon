@@ -7,6 +7,7 @@
 	import jls from '@images/beach/jls.jpg';
 	import pathok from '@images/beach/pathok-gebang.jpeg';
 
+	let height = $state(0);
 	let active = $state(0);
 	let activeIndicator = $state(0);
 	let splide;
@@ -29,7 +30,29 @@
 			type: 'loop',
 			pauseOnHover: false,
 			isNavigation: true,
-			padding: { right: '5rem' }
+			padding: { right: '5rem' },
+			breakpoints: {
+				1100: {
+					padding: { right: '0rem' }
+				},
+				980: {
+					perPage: 1,
+					padding: { right: '10rem' }
+				},
+				850: {
+					padding: { right: '5rem' }
+				},
+				640: {
+					perPage: 3,
+					padding: '4rem'
+				},
+				540: {
+					perPage: 2
+				},
+				420: {
+					padding: '2rem'
+				}
+			}
 		}).mount();
 
 		splide.on('move', (index) => {
@@ -47,17 +70,23 @@
 	});
 </script>
 
-<div class="w-full h-[var(--app-height)] text-white">
+<div class="w-full h-[var(--app-height)] min-h-fit text-white">
 	<div
 		class="bg-cover bg-fixed h-full w-full absolute left-0 top-0 after:bg-black/35 after:absolute after:top-0 after:left-0 after:w-full after:h-full"
 		style="background-image: url({klatak});"
 	></div>
 
-	<div class="py-20 w-full h-full relative flex items-center">
-		<div class="basis-1/2 h-1/2 pl-52 grow">
-			<h1 class="font-bold text-5xl">Jangan Lewatkan!</h1>
-			<div class="flex mt-10 h-full">
-				<div class="flex flex-col justify-start items-center basis-1/6 relative h-5/6">
+	<div class="lg:py-20 w-full h-full relative flex flex-col-reverse sm:flex-row items-center">
+		<div
+			class="basis-1/2 h-fit sm:pl-[15%] pl-[10%] pr-[10%] grow sm:pr-0"
+			bind:clientHeight={height}
+			style="--height:{height}px"
+		>
+			<h1 class="font-bold text-3xl md:text-4xl">Jangan Lewatkan!</h1>
+			<div class="flex mt-10">
+				<div
+					class="flex flex-col justify-start items-center basis-1/6 relative h-[calc(5/6 * var(--height))]"
+				>
 					<span
 						class="block bg-gray-400 rounded-sm w-[.15rem] opacity-50 h-full absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2"
 					></span>
@@ -95,7 +124,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="basis-1/2 h-full grow pl-12 max-w-[50%]">
+		<div
+			class="basis-1/3 sm:basis-1/2 sm:h-full mt-10 sm:mt-0 grow sm:pl-12 max-w-[100%] sm:max-w-[50%]"
+		>
 			<div
 				class="splide h-full flex items-center"
 				role="group"

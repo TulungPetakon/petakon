@@ -1,8 +1,8 @@
-<section class="pt-20 px-60">
+<section class="pt-20 px-[5%] md:px-[10%]">
 	<h2 class="font-bold text-3xl">Rekomendasi Tempat Tinggal Untukmu</h2>
-	<div class="flex pt-10">
+	<div class="flex pt-10 flex-wrap">
 		{#each Array(4) as _}
-			<div class="basis-1/4 p-2">
+			<div class="basis-1/2 md:basis-1/4 p-2">
 				<a class="bg-white relative shadowed hover:shadowed-active transition-all" href="/#">
 					<div class="bg-yellow-500 text-white absolute top-2 right-2 p-2 text-xs">5.0</div>
 					<div class="aspect-[12/9] bg-gray-300">

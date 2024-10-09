@@ -7,7 +7,7 @@
 	import edukasi from '@images/beach/kedung-tumpang.webp?format=webp';
 	import hiburan from '@images/beach/pathok.jpeg?format=webp';
 	import taman from '@images/beach/skyview.webp?format=webp';
-	import more from '@images/beach/klatak.jpg?format=webp';
+	// import more from '@images/beach/klatak.jpg?format=webp';
 
 	const kategori = [
 		{ name: 'gunung', img: gunung },
@@ -25,7 +25,7 @@
 	<h2 class="font-bold uppercase text-3xl text-center mb-10">Destinasi Pilihan</h2>
 	<div class="flex flex-wrap">
 		{#each kategori as { img, name }}
-			<div class="basis-1/4 aspect-[16/9] relative group overflow-hidden">
+			<div class="basis-1/2 md:basis-1/4 aspect-[16/9] relative group overflow-hidden">
 				<div
 					class="h-full w-full bg-cover bg-center transition-all duration-300 group-[:hover]:scale-110"
 					style="background-image: url({img});"
@@ -40,12 +40,12 @@
 			</div>
 		{/each}
 		<div
-			class="basis-1/4 relative aspect-[16/9] groupn bg-cover bg-center"
+			class="basis-1/2 md:basis-1/4 relative aspect-[16/9] groupn bg-cover bg-center"
 			style="background-image: url({hiburan});"
 		>
 			<div class="petakon-bg-gradient h-full opacity-75"></div>
 			<button
-				class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 petakon-button rounded-full text-white border-2 border-white text-lg hover:bg-white group"
+				class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 petakon-button rounded-full text-white border-2 border-white text-xs md:text-lg hover:bg-white group"
 			>
 				<span class="block w-full h-full group-[:hover]:petakon-text-gradient uppercase">
 					Jelajahi
