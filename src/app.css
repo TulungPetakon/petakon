@@ -6,22 +6,33 @@
 	.petakon-bg-gradient {
 		@apply bg-gradient-to-br from-cyan-500 to-green-500;
 	}
+
+	.petakon-text-gradient {
+		@apply text-transparent bg-clip-text bg-gradient-to-r petakon-bg-gradient;
+	}
+
+	.petakon-button-outline {
+		@apply petakon-outline duration-200 rounded-3xl hover:before:opacity-100 active:scale-95 px-5 py-2;
+	}
 }
 
 @layer components {
-	.petakon-button-outline {
+	.petakon-outline {
+		--border: theme(borderWidth.2);
 		transform-style: preserve-3d;
-		@apply px-5 py-2 relative flow-root duration-200 rounded-3xl hover:before:opacity-100 active:scale-95;
+		@apply relative flow-root;
 	}
 
-	.petakon-button-outline::before {
+	.petakon-outline::before {
 		border-radius: inherit;
 		transform: translate3d(0, 0, -1px);
 		@apply content-[''] absolute w-full petakon-bg-gradient h-full top-0 left-0 opacity-0 transition-all duration-300;
 	}
 
-	.petakon-button-outline::after {
-		@apply content-[''] absolute top-0 left-0 right-0 bottom-0 rounded-3xl border-2 border-transparent petakon-bg-gradient bg-clip-border;
+	.petakon-outline::after {
+		@apply content-[''] absolute top-0 left-0 right-0 bottom-0 border-transparent petakon-bg-gradient bg-clip-border;
+		border-radius: inherit;
+		border-width: var(--border);
 		-webkit-mask:
 			linear-gradient(#fff 0 0) padding-box,
 			linear-gradient(#fff 0 0);
@@ -32,12 +43,19 @@
 
 @layer components {
 	.shadowed {
+		border-radius: inherit;
 		transform-style: preserve-3d;
-		@apply before:petakon-bg-gradient before:w-full before:h-full before:absolute before:top-0 before:left-0 before:-z-10 before:-inset-1 before:opacity-25 before:blur-sm;
+		@apply before:petakon-bg-gradient before:w-full before:h-full before:absolute before:top-0 before:left-0 before:-z-10 before:-inset-1 before:opacity-0 before:blur-sm;
 	}
 
 	.shadowed::before {
+		@apply transition-all duration-300;
+		border-radius: inherit;
 		transform: translate3d(0, 2px, -1px);
+	}
+
+	.shadowed-active {
+		@apply before:opacity-25;
 	}
 }
 
