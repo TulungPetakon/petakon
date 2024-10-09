@@ -25,7 +25,9 @@
 	<h2 class="font-bold uppercase text-3xl text-center mb-10">Destinasi Pilihan</h2>
 	<div class="flex flex-wrap">
 		{#each kategori as { img, name }}
-			<div class="basis-1/2 md:basis-1/4 aspect-[16/9] relative group overflow-hidden">
+			<div
+				class="basis-1/2 md:basis-1/4 aspect-square sm:aspect-[16/9] relative group overflow-hidden"
+			>
 				<div
 					class="h-full w-full bg-cover bg-center transition-all duration-300 group-[:hover]:scale-110"
 					style="background-image: url({img});"

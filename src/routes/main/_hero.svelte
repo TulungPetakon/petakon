@@ -70,9 +70,9 @@
 	});
 </script>
 
-<div class="w-full h-[var(--app-height)] min-h-fit text-white">
+<div class="w-full h-[var(--app-height)] text-white overflow-hidden">
 	<div
-		class="bg-cover bg-fixed h-full w-full absolute left-0 top-0 after:bg-black/35 after:absolute after:top-0 after:left-0 after:w-full after:h-full"
+		class="bg-cover bg-fixed h-[inherit] w-full absolute left-0 top-0 after:bg-black/35 after:absolute after:top-0 after:left-0 after:w-full after:h-full"
 		style="background-image: url({klatak});"
 	></div>
 
@@ -112,9 +112,8 @@
 						<div class="px-1" in:fly={{ x: 20 }}>
 							<h2 class="text-2xl uppercase font-bold">{wisata[active].title}</h2>
 							<p in:fly={{ x: 20, delay: 150 }} class="mt-5 opacity-85">
-								Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt quo deleniti
-								voluptatem aspernatur, soluta repellat enim nam tenetur perferendis fugit, quis
-								suscipit sequi harum. Unde soluta dolorem corporis eum eveniet!
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem veniam
+								nostrum ex pariatur consequatur reprehenderit rem adipisci debitis suscipit numquam.
 							</p>
 							<button in:fly={{ x: 20, delay: 300 }} class="mt-5 petakon-button-outline">
 								{wisata[active].tmbl}
@@ -125,7 +124,7 @@
 			</div>
 		</div>
 		<div
-			class="basis-1/3 sm:basis-1/2 sm:h-full mt-10 sm:mt-0 grow sm:pl-12 max-w-[100%] sm:max-w-[50%]"
+			class="basis-1/3 sm:basis-1/2 sm:h-full mt-20 sm:mt-0 grow sm:pl-12 max-w-[100%] sm:max-w-[50%]"
 		>
 			<div
 				class="splide h-full flex items-center"
@@ -141,9 +140,9 @@
 									class="bg-cover bg-center w-full aspect-square rounded-lg group-[.active]:aspect-[3/4] transition-all duration-300 relative flex"
 								>
 									<div class="w-full h-1/2 mt-auto bg-gradient-to-t from-black/75 flex items-end">
-										<div class="p-5 opacity-85">
+										<div class="p-2 sm:p-5 opacity-85">
 											<h3 class="font-bold">{title}</h3>
-											<div class="info text-sm mt-2 text-cyan-200 opacity-75">
+											<div class="info text-xs sm:text-sm sm:mt-2 text-cyan-200 opacity-75">
 												Location/Time/Date:
 											</div>
 										</div>
