@@ -3,7 +3,7 @@
 	<div class="flex pt-10">
 		{#each Array(4) as _}
 			<div class="basis-1/4 p-2">
-				<a class="bg-white relative shadowed hover:shadowed-active transition-all" href="#/">
+				<a class="bg-white relative shadowed hover:shadowed-active transition-all" href="/#">
 					<div class="bg-yellow-500 text-white absolute top-2 right-2 p-2 text-xs">5.0</div>
 					<div class="aspect-[12/9] bg-gray-300">
 						<!-- picture here -->
