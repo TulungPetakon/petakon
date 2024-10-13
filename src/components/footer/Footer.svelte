@@ -78,9 +78,9 @@
 		<!--Grid-->
 		<div class="py-7 border-t border-gray-200">
 			<div class="flex items-center justify-center flex-col lg:justify-between lg:flex-row">
-				<span class="text-sm text-gray-500"
-					>©<a href="/#">petakon</a> 2024, All rights reserved.</span
-				>
+				<span class="text-sm text-gray-500">
+					2024 - 2025 Peta Konektivitas, All rights reserved.
+				</span>
 				<div class="flex mt-4 space-x-4 sm:justify-center lg:mt-0">
 					<a
 						href="/#"

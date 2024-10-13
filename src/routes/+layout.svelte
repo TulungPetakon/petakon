@@ -7,6 +7,7 @@
 
 	import ScrollArea from '$comp/scrollbar/ScrollArea.svelte';
 	import NavBar from '$comp/menu/NavBar.svelte';
+	import Footer from '$comp/footer/Footer.svelte';
 
 	const { children } = $props();
 
@@ -32,9 +33,10 @@
 	style="--app-height:{innerHeight}px;--app-width:{innerWidth}px"
 >
 	<ScrollArea defer onscroll={scrolled} options={{ scrollbars: { theme: 'os-theme-dark' } }}>
-		<div class="w-screen relative h-screen max-h-[1080px] max-w-[1920px] mx-auto">
+		<div class="w-screen relative h-[var(--app-height)] max-h-[1080px] max-w-[1920px] mx-auto">
 			<NavBar />
 			{@render children()}
+			<Footer />
 		</div>
 	</ScrollArea>
 </main>

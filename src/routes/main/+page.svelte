@@ -1,5 +1,4 @@
 <script>
-	import Footer from '$comp/footer/Footer.svelte';
 	import Calendar from './_calendar.svelte';
 	import Hero from './_hero.svelte';
 	import Highlight from './_highlight.svelte';
@@ -19,5 +18,3 @@
 <Transport />
 
 <Partners />
-
-<Footer />
