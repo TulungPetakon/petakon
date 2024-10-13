@@ -49,9 +49,12 @@
 			<button
 				class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 petakon-button rounded-full text-white border-2 border-white text-xs md:text-lg hover:bg-white group"
 			>
-				<span class="block w-full h-full group-[:hover]:petakon-text-gradient uppercase">
+				<a
+					href="/explore"
+					class="block w-full h-full group-[:hover]:petakon-text-gradient uppercase"
+				>
 					Jelajahi
-				</span>
+				</a>
 			</button>
 		</div>
 	</div>

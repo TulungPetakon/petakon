@@ -3,7 +3,7 @@
 
 	const navLinks = [
 		{ href: '#', title: 'Pertama Kali ke Tulungagung?' },
-		{ href: '#', title: 'Explore' },
+		{ href: '/explore', title: 'Explore' },
 		{ href: '#', title: 'Rencana Perjalanan' }
 	];
 </script>
@@ -13,7 +13,7 @@
 	class:scrolled={$scrollTop > 0}
 	class:shadowed-active={$scrollTop > 0}
 >
-	<h1 class="font-bold text-xl py-5">PETAKON</h1>
+	<h1 class="font-bold text-xl py-5"><a href="/"> PETAKON</a></h1>
 	<nav class="ml-auto hidden min-[800px]:block">
 		{#each navLinks as { href, title }}
 			<a
