@@ -1,5 +1,6 @@
 <script>
 	import data from '$lib/dummy/destinations.json';
+	import { cart } from '$lib/stores/app-stores.svelte';
 	import hero from '@images/beach/klatak.jpg?format=webp';
 
 	const getThumb = async (name) => {
@@ -10,6 +11,15 @@
 		} catch (e) {
 			return { error: true };
 		}
+	};
+
+	const addToPlan = (i) => {
+		const isContain = $cart.findIndex((c) => c.id == data[i].id) > 0;
+		if (isContain) return;
+		cart.update((v) => {
+			v.push(data[i]);
+			return v;
+		});
 	};
 </script>
 
@@ -25,9 +35,13 @@
 
 	<div class="pt-20 px-[5%] md:px-[10%]">
 		<div class="w-full flex flex-wrap content-stretch">
-			{#each data as { address, category, rating, title, galery }}
+			{#each data as { address, category, rating, title, galery, id }, i}
+				{@const inCart = $cart.findIndex((c) => c.id == id) < 0}
 				<div class="basis-1/2 sm:basis-1/3 md:basis-1/4 2xl:basis-1/5 p-2">
-					<div class="aspect-[5/6] rounded-md group shadowed hover:shadowed-active">
+					<div
+						class="aspect-[5/6] rounded-md group shadowed hover:shadowed-active"
+						class:shadowed-active={!inCart}
+					>
 						<div class="w-full h-full bg-white">
 							<div class="aspect-[4/3] bg-gray-100 relative">
 								{#await getThumb(galery) then { url, error }}
@@ -52,13 +66,16 @@
 									</span>
 								</div>
 
-								<div class="flex opacity-0 transition-opacity group-[:hover]:opacity-100">
-									<button
-										class="px-5 py-1 text-sm rounded-full text-white ml-auto petakon-bg-gradient active:scale-95 transition-transform"
-									>
-										+ Pesan
-									</button>
-								</div>
+								{#if inCart}
+									<div class="flex opacity-0 transition-opacity group-[:hover]:opacity-100">
+										<button
+											onclick={() => addToPlan(i)}
+											class="px-5 py-1 text-sm rounded-full text-white ml-auto petakon-bg-gradient active:scale-95 transition-transform"
+										>
+											+ Pesan
+										</button>
+									</div>
+								{/if}
 							</div>
 						</div>
 					</div>
