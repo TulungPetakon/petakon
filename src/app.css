@@ -66,7 +66,7 @@
 html,
 body {
 	@apply w-screen max-h-screen overflow-hidden text-gray-700 text-sm md:text-base;
-	font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-family: 'Figtree', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	font-weight: 500;
 	font-style: normal;
 }
