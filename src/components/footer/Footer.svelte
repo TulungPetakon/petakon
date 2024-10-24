@@ -1,4 +1,4 @@
-<footer class="px-[5%] md:px-[10%] w-full mt-20">
+<footer class="px-[6%] w-full mt-20">
 	<div class="border-t-2">
 		<!--Grid-->
 		<div class="grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6 gap-8 py-10">

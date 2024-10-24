@@ -35,7 +35,7 @@
 				<div
 					class="bg-gradient-to-t from-black/75 text-white h-fit w-full absolute z-10 bottom-0 left-0 p-3 pt-10"
 				>
-					<button class="petakon-button-outline text-xs mt-2 font-semibold uppercase">
+					<button class="pk-button-outline text-xs mt-2 font-semibold uppercase">
 						{name}
 					</button>
 				</div>
@@ -45,14 +45,11 @@
 			class="basis-1/2 md:basis-1/4 relative aspect-[16/9] groupn bg-cover bg-center"
 			style="background-image: url({hiburan});"
 		>
-			<div class="petakon-bg-gradient h-full opacity-75"></div>
+			<div class="pk-bg-gradient h-full opacity-75"></div>
 			<button
-				class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 petakon-button rounded-full text-white border-2 border-white text-xs md:text-lg hover:bg-white group"
+				class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pk-button rounded-full text-white border-2 border-white text-xs md:text-lg hover:bg-white group"
 			>
-				<a
-					href="/explore"
-					class="block w-full h-full group-[:hover]:petakon-text-gradient uppercase"
-				>
+				<a href="/explore" class="block w-full h-full group-[:hover]:pk-text-gradient uppercase">
 					Jelajahi
 				</a>
 			</button>

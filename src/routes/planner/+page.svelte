@@ -49,7 +49,7 @@
 					<span class="block opacity-50"> {address} </span>
 				</div>
 				<div class="flex justify-center items-center">
-					<span class="block text-2xl petakon-text-gradient"> Rp 999.000 </span>
+					<span class="block text-2xl pk-text-gradient"> Rp 999.000 </span>
 				</div>
 				<div class="flex justify-center items-center basis-1/12 ml-auto">
 					<button
@@ -66,12 +66,10 @@
 			<div class="ml-auto">
 				<div class="flex items-center">
 					<span class="block text-lg font-bold">TOTAL:</span>
-					<span class="ml-2 block text-2xl petakon-text-gradient">Rp 999.000</span>
+					<span class="ml-2 block text-2xl pk-text-gradient">Rp 999.000</span>
 				</div>
 				<div class="continue flex">
-					<button class="petakon-button text-white petakon-bg-gradient ml-auto mt-6">
-						CONTINUE
-					</button>
+					<button class="pk-button text-white pk-bg-gradient ml-auto mt-6"> CONTINUE </button>
 				</div>
 			</div>
 		</div>

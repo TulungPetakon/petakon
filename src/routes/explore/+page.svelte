@@ -39,8 +39,8 @@
 				{@const inCart = $cart.findIndex((c) => c.id == id) < 0}
 				<div class="basis-1/2 sm:basis-1/3 md:basis-1/4 2xl:basis-1/5 p-2">
 					<div
-						class="aspect-[5/6] rounded-md group shadowed hover:shadowed-active"
-						class:shadowed-active={!inCart}
+						class="aspect-[5/6] rounded-md group pk-shadow hover:pk-shadow-active"
+						class:pk-shadow-active={!inCart}
 					>
 						<div class="w-full h-full bg-white">
 							<div class="aspect-[4/3] bg-gray-100 relative">

@@ -82,7 +82,7 @@
 			bind:clientHeight={height}
 			style="--height:{height}px"
 		>
-			<h1 class="font-bold text-3xl md:text-4xl">Jangan Lewatkan!</h1>
+			<h1 class="font-bold text-3xl md:text-4xl">Hanya di Tulungagung!</h1>
 			<div class="flex mt-10">
 				<div
 					class="flex flex-col justify-start items-center basis-1/6 relative h-[calc(5/6 * var(--height))]"
@@ -99,7 +99,7 @@
 							{#if activeIndicator === i}
 								<div
 									transition:scale={{ start: 0 }}
-									class="flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center w-8 petakon-bg-gradient rounded-full aspect-square border-white border-2"
+									class="flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center w-8 pk-bg-gradient rounded-full aspect-square border-white border-2"
 								>
 									{i + 1}
 								</div>
@@ -115,7 +115,7 @@
 								Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem veniam
 								nostrum ex pariatur consequatur reprehenderit rem adipisci debitis suscipit numquam.
 							</p>
-							<button in:fly={{ x: 20, delay: 300 }} class="mt-5 petakon-button-outline">
+							<button in:fly={{ x: 20, delay: 300 }} class="mt-5 pk-button-outline">
 								{wisata[active].tmbl}
 							</button>
 						</div>
