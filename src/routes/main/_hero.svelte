@@ -70,10 +70,10 @@
 	});
 </script>
 
-<div class="w-full h-[var(--app-height)] text-white overflow-hidden">
+<div class="w-full text-white overflow-hidden" style="height: calc(var(--app-height) - 5rem)">
 	<div
-		class="bg-cover bg-fixed h-[inherit] w-full absolute left-0 top-0 after:bg-sky-950/30 after:absolute after:top-0 after:left-0 after:w-full after:h-full before:bg-black/35 before:absolute before:top-0 before:left-0 before:w-full before:h-full"
-		style="background-image: url({klatak});"
+		class="bg-cover bg-fixed h-[var(--app-height)] w-full absolute left-0 top-0 after:bg-sky-950/30 after:absolute after:top-0 after:left-0 after:w-full after:h-full before:bg-black/35 before:absolute before:top-0 before:left-0 before:w-full before:h-full"
+		style="background-image: url({klatak}); "
 	></div>
 
 	<div class="lg:py-20 w-full h-full relative flex flex-col-reverse sm:flex-row items-center">
