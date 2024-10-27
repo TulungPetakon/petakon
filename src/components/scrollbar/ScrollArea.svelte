@@ -3,7 +3,15 @@
 	import { onDestroy } from 'svelte';
 	import { createDefer } from './createDefer';
 
-	const { element = 'div', options, events, defer, children, ...properties } = $props();
+	const {
+		element = 'div',
+		options,
+		events,
+		defer,
+		class: klass,
+		children,
+		...properties
+	} = $props();
 
 	let instance = $state();
 	let elementRef = $state(null);
@@ -115,7 +123,7 @@
 	{#if element === 'body'}
 		{@render children()}
 	{:else}
-		<div data-overlayscrollbars-contents="" bind:this={slotRef}>
+		<div data-overlayscrollbars-contents="" class={klass} bind:this={slotRef}>
 			{@render children()}
 		</div>
 	{/if}
