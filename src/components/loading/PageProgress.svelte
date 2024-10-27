@@ -12,9 +12,12 @@
 	});
 
 	$effect(async () => {
+		const { complete, from, to } = $navigating || {};
+		if (from?.route.id === to?.route.id) return;
+
 		show = true;
 		progress.set(0.7);
-		await $navigating?.complete; // waiting to be fulfilled
+		await complete; // waiting to be fulfilled
 
 		progress.set(1, { duration: 500 });
 		await delay(500);
