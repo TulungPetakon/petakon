@@ -12,6 +12,7 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$comp: path.resolve('./src/components'),
+			$posts: path.resolve('./src/posts'),
 			'@images': path.resolve('./src/images')
 		}
 	}
