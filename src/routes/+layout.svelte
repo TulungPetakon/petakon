@@ -3,6 +3,7 @@
 	import '@splidejs/splide/dist/css/splide-core.min.css';
 	import 'overlayscrollbars/overlayscrollbars.css';
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 	import { scrollTop, screenSize, isMobile } from '$lib/stores/app-stores.svelte.js';
 	import { mobileDetect } from '$lib/helpers/mobile-detect';
 
@@ -10,6 +11,7 @@
 	import NavBar from '$comp/menu/NavBar.svelte';
 	import Footer from '$comp/footer/Footer.svelte';
 	import PageProgress from '$comp/loading/PageProgress.svelte';
+	import Loader from '$comp/loading/Loader.svelte';
 
 	const { children } = $props();
 
@@ -26,9 +28,16 @@
 		screenSize.set({ height: innerHeight, width: innerWidth });
 		isMobile.set(mobileDetect() || innerWidth < 768);
 	});
+
+	let loaded = $state(false);
+	onMount(() => (loaded = true));
 </script>
 
 <svelte:window bind:innerHeight bind:innerWidth />
+
+{#if !loaded}
+	<Loader />
+{/if}
 
 <main
 	class="w-screen relative min-h-screen"
