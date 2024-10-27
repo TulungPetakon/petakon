@@ -9,6 +9,7 @@
 	import ScrollArea from '$comp/scrollbar/ScrollArea.svelte';
 	import NavBar from '$comp/menu/NavBar.svelte';
 	import Footer from '$comp/footer/Footer.svelte';
+	import PageProgress from '$comp/loading/PageProgress.svelte';
 
 	const { children } = $props();
 
@@ -34,6 +35,8 @@
 	class:mobile={$isMobile}
 	style="--app-height:{innerHeight}px;--app-width:{innerWidth}px"
 >
+	<PageProgress />
+
 	<ScrollArea
 		defer
 		class="!h-[var(--app-height)]"
