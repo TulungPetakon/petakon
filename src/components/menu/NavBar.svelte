@@ -1,4 +1,5 @@
 <script>
+	import { page } from '$app/stores';
 	import { scrollTop } from '$lib/stores/app-stores.svelte.js';
 	import navLinks from './navlink';
 	import Brand from '$comp/icons/Brand.svelte';
@@ -26,7 +27,7 @@
 
 	<h1 class="font-bold text-xl py-1 group-[.active]:text-black transition-all">
 		<a href="/" class=" flex items-center">
-			<div class="w-12 inline-block"><Brand mono={$scrollTop < 1 && !solidBG} /></div>
+			<div class="w-8 inline-block"><Brand mono={$scrollTop < 1 && !solidBG} /></div>
 			<span>petakon</span>
 		</a>
 	</h1>
@@ -35,9 +36,9 @@
 		{#each navLinks as { href, title, icon }}
 			<a
 				{href}
-				class="hidden lg:inline-flex py-5 mx-3 after:bg-white after:w-full after:scale-x-0 after:h-[.15rem] relative after:absolute after:bottom-0 after:left-0 after:rounded-t-md hover:after:scale-x-100 after:transition-transform after:duration-300 group-[.active]:after:pk-bg transition-all group-[.active]:text-black"
+				class="hidden lg:inline-flex py-5 mx-3 after:bg-white after:w-full after:scale-x-0 after:h-[.15rem] relative after:absolute after:bottom-0 after:left-0 after:rounded-t-md hover:after:scale-x-100 has-[.isOpen]:after:scale-x-100 after:transition-transform after:duration-300 group-[.active]:after:pk-bg transition-all group-[.active]:text-black"
 			>
-				<span> <i class="fasl {icon}"></i> {title} </span>
+				<span class:isOpen={href === $page.route.id}> <i class="fasl {icon}"></i> {title} </span>
 			</a>
 		{/each}
 
@@ -46,7 +47,7 @@
 				disabled
 				class="pk-outline rounded-sm px-4 py-2 disabled:active:scale-100 disabled:cursor-not-allowed active:scale-95 transition-all pk-bg text-white disabled:opacity-50"
 			>
-				<i class="fa-light fa-arrow-right-to-bracket mr-1"></i>
+				<i class="fasl fa-arrow-right-to-bracket mr-1"></i>
 				<span class="hidden md:inline-block"> Masuk/Daftar </span>
 			</button>
 		</div>
