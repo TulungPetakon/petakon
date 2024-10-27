@@ -1,7 +1,5 @@
 <script>
-	import { goto } from '$app/navigation';
-
-	$effect(() => goto('/main'));
+	import Main from './main/main.svelte';
 </script>
 
-<section></section>
+<Main />

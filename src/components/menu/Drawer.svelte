@@ -1,15 +1,16 @@
 <script>
 	import { fade, fly } from 'svelte/transition';
-	import navLinks from './navlink';
 	import { self } from 'svelte/legacy';
+	import navLinks from './navlink';
+
 	const { toggle } = $props();
 </script>
 
 <div
+	onmousedown={self(toggle)}
 	class="w-full h-full bg-black/50 fixed right-0 top-0 z-50"
 	transition:fade={{ duration: 200 }}
 	role
-	onmousedown={self(toggle)}
 >
 	<div class="w-10/12 bg-white h-full relative ml-auto" transition:fly={{ x: 100, duration: 200 }}>
 		<h1 class="font-black p-4 text-xl text-center">

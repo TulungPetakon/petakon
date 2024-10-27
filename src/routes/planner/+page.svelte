@@ -69,7 +69,7 @@
 					<span class="ml-2 block text-2xl pk-text-gradient">Rp 999.000</span>
 				</div>
 				<div class="continue flex">
-					<button class="pk-button text-white pk-bg-gradient ml-auto mt-6"> CONTINUE </button>
+					<button class="pk-button text-white pk-bg ml-auto mt-6"> CONTINUE </button>
 				</div>
 			</div>
 		</div>

@@ -72,7 +72,7 @@
 
 <div class="w-full h-[var(--app-height)] text-white overflow-hidden">
 	<div
-		class="bg-cover bg-fixed h-[inherit] w-full absolute left-0 top-0 after:bg-black/35 after:absolute after:top-0 after:left-0 after:w-full after:h-full"
+		class="bg-cover bg-fixed h-[inherit] w-full absolute left-0 top-0 after:bg-sky-950/30 after:absolute after:top-0 after:left-0 after:w-full after:h-full before:bg-black/35 before:absolute before:top-0 before:left-0 before:w-full before:h-full"
 		style="background-image: url({klatak});"
 	></div>
 
@@ -99,7 +99,7 @@
 							{#if activeIndicator === i}
 								<div
 									transition:scale={{ start: 0 }}
-									class="flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center w-8 pk-bg-gradient rounded-full aspect-square border-white border-2"
+									class="flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center w-8 pk-bg rounded-full aspect-square border-white border-2"
 								>
 									{i + 1}
 								</div>
@@ -137,13 +137,13 @@
 							<li class="splide__slide p-2 flex items-center group" class:active={i === active}>
 								<div
 									style="background-image: url({img});"
-									class="bg-cover bg-center w-full aspect-square rounded-lg group-[.active]:aspect-[3/4] transition-all duration-300 relative flex"
+									class="bg-cover bg-center w-full aspect-square rounded-sm group-[.active]:aspect-[3/4] transition-all duration-300 relative flex"
 								>
 									<div class="w-full h-1/2 mt-auto bg-gradient-to-t from-black/75 flex items-end">
 										<div class="p-2 sm:p-5 opacity-85">
 											<h3 class="font-bold">{title}</h3>
 											<div class="info text-xs sm:text-sm sm:mt-2 text-cyan-200 opacity-75">
-												Location/Time/Date:
+												<i class="fa-light fa-location-dot"></i> Location/Time/Date:
 											</div>
 										</div>
 									</div>

@@ -7,7 +7,7 @@
 	<h2 class="font-bold text-3xl">Pilihan Transportasi</h2>
 	<div class="flex pt-10 flex-wrap">
 		<div class="basis-full sm:basis-1/2 pr-2 my-1 relative">
-			<button class="pk-bg-gradient rounded-lg p-5 text-white w-full text-left">
+			<button class="pk-bg rounded-lg p-5 text-white w-full text-left">
 				<div class="uppercase text-2xl font-bold">Antar Jemput</div>
 				<div class="py-2">Lorem ipsum dolor sit amet.</div>
 
@@ -20,7 +20,7 @@
 		</div>
 
 		<div class="basis-full sm:basis-1/2 pr-2 my-1 relative">
-			<button class="pk-bg-gradient rounded-lg p-5 text-white w-full text-left">
+			<button class="pk-bg rounded-lg p-5 text-white w-full text-left">
 				<div class="uppercase text-2xl font-bold">Sewa Kendaraan</div>
 				<div class="py-2">Lorem ipsum dolor sit amet.</div>
 				<img src={sewa} alt="Sewa Kendaraan" class="absolute top-1/2 right-2 -translate-y-1/2" />

@@ -4,7 +4,7 @@
 		{#each ['Agustus', 'September', 'Oktober', 'November'] as m}
 			<div class="basis-1/2 sm:basis-1/4 max-w-[50%] p-2">
 				<div class="bg-white aspect-[4/5] pk-shadow pk-shadow-active rounded-md overflow-hidden">
-					<div class="p-2 pk-bg-gradient text-white">{m}</div>
+					<div class="p-2 pk-bg text-white">{m}</div>
 					<!--  -->
 				</div>
 			</div>

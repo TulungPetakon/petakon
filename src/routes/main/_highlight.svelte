@@ -45,7 +45,7 @@
 			class="basis-1/2 md:basis-1/4 relative aspect-[16/9] groupn bg-cover bg-center"
 			style="background-image: url({hiburan});"
 		>
-			<div class="pk-bg-gradient h-full opacity-75"></div>
+			<div class="pk-bg h-full opacity-75"></div>
 			<button
 				class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pk-button rounded-full text-white border-2 border-white text-xs md:text-lg hover:bg-white group"
 			>
