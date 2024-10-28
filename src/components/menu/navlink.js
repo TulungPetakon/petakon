@@ -1,4 +1,4 @@
-const navLinks = [
+export const mainLinks = [
 	{
 		href: '/what-to-do',
 		title: 'Pertama Kali ke Tulungagung?',
@@ -8,5 +8,3 @@ const navLinks = [
 	{ href: '/app', title: 'Explore', id: 'explore', icon: 'fa-compass' },
 	{ href: '/planner', title: 'Rencana Perjalanan', id: 'planner', icon: 'fa-map-location-dot' }
 ];
-
-export default navLinks;

@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import { scrollTop } from '$lib/stores/app-stores.svelte.js';
-	import navLinks from './navlink';
+	import { mainLinks } from './navlink';
 	import Brand from '$comp/icons/Brand.svelte';
 	import Drawer from './Drawer.svelte';
 
@@ -18,14 +18,16 @@
 	<div class="block lg:hidden">
 		<button
 			aria-label="Navigation Bar"
-			class="py-2 px-3 rounded-sm active:scale-95 transition-transform text-md border border-slate-400 group-[.active]:text-slate-400"
+			class="rounded-sm transition-transform text-md
+			active:scale-95
+			group-[.active]:text-slate-700"
 			onclick={drawerToggle}
 		>
-			<i class="fal fa-bars"></i></button
+			<i class="fasl fa-bars text-2xl md:text-base"></i></button
 		>
 	</div>
 
-	<h1 class="font-bold text-xl py-1 group-[.active]:text-black transition-all">
+	<h1 class="text-xl py-2 md:py-1 group-[.active]:text-black transition-all">
 		<a href="/" class=" flex items-center">
 			<div class="w-8 inline-block"><Brand mono={$scrollTop < 1 && !solidBG} /></div>
 			<span>petakon</span>
@@ -33,10 +35,14 @@
 	</h1>
 
 	<nav class="block">
-		{#each navLinks as { href, title, icon }}
+		{#each mainLinks as { href, title, icon }}
 			<a
 				{href}
-				class="hidden lg:inline-flex py-5 mx-3 after:bg-white after:w-full after:scale-x-0 after:h-[.15rem] relative after:absolute after:bottom-0 after:left-0 after:rounded-t-md hover:after:scale-x-100 has-[.isOpen]:after:scale-x-100 after:transition-transform after:duration-300 group-[.active]:after:pk-bg transition-all group-[.active]:text-black"
+				class="hidden py-5 mx-3 relative transition-all
+				lg:inline-flex
+				after:bg-white after:w-full after:scale-x-0 after:h-[.15rem] after:absolute after:bottom-0 after:left-0 after:rounded-t-md after:transition-transform after:duration-300
+				hover:after:scale-x-100
+				group-[.active]:text-black group-[.active]:after:pk-bg has-[.isOpen]:after:scale-x-100"
 			>
 				<span class:isOpen={href === $page.route.id}> <i class="fasl {icon}"></i> {title} </span>
 			</a>
@@ -44,10 +50,14 @@
 
 		<div class="inline-flex">
 			<button
-				disabled
-				class="pk-outline rounded-sm px-4 py-2 disabled:active:scale-100 disabled:cursor-not-allowed active:scale-95 transition-all pk-bg text-white disabled:opacity-50"
+				class="pk-outline rounded-sm transition-all
+				group-[.active]:text-slate-700
+				md:px-3 md:py-2 md:pk-bg md:!text-white md:
+				active:scale-95
+				disabled:active:scale-100 disabled:cursor-not-allowed disabled:opacity-50
+				"
 			>
-				<i class="fasl fa-arrow-right-to-bracket mr-1"></i>
+				<i class="fasl fa-arrow-right-to-bracket mr-1 text-2xl md:text-base"></i>
 				<span class="hidden md:inline-block"> Masuk/Daftar </span>
 			</button>
 		</div>
