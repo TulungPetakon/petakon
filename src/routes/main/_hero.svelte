@@ -1,7 +1,7 @@
 <script>
-	import { fly, scale } from 'svelte/transition';
+	import { fade, fly, scale } from 'svelte/transition';
+	import { onMount } from 'svelte';
 	import Splide from '@splidejs/splide';
-	import klatak from '@images/beach/klatak.jpg?format=webp';
 	import senggani from '@images/beach/jurang-senggani.jpg?format=webp';
 	import dlodo from '@images/beach/dlodo.jpg?format=webp';
 	import jls from '@images/beach/jls.jpg';
@@ -19,8 +19,8 @@
 		{ title: 'Pertunjukan Budaya', img: jls, tmbl: 'Kunjungi' }
 	];
 
-	$effect(() => {
-		splide = new Splide('.splide', {
+	onMount(() => {
+		splide = new Splide('#hero_slider', {
 			arrows: false,
 			autoplay: true,
 			perMove: 1,
@@ -70,19 +70,31 @@
 	});
 </script>
 
-<div class="w-full text-white overflow-hidden" style="height: calc(var(--app-height) - 5rem)">
-	<div
-		class="bg-cover bg-fixed h-[var(--app-height)] w-full absolute left-0 top-0 after:bg-sky-950/30 after:absolute after:top-0 after:left-0 after:w-full after:h-full before:bg-black/35 before:absolute before:top-0 before:left-0 before:w-full before:h-full"
-		style="background-image: url({klatak}); "
-	></div>
+<div
+	style="clip-path: inset(0);"
+	class="absolute left-0 top-0 h-[var(--app-height)] w-full overflow-hidden
+	after:bg-sky-950/30 after:absolute after:top-0 after:left-0 after:w-full after:h-full
+	before:bg-black/35 before:absolute before:top-0 before:left-0 before:w-full before:h-full"
+>
+	{#key activeIndicator}
+		<img
+			out:fade
+			in:scale={{ start: 1.2 }}
+			src={wisata[activeIndicator].img}
+			alt="Featured"
+			class="object-cover object-top w-full h-full fixed left-0 top-0 -z-10 pointer-events-none"
+		/>
+	{/key}
+</div>
 
+<div class="w-full text-white overflow-hidden" style="height: calc(var(--app-height) - 5rem)">
 	<div class="lg:py-20 w-full h-full relative flex flex-col-reverse sm:flex-row items-center">
 		<div
 			class="basis-1/2 h-fit sm:pl-[15%] pl-[10%] pr-[10%] grow sm:pr-0"
 			bind:clientHeight={height}
 			style="--height:{height}px"
 		>
-			<h1 class="font-bold text-3xl md:text-4xl">Hanya di Tulungagung!</h1>
+			<h1 class="font-bold text-3xl md:text-4xl">Jangan Lewatkan!</h1>
 			<div class="flex mt-10">
 				<div
 					class="flex flex-col justify-start items-center basis-1/6 relative h-[calc(5/6 * var(--height))]"
@@ -99,7 +111,7 @@
 							{#if activeIndicator === i}
 								<div
 									transition:scale={{ start: 0 }}
-									class="flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center w-8 pk-bg rounded-full aspect-square border-white border-2"
+									class="flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center w-8 bg-sky-500 rounded-full aspect-square border-white border-2"
 								>
 									{i + 1}
 								</div>
@@ -115,7 +127,10 @@
 								Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem veniam
 								nostrum ex pariatur consequatur reprehenderit rem adipisci debitis suscipit numquam.
 							</p>
-							<button in:fly={{ x: 20, delay: 300 }} class="mt-5 pk-button-outline">
+							<button
+								in:fly={{ x: 20, delay: 300 }}
+								class="mt-5 border-2 border-sky-400 pk-button hover:border-sky-500 hover:bg-sky-500 transition-all duration-300"
+							>
 								{wisata[active].tmbl}
 							</button>
 						</div>
@@ -126,11 +141,7 @@
 		<div
 			class="basis-1/3 sm:basis-1/2 sm:h-full mt-20 sm:mt-0 grow sm:pl-12 max-w-[100%] sm:max-w-[50%]"
 		>
-			<div
-				class="splide h-full flex items-center"
-				role="group"
-				aria-label="Splide Basic HTML Example"
-			>
+			<div id="hero_slider" class="splide h-full flex items-center" role="group">
 				<div class="splide__track">
 					<ul class="splide__list">
 						{#each wisata as { title, img }, i}
