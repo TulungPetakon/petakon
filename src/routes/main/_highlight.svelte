@@ -22,7 +22,7 @@
 </script>
 
 <section class="pt-28">
-	<div class="w-full relative px-[5%] md:px-[10%]">
+	<div class="w-full relative px-[5%] md:px-[6.5%]">
 		<span class="absolute bottom-full left-1/2 -translate-x-1/2 w-full text-center">
 			Mungkin Menarik Untuk Anda
 		</span>

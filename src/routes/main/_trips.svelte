@@ -37,8 +37,8 @@
 
 		<div class="flex flex-wrap w-full pt-5">
 			<div
-				class="basis-full pr-2 py-1
-        md:basis-1/2 md:py-0"
+				class="basis-full py-1
+        md:basis-1/2 md:py-0 md:pr-2"
 			>
 				<a
 					href="/"
@@ -51,8 +51,8 @@
 			</div>
 
 			<div
-				class="basis-full pr-2 py-1
-        md:basis-1/2 md:py-0"
+				class="basis-full py-1
+        md:basis-1/2 md:py-0 md:pl-2"
 			>
 				<a
 					href="/"
@@ -66,7 +66,7 @@
 				</a>
 			</div>
 
-			<div class="basis-full pr-2 py-1 md:pb-0 md:pt-2">
+			<div class="basis-full py-1 md:pb-0 md:pt-4">
 				<a
 					href="/"
 					class="block border-2 border-sky-600/50 w-full py-2 px-4 rounded h-full

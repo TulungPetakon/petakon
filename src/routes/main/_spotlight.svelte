@@ -86,14 +86,14 @@
 				<button
 					onclick={previous}
 					aria-label="Previous"
-					class="w-8 aspect-square text-2xl hover:text-orange-400 transition-all"
+					class="w-8 aspect-square text-3xl hover:text-orange-400 transition-all"
 				>
 					<i class="fasl fa-angle-left"></i>
 				</button>
 				<button
 					onclick={next}
 					aria-label="Next"
-					class="w-8 aspect-square text-2xl hover:text-orange-400 transition-all"
+					class="w-8 aspect-square text-3xl hover:text-orange-400 transition-all"
 				>
 					<i class="fasl fa-angle-right"></i>
 				</button>
@@ -108,7 +108,7 @@
 >
 	<div
 		class="w-full flex items-end pr-[5%] pl-[5%] basis-full
-    md:pl-[10%] md:basis-6/12
+    md:pl-[6.5%] md:basis-6/12
     xl:basis-7/12"
 	>
 		<div class="relative">

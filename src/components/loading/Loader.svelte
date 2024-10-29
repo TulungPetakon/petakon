@@ -34,7 +34,7 @@
 		perspective: 1000px;
 	}
 	.animate {
-		animation: loading 1.25s infinite alternate ease-in-out;
+		animation: loading 1s infinite alternate ease-in-out;
 		transform-origin: center;
 		transform-style: preserve-3d;
 	}

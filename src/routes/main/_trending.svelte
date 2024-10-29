@@ -1,9 +1,8 @@
 <script>
-	import { lazyLoad } from '$lib/helpers/lazyload';
 	import img from '@images/beach/jls.jpg';
 </script>
 
-<section class="pt-28 px-[5%] md:px-[10%]">
+<section class="pt-28 px-[5%] md:px-[6.5%]">
 	<div class="w-full relative">
 		<span class="absolute bottom-full left-1/2 -translate-x-1/2 w-full text-center">
 			Sedang Ramai Dibicarakan
@@ -33,14 +32,14 @@
 						class="block w-full transition-transform group-hover:scale-110 duration-300 aspect-[5/3]
             sm:aspect-[5/6]"
 					>
-						<img use:lazyLoad={img} alt="Thumbnail" class="w-full h-full object-cover object-top" />
+						<img src={img} alt="Thumbnail" class="w-full h-full object-cover object-top" />
 					</picture>
 
 					<span class="tags bg-sky-900 py-2 px-4 text-white/75 absolute top-0 left-0">
 						Santai, Kuliner
 					</span>
 					<h3 class="p-2 absolute w-full bottom-0 left-0">
-						<div class="bg-white block p-4 rounded font-bold">
+						<div class="bg-white block p-4 rounded font-bold text-lg">
 							<a
 								style="--line-number: 3;"
 								class="text-overflow leading-tight transition-all hover:text-orange-500"
