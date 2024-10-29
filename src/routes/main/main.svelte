@@ -3,6 +3,7 @@
 	import Highlight from './_highlight.svelte';
 	import Homestay from './_homestay.svelte';
 	import Partners from './_partners.svelte';
+	import Spotlight from './_spotlight.svelte';
 	import Transport from './_transport.svelte';
 	import Trending from './_trending.svelte';
 </script>
@@ -12,6 +13,8 @@
 <Trending />
 
 <Highlight />
+
+<Spotlight />
 
 <Homestay />
 
