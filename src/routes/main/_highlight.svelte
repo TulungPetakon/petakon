@@ -7,52 +7,82 @@
 	import edukasi from '@images/beach/kedung-tumpang.webp?format=webp';
 	import hiburan from '@images/beach/pathok.jpeg?format=webp';
 	import taman from '@images/beach/skyview.webp?format=webp';
-	// import more from '@images/beach/klatak.jpg?format=webp';
+	import klathak from '@images/beach/klatak.jpg?format=webp';
 
 	const kategori = [
-		{ name: 'gunung', img: gunung },
-		{ name: 'pantai', img: pantai },
-		{ name: 'budaya', img: budaya },
-		{ name: 'kuliner', img: kuliner },
-		{ name: 'edukasi', img: edukasi },
-		{ name: 'taman', img: taman },
-		{ name: 'relaksasi', img: relaksasi }
-		// { name: 'hiburan', img: hiburan }
+		{ name: 'Gunung Budheg', img: gunung },
+		{ name: 'Pantai Coro', img: pantai },
+		{ name: 'Air Terjun Jurang Senggani', img: budaya },
+		{ name: 'Jalur Lintas Selatan', img: kuliner },
+		{ name: 'Pantai Kedung Tumpang', img: edukasi },
+		{ name: 'Dendy Skyview', img: taman },
+		{ name: 'Coban Kromo', img: relaksasi },
+		{ name: 'Pantai Klathak', img: klathak }
 	];
 </script>
 
-<section class="pt-20">
-	<h2 class="font-bold uppercase text-3xl text-center mb-10">Destinasi Pilihan</h2>
-	<div class="flex flex-wrap">
-		{#each kategori as { img, name }}
+<section class="pt-28">
+	<div class="w-full relative px-[5%] md:px-[10%]">
+		<span class="absolute bottom-full left-1/2 -translate-x-1/2 w-full text-center">
+			Mungkin Menarik Untuk Anda
+		</span>
+		<h2 class="font-bold text-3xl uppercase text-center relative overflow-hidden">
+			<span
+				class="relative inline-flex px-5 py-1 max-w-[80%] md:max-w-[30%]
+        before:absolute before:right-full before:top-1/2 before:-translate-y-1/2 before:h-[2px] before:w-[400%] before:bg-sky-950
+        after:absolute after:left-full after:top-1/2 after:-translate-y-1/2 after:h-[2px] after:w-[400%] after:bg-sky-950"
+			>
+				Destinasi Pilihan
+			</span>
+		</h2>
+	</div>
+
+	<div class="flex flex-wrap mt-10">
+		{#each kategori as { img, name }, i}
 			<div
-				class="basis-1/2 md:basis-1/4 aspect-square sm:aspect-[16/9] relative group overflow-hidden"
+				class="aspect-square relative group overflow-hidden basis-1/2
+				md:basis-1/3 lg:basis-1/4 sm:aspect-[16/9]
+				has-[#group7]:hidden md:has-[#group7]:block lg:has-[#group7]:hidden"
 			>
 				<div
+					id="group{i}"
 					class="h-full w-full bg-cover bg-center transition-all duration-300 group-[:hover]:scale-110"
 					style="background-image: url({img});"
 				></div>
+
 				<div
-					class="bg-gradient-to-t from-black/75 text-white h-fit w-full absolute z-10 bottom-0 left-0 p-3 pt-10"
+					class="bg-black/30 backdrop-blur-sm absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center scale-150 opacity-0 transition-all duration-300
+					group-hover:scale-100 group-hover:opacity-100"
 				>
-					<button class="pk-button-outline text-xs mt-2 font-semibold uppercase">
-						{name}
-					</button>
+					<span class="text-white flex flex-col w-3/5 items-center justify-center text-center">
+						<i class="fasl fa-location-dot text-xl"></i>
+						<span class="sm:text-lg text-sm leading-tight"> {name} </span>
+					</span>
+					<a
+						href="/explore"
+						class="block text-white text-sm mt-2 px-4 py-1 rounded border-white border
+						hover:border-orange-400 hover:bg-orange-400 transition-all duration-300"
+					>
+						Lihat <i class="fasl fa-location-arrow"></i>
+					</a>
 				</div>
 			</div>
 		{/each}
-		<div
-			class="basis-1/2 md:basis-1/4 relative aspect-[16/9] groupn bg-cover bg-center"
-			style="background-image: url({hiburan});"
-		>
-			<div class="pk-bg h-full opacity-75"></div>
-			<button
-				class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pk-button rounded-full text-white border-2 border-white text-xs md:text-lg hover:bg-white group"
+
+		<div class="basis-1/2 md:basis-1/3 lg:basis-1/4 relative aspect-[16/9] overflow-hidden">
+			<div
+				class="h-full group bg-cover bg-center blur-sm scale-110
+			after:bg-sky-950/85 after:opacity-75 after:w-full after:h-full after:absolute after:top-0 after:left-0"
+				style="background-image: url({hiburan});"
+			></div>
+			<a
+				href="/explore"
+				class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pk-button !rounded text-white border-2 border-white text-xs flex items-center
+				md:text-lg hover:bg-white hover:text-orange-500"
 			>
-				<a href="/explore" class="block w-full h-full group-[:hover]:pk-text-gradient uppercase">
-					Jelajahi
-				</a>
-			</button>
+				<span class="block w-full h-full uppercase"> Jelajahi </span>
+				<i class="fasl fa-arrow-right-long inline-block ml-2"></i>
+			</a>
 		</div>
 	</div>
 </section>
