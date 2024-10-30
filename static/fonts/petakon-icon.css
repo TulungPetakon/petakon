@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'petakon-icon-set';
+	src: url('./petakon-icon-set.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[data-icon]:before {
+	font-family: 'petakon-icon-set' !important;
+	content: attr(data-icon);
+	font-style: normal !important;
+	font-weight: normal !important;
+	font-variant: normal !important;
+	text-transform: none !important;
+	speak: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+[class^='pk-']:before,
+[class*=' pk-']:before {
+	font-family: 'petakon-icon-set' !important;
+	font-style: normal !important;
+	font-weight: normal !important;
+	font-variant: normal !important;
+	text-transform: none !important;
+	speak: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.pk-arrow-right:before {
+	content: '\61';
+}
+.pk-arrow-left:before {
+	content: '\62';
+}
+.pk-close:before {
+	content: '\63';
+}
+.pk-icons8-menu:before {
+	content: '\64';
+}
+.pk-bookmark-o:before {
+	content: '\65';
+}
+.pk-calendar-o:before {
+	content: '\67';
+}
+.pk-email-plane:before {
+	content: '\68';
+}
+.pk-map-pin-bold:before {
+	content: '\69';
+}
+.pk-map-pin:before {
+	content: '\6a';
+}
+.pk-time:before {
+	content: '\6c';
+}
+.pk-star:before {
+	content: '\6d';
+}
+.pk-angle-down:before {
+	content: '\6e';
+}
+.pk-angle-up:before {
+	content: '\6f';
+}
+.pk-angle-left:before {
+	content: '\70';
+}
+.pk-angle-right:before {
+	content: '\71';
+}
+.pk-facebook:before {
+	content: '\72';
+}
+.pk-instagram:before {
+	content: '\73';
+}
+.pk-whatsapp:before {
+	content: '\74';
+}
+.pk-x:before {
+	content: '\66';
+}
+.pk-mail:before {
+	content: '\6b';
+}
+.pk-youtube:before {
+	content: '\75';
+}
+.pk-tiktok:before {
+	content: '\76';
+}
