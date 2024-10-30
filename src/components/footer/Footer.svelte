@@ -1,11 +1,12 @@
 <script>
-	import Brand from '$comp/icons/Brand.svelte';
+	import Brand from '$comp/svgs/Brand.svelte';
 	import p1 from '@images/partners/harapan-jaya.png?format=webp&h=100';
 	import p2 from '@images/partners/hotel-surakarta.png?format=webp&h=100';
 	import p3 from '@images/partners/ilio.png?format=webp&h=100';
 	import p4 from '@images/partners/jaya-mandiri.png?format=webp&h=100';
 	import dis1 from '@images/partners/dishub.png?format=webp&h=100';
 	import dis2 from '@images/partners/disbupar.png?format=webp&h=100';
+	import LangToggle from '$comp/utils/LangToggle.svelte';
 
 	const partners = [
 		{ src: p1, name: 'Harapan Jaya' },
@@ -142,6 +143,12 @@
 				Background Support
 			</h4>
 			{@render brand(supporter)}
+
+			<div class="hidden sm:mt-7 sm:flex sm:justify-center sm:items-center">
+				<div class="w-5/6">
+					<LangToggle />
+				</div>
+			</div>
 		</div>
 	</div>
 

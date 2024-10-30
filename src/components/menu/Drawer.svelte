@@ -2,8 +2,15 @@
 	import { fade, fly } from 'svelte/transition';
 	import { self } from 'svelte/legacy';
 	import { mainLinks } from './navlink';
+	import { screenSize } from '$lib/stores/app-stores.svelte.js';
+	import LangToggle from '$comp/utils/LangToggle.svelte';
 
 	const { toggle } = $props();
+
+	const flyTransition = (node) => {
+		const fromSide = $screenSize.width > 640;
+		return fromSide ? fly(node, { x: 100, duration: 200 }) : fly(node, { y: 100, duration: 250 });
+	};
 </script>
 
 <div
@@ -12,7 +19,7 @@
 	transition:fade={{ duration: 250 }}
 	role
 >
-	<div class="w-full bg-white h-full relative ml-auto" transition:fly={{ y: 100, duration: 250 }}>
+	<div class="w-full sm:w-[60vw] bg-white h-full relative ml-auto" transition:flyTransition>
 		<div class="flex px-2 py-1 items-center border-b">
 			<button aria-label="Close" class="text-xl w-10 aspect-square" onclick={toggle}>
 				<i class="fasl fa-xmark-large"></i></button
@@ -41,7 +48,7 @@
 
 		<div class="bg-slate-100 w-full h-2"></div>
 
-		<div class="list py-4 px-2">
+		<div class="list py-4 px-2 sm:px-[6.5%]">
 			{#each mainLinks as { href, title, icon }}
 				<a
 					{href}
@@ -52,6 +59,12 @@
 					<i class="fasl {icon} mr-10 w-0 text-2xl inline-block"></i> <span> {title} </span>
 				</a>
 			{/each}
+
+			<div class="mt-7 flex justify-center items-center">
+				<div class="w-5/6">
+					<LangToggle />
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
