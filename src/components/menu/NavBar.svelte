@@ -2,17 +2,19 @@
 	import { page } from '$app/stores';
 	import { scrollTop } from '$lib/stores/app-stores.svelte.js';
 	import { mainLinks } from './navlink';
-	import Brand from '$comp/icons/Brand.svelte';
+	import Brand from '$comp/svgs/Brand.svelte';
 	import Drawer from './Drawer.svelte';
 
 	const { solidBG = false } = $props();
+
+	let animateIcon = $state(false);
 
 	let showdrawer = $state(false);
 	const drawerToggle = () => (showdrawer = !showdrawer);
 </script>
 
 <div
-	class="group w-full px-[6%] sticky top-0 left-0 flex items-center justify-between text-white duration-500 z-50"
+	class="group w-full px-[6%] md:py-1 lg:py-0 sticky top-0 left-0 flex items-center justify-between text-white duration-500 z-50"
 	class:active={$scrollTop > 0 || solidBG}
 >
 	<div class="block lg:hidden">
@@ -28,9 +30,25 @@
 	</div>
 
 	<h1 class="text-xl py-2 md:py-1 group-[.active]:text-black transition-all">
-		<a href="/" class=" flex items-center">
-			<div class="w-8 inline-block"><Brand mono={$scrollTop < 1 && !solidBG} /></div>
-			<span>petakon</span>
+		<a
+			href="/"
+			class=" flex items-center"
+			role
+			onmouseenter={() => (animateIcon = true)}
+			onmouseleave={() => (animateIcon = false)}
+		>
+			<div
+				class="w-8 inline-block origin-top transition-transform duration-300"
+				class:scale-[2]={$scrollTop < 1 && !solidBG}
+			>
+				<Brand mono={$scrollTop < 1 && !solidBG} animate={animateIcon} />
+			</div>
+			<span
+				class="transition-transform duration-300"
+				class:translate-x-5={$scrollTop < 1 && !solidBG}
+			>
+				petakon
+			</span>
 		</a>
 	</h1>
 
@@ -50,10 +68,9 @@
 
 		<div class="inline-flex">
 			<button
-				class="pk-outline rounded-sm transition-all
+				class="rounded-sm transition-all
 				group-[.active]:text-slate-700
-				md:px-3 md:py-2 md:pk-bg md:!text-white md:
-				active:scale-95
+				md:px-3 md:py-2 md:pk-bg md:!text-white
 				disabled:active:scale-100 disabled:cursor-not-allowed disabled:opacity-50
 				"
 			>
