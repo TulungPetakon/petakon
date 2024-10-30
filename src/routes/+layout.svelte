@@ -50,7 +50,7 @@
 		defer
 		class="!h-[var(--app-height)]"
 		onscroll={scrolled}
-		options={{ scrollbars: { theme: 'os-theme-dark' } }}
+		options={{ scrollbars: { theme: 'os-theme-dark', autoHide: 'scroll', autoHideSuspend: true } }}
 	>
 		<NavBar solidBG={isApp} />
 		{@render children()}
