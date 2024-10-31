@@ -11,6 +11,11 @@
 		easing: cubicOut
 	});
 
+	const resetScrollPosition = () => {
+		const scrollArea = document.querySelector('div[data-overlayscrollbars-contents]');
+		scrollArea.scrollTo({ top: 0 });
+	};
+
 	$effect(async () => {
 		const { complete, from, to } = $navigating || {};
 		if (from?.route.id === to?.route.id) return;
@@ -18,6 +23,8 @@
 		show = true;
 		progress.set(0.7);
 		await complete; // waiting to be fulfilled
+
+		resetScrollPosition();
 
 		progress.set(1, { duration: 500 });
 		await delay(500);
