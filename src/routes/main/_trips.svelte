@@ -1,5 +1,5 @@
 <script>
-	import bus from '@images/utils/bus.png?format=webp';
+	import bus from '@images/utils/bus.png?format=webp&w=1200;200';
 </script>
 
 <section class="flex items-center bg-slate-100 px-[5%] md:px-[6.5%] pt-20 pb-20">
@@ -10,7 +10,7 @@
     md:basis-5/12
     lg:basis-1/2"
 	>
-		<img src={bus} alt="Trips Illustration" class="opacity-75 w-10/12" />
+		<img src={bus[0]} alt="Trips Illustration" class="opacity-75 w-10/12" />
 	</div>
 
 	<!-- right -->
@@ -21,7 +21,7 @@
 	>
 		<div class="flex items-center">
 			<div class="block pr-4 sm:hidden basis-1/2">
-				<img src={bus} alt="Trips Illustration" class="opacity-75 w-full" />
+				<img src={bus[1]} alt="Trips Illustration" class="opacity-75 w-full" />
 			</div>
 			<div class="w-full relative">
 				<span class="absolute bottom-full left-1/2 -translate-x-1/2 w-full text-left">
