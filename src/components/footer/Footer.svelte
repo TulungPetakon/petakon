@@ -1,19 +1,25 @@
 <script>
 	import Brand from '$comp/svgs/Brand.svelte';
-	import p1 from '@images/partners/harapan-jaya.png?format=webp&h=100';
-	import p2 from '@images/partners/hotel-surakarta.png?format=webp&h=100';
-	import p3 from '@images/partners/ilio.png?format=webp&h=100';
-	import p4 from '@images/partners/jaya-mandiri.png?format=webp&h=100';
-	import dis1 from '@images/partners/dishub.png?format=webp&h=100';
-	import dis2 from '@images/partners/disbupar.png?format=webp&h=100';
+	import dis1 from '@images/partners/dishub.png?format=webp&h=75';
+	import dis2 from '@images/partners/disbupar.png?format=webp&h=75';
 	import LangToggle from '$comp/utils/LangToggle.svelte';
 
-	const partners = [
-		{ src: p1, name: 'Harapan Jaya' },
-		{ src: p3, name: 'Ilio Guest House' },
-		{ src: p4, name: 'Jaya Mandiri' },
-		{ src: p2, name: 'Hotel Surakara' }
-	];
+	const partners = async () => {
+		const list = [
+			{ src: 'gajah-mada.png', name: 'Batik Gajah Mada' },
+			{ src: 'harapan-jaya.png', name: 'Harapan Jaya' },
+			{ src: 'ilio.png', name: 'Ilio Guest House' },
+			{ src: 'intan-jaya.png', name: 'Intan Jaya' },
+			{ src: 'jaya-mandiri.png', name: 'Jaya Mandiri' },
+			{ src: 'hotel-surakarta.png', name: 'Hotel Surakara' }
+		];
+
+		for (let i = 0; i < list.length; i++) {
+			const src = await import(`../../images/partners/${list[i].src}?format=webp&h=75`);
+			list[i].src = src.default;
+		}
+		return list;
+	};
 
 	const supporter = [
 		{ src: dis1, name: 'Dinas Perhubungan Tulungagung' },
@@ -116,7 +122,7 @@
 						class="w-7 aspect-square rounded-full inline-flex justify-center items-center mr-2 transition-all text-white"
 						style="background-color: {color};"
 					>
-						<i class="{icon} md:text-sm leading-[0]"></i>
+						<i class="{icon} md:text-sm" style=" line-height:0"></i>
 					</a>
 				{/each}
 			</div>
@@ -126,18 +132,20 @@
 		<div
 			class="text-center w-full pb-10 border-b-2 order-first
 			lg:mx-auto
-			sm:w-auto sm:text-left sm:pb-0 sm:border-b-0 sm:order-none"
+			sm:w-auto sm:max-w-[35%] md:max-w-[25%] sm:text-left sm:pb-0 sm:border-b-0 sm:order-none"
 		>
 			{#snippet brand(brands)}
 				<div class="flex items-center flex-wrap justify-center sm:justify-start">
 					{#each brands as { src, name }}
-						<img {src} alt={name} title={name} class="max-h-[30px] md:max-h-[35px]" />
+						<img {src} alt={name} title={name} class="max-h-[35px]" />
 					{/each}
 				</div>
 			{/snippet}
 
 			<h4 class="text-lg text-gray-900 font-semibold mb-4 leading-tight">Partners</h4>
-			{@render brand(partners)}
+			{#await partners() then partnersData}
+				{@render brand(partnersData)}
+			{/await}
 
 			<h4 class="text-lg mt-10 sm:mt-7 text-gray-900 font-semibold mb-2 leading-tight">
 				Background Support
