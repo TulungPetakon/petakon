@@ -12,6 +12,7 @@
 	import Footer from '$comp/footer/Footer.svelte';
 	import PageProgress from '$comp/loading/PageProgress.svelte';
 	import Loader from '$comp/loading/Loader.svelte';
+	import PullToRefresh from '$comp/scrollbar/PullToRefresh.svelte';
 
 	const { children } = $props();
 
@@ -52,9 +53,11 @@
 		onscroll={scrolled}
 		options={{ scrollbars: { theme: 'os-theme-dark', autoHide: 'scroll', autoHideSuspend: true } }}
 	>
-		<NavBar solidBG={isApp} />
-		{@render children()}
-		<Footer />
+		<PullToRefresh enable={isApp}>
+			<NavBar solidBG={isApp} />
+			{@render children()}
+			<Footer />
+		</PullToRefresh>
 	</ScrollArea>
 </main>
 
