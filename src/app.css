@@ -6,6 +6,12 @@
 	--line-number: 2;
 }
 
+@layer base {
+	img {
+		object-fit: cover;
+	}
+}
+
 @layer utilities {
 	.pk-bg {
 		@apply bg-sky-500;

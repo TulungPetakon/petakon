@@ -1,8 +1,10 @@
 <script>
-	import img from '@images/utils/ta.png';
+	import MiniMap from '../about-tulungagung/MiniMap.svelte';
 </script>
 
-<section class="flex pt-28 px-[5%] md:px-[6.5%] items-center flex-wrap">
+<section
+	class="flex pt-28 px-[5%] md:px-[6.5%] items-center justify-center flex-wrap sm:flex-nowrap"
+>
 	<!-- Left -->
 	<div class="w-full sm:w-8/12 sm:text-right">
 		<div class="relative">
@@ -43,9 +45,11 @@
 
 	<!-- Right -->
 	<div
-		class="flex items-center justify-center p-2 pt-20
-    sm:w-4/12 sm:pt-0"
+		class="flex items-center justify-center p-2 pt-20 w-full
+    sm:w-6/12 sm:pt-0"
 	>
-		<img src={img} alt="Tulungagung" class="w-4/6" />
+		<div class="w-4/6 flex items-center justify-center m-auto">
+			<MiniMap />
+		</div>
 	</div>
 </section>
