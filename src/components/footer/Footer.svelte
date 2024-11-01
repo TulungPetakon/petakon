@@ -1,10 +1,14 @@
 <script>
 	import Brand from '$comp/svgs/Brand.svelte';
-	import dis1 from '@images/partners/dishub.png?format=webp&h=75';
-	import dis2 from '@images/partners/disbupar.png?format=webp&h=75';
 	import LangToggle from '$comp/utils/LangToggle.svelte';
 
-	const partners = async () => {
+	const pictures = import.meta.glob(['@images/partners/**/*'], {
+		query: { as: 'picture', format: 'webp', h: '75' },
+		import: 'default',
+		eager: true
+	});
+
+	const partners = () => {
 		const list = [
 			{ src: 'gajah-mada.png', name: 'Batik Gajah Mada' },
 			{ src: 'harapan-jaya.png', name: 'Harapan Jaya' },
@@ -15,15 +19,21 @@
 		];
 
 		for (let i = 0; i < list.length; i++) {
-			const src = await import(`../../images/partners/${list[i].src}?format=webp&h=75`);
-			list[i].src = src.default;
+			const imgSource = pictures[`/src/images/partners/${list[i].src}`];
+			list[i].src = imgSource.img.src;
 		}
 		return list;
 	};
 
 	const supporter = [
-		{ src: dis1, name: 'Dinas Perhubungan Tulungagung' },
-		{ src: dis2, name: 'Dinas Kebudayaan dan Pariwisata Tulungagung' }
+		{
+			src: pictures[`/src/images/partners/dishub.png`].img.src,
+			name: 'Dinas Perhubungan Tulungagung'
+		},
+		{
+			src: pictures[`/src/images/partners/disbupar.png`].img.src,
+			name: 'Dinas Kebudayaan dan Pariwisata Tulungagung'
+		}
 	];
 
 	const petakonMenu = [
@@ -143,9 +153,7 @@
 			{/snippet}
 
 			<h4 class="text-lg text-gray-900 font-semibold mb-4 leading-tight">Partners</h4>
-			{#await partners() then partnersData}
-				{@render brand(partnersData)}
-			{/await}
+			{@render brand(partners())}
 
 			<h4 class="text-lg mt-10 sm:mt-7 text-gray-900 font-semibold mb-2 leading-tight">
 				Background Support
