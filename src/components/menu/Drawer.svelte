@@ -1,7 +1,7 @@
 <script>
 	import { fade, fly } from 'svelte/transition';
-	import { self } from 'svelte/legacy';
 	import { mainLinks } from './navlink';
+	import { self } from '$lib/helpers/event-handler';
 	import { screenSize } from '$lib/stores/app-stores.svelte.js';
 	import LangToggle from '$comp/utils/LangToggle.svelte';
 
@@ -25,12 +25,12 @@
 				<i class="fasl fa-xmark-large"></i></button
 			>
 			<h1 class="font-bold px-2 text-xl text-center">
-				<a href="/" onclick={toggle}>Menu Utama</a>
+				<span>Menu Utama</span>
 			</h1>
 		</div>
 
 		<!-- Account -->
-		<div class="my-4 flex justify-center text-base">
+		<!-- <div class="my-4 flex justify-center text-base">
 			<button
 				class="bg-sky-500 text-white w-4/12 rounded-sm mx-1 py-1 transition-all
 			hover:bg-sky-600"
@@ -43,7 +43,7 @@
 			>
 				Daftar
 			</button>
-		</div>
+		</div> -->
 		<!-- End Account -->
 
 		<div class="bg-slate-100 w-full h-2"></div>

@@ -1,5 +1,5 @@
 <script>
-	import { preventDefault } from 'svelte/legacy';
+	import { preventDefault } from '$lib/helpers/event-handler';
 
 	let { svg = $bindable(), onhover, onleave, onclick: click, active } = $props();
 	const hoverFn = onhover || (() => null);

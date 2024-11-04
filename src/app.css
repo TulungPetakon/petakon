@@ -13,14 +13,6 @@
 }
 
 @layer utilities {
-	.pk-bg {
-		@apply bg-sky-500;
-	}
-
-	.pk-text-gradient {
-		@apply text-transparent bg-clip-text bg-gradient-to-r pk-bg;
-	}
-
 	.pk-button {
 		@apply duration-200 rounded-sm active:scale-95 px-5 py-2;
 	}
@@ -30,49 +22,6 @@
 		display: -webkit-box;
 		-webkit-line-clamp: var(--line-number);
 		-webkit-box-orient: vertical;
-	}
-}
-
-@layer components {
-	/* .pk-outline {
-		--border: theme(borderWidth.2);
-		transform-style: preserve-3d;
-		@apply relative flow-root;
-	}
-
-	.pk-outline::before {
-		border-radius: inherit;
-		transform: translate3d(0, 0, -1px);
-		@apply content-[''] absolute w-full pk-bg h-full top-0 left-0 opacity-0 transition-all duration-300;
-	}
-
-	.pk-outline::after {
-		@apply content-[''] absolute top-0 left-0 right-0 bottom-0 border-transparent pk-bg bg-clip-border;
-		border-radius: inherit;
-		border-width: var(--border);
-		-webkit-mask:
-			linear-gradient(#fff 0 0) padding-box,
-			linear-gradient(#fff 0 0);
-		-webkit-mask-composite: destination-out;
-		mask-composite: exclude;
-	} */
-}
-
-@layer components {
-	.pk-shadow {
-		border-radius: inherit;
-		transform-style: preserve-3d;
-		@apply before:pk-bg before:w-full before:h-full before:absolute before:top-0 before:left-0 before:-z-10 before:-inset-1 before:opacity-0 before:blur-sm;
-	}
-
-	.pk-shadow::before {
-		@apply transition-all duration-300;
-		border-radius: inherit;
-		transform: translate3d(0, 2px, -1px);
-	}
-
-	.pk-shadow-active {
-		@apply before:opacity-25;
 	}
 }
 
