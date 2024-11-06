@@ -3,20 +3,18 @@
 	import '@splidejs/splide/dist/css/splide-core.min.css';
 	import 'overlayscrollbars/overlayscrollbars.css';
 	import { onMount } from 'svelte';
-	import { isMobile } from '$lib/stores/app-readable.svelte';
+	import { isMobile, screenSize } from '$lib/stores/app-readable.svelte';
 	import { scrollTop } from '$lib/stores/app-writable.svelte.js';
 
-	import ScrollArea from '$comp/scrollbar/ScrollArea.svelte';
+	import ScrollArea from '$comp/scroll/ScrollArea.svelte';
 	import NavBarTop from '$comp/menu/NavBarTop.svelte';
 	import Footer from '$comp/footer/Footer.svelte';
 	import PageProgress from '$comp/loading/PageProgress.svelte';
 	import Loader from '$comp/loading/Loader.svelte';
-	import PullToRefresh from '$comp/scrollbar/PullToRefresh.svelte';
+	import PullToRefresh from '$comp/scroll/PullToRefresh.svelte';
 
 	const { children } = $props();
-
-	let innerHeight = $state(0);
-	let innerWidth = $state(0);
+	const { height, width } = $derived($screenSize);
 
 	const scrolled = ([, event]) => {
 		const isScroll = event.target.scrollTop > 0;
@@ -27,8 +25,6 @@
 	onMount(() => (loaded = true));
 </script>
 
-<svelte:window bind:innerHeight bind:innerWidth />
-
 {#if !loaded}
 	<Loader />
 {/if}
@@ -36,7 +32,7 @@
 <main
 	class="w-screen relative min-h-screen"
 	class:mobile={$isMobile}
-	style="--app-height:{innerHeight}px;--app-width:{innerWidth}px"
+	style="--app-height:{height}px;--app-width:{width}px"
 >
 	<PageProgress />
 
