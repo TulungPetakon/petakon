@@ -2,13 +2,12 @@
 	import '../app.css';
 	import '@splidejs/splide/dist/css/splide-core.min.css';
 	import 'overlayscrollbars/overlayscrollbars.css';
-	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	import { isMobile } from '$lib/stores/app-readable.svelte';
 	import { scrollTop } from '$lib/stores/app-writable.svelte.js';
 
 	import ScrollArea from '$comp/scrollbar/ScrollArea.svelte';
-	import NavBar from '$comp/menu/NavBar.svelte';
+	import NavBarTop from '$comp/menu/NavBarTop.svelte';
 	import Footer from '$comp/footer/Footer.svelte';
 	import PageProgress from '$comp/loading/PageProgress.svelte';
 	import Loader from '$comp/loading/Loader.svelte';
@@ -18,7 +17,6 @@
 
 	let innerHeight = $state(0);
 	let innerWidth = $state(0);
-	const isApp = $derived(/\/((?!main).[a-zA-Z0-9]+)/.test($page.route.id));
 
 	const scrolled = ([, event]) => {
 		const isScroll = event.target.scrollTop > 0;
@@ -48,8 +46,8 @@
 		onscroll={scrolled}
 		options={{ scrollbars: { theme: 'os-theme-dark', autoHide: 'scroll', autoHideSuspend: true } }}
 	>
-		<PullToRefresh enable={isApp}>
-			<NavBar solidBG={isApp} />
+		<PullToRefresh>
+			<NavBarTop />
 			{@render children()}
 			<Footer />
 		</PullToRefresh>

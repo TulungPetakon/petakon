@@ -1,5 +1,4 @@
 import { browser } from '$app/environment';
-import { mobileDetect } from '$lib/helpers/mobile-detect';
 import { derived, readable } from 'svelte/store';
 
 const getWindowSize = () => {
@@ -20,5 +19,11 @@ export const screenSize = readable(getWindowSize(), (set) => {
 export const isMobile = derived(screenSize, ($screenSize) => {
 	if (!browser) return false;
 	const { width } = $screenSize;
-	return (mobileDetect() && width < 1024) || width < 768;
+	return width <= 768;
+});
+
+export const isTab = derived(screenSize, ($screenSize) => {
+	if (!browser) return false;
+	const { width } = $screenSize;
+	return width <= 1024;
 });

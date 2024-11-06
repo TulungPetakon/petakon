@@ -1,14 +1,15 @@
 <script>
 	import { page } from '$app/stores';
+	import { isTab } from '$lib/stores/app-readable.svelte';
 	import { scrollTop } from '$lib/stores/app-writable.svelte.js';
 	import { mainLinks } from './navlink';
+
 	import Brand from '$comp/svgs/Brand.svelte';
 	import Drawer from './Drawer.svelte';
 
 	const { solidBG = false } = $props();
 
 	let animateIcon = $state(false);
-
 	let showdrawer = $state(false);
 	const drawerToggle = () => (showdrawer = !showdrawer);
 </script>
@@ -93,7 +94,7 @@
 	</nav>
 </div>
 
-{#if showdrawer}
+{#if showdrawer && $isTab}
 	<Drawer toggle={drawerToggle} />
 {/if}
 
