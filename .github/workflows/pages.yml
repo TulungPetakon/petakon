@@ -40,6 +40,6 @@ jobs:
           apiToken: cl346oaAearTwH0JTRPMGj3v22DCZnF6bWU5g86G
           accountId: 87dd9ca44f4ea8ed5e8cce8d913b29d2
           projectName: petakon
-          directory: build
+          directory: .svelte-kit/cloudflare
           branch: main
           wranglerVersion: '3'
