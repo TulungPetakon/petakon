@@ -3,12 +3,12 @@
 	import { spin } from '$lib/helpers/animation/transition';
 	import Dots from '$comp/loading/Dots.svelte';
 
-	const { children, enable } = $props();
+	const { children } = $props();
+	const maxPtrHeight = 120;
 
+	let touchstartY = 0;
 	let status = $state('ready');
 	let touchDistance = $state(0);
-	let touchstartY = 0;
-	const maxPtrHeight = 120;
 
 	const ontouchstart = (e) => {
 		if (status !== 'ready') return;
@@ -16,7 +16,7 @@
 	};
 
 	const ontouchmove = (e) => {
-		if (!enable || status === 'refreshing') return;
+		// if (!enable || status === 'refreshing') return;
 		const touchY = e.touches[0].clientY;
 		const elScrollY = e.currentTarget.parentElement.scrollTop | 0;
 		const touchDiff = touchY - touchstartY;
@@ -32,6 +32,14 @@
 	};
 
 	const ontouchend = (e) => {
+		// If user dragged back to top
+		if (touchDistance <= 0) {
+			touchDistance = 0;
+			status = 'ready';
+			return;
+		}
+
+		// excecute when user dragged more than minimum requirement
 		if (touchDistance >= 80) {
 			touchDistance = 50;
 			status = 'refreshing';
@@ -39,6 +47,8 @@
 		}
 
 		if (touchDistance >= 50 && status === 'refreshing') return;
+
+		// Cancel refresh if not meet requirement
 		touchDistance = 0;
 		status = 'released';
 	};
@@ -51,12 +61,12 @@
 	};
 </script>
 
-{#if status != 'ready'}
+{#if status !== 'ready'}
 	<div
 		style="--ptr-height:{touchDistance}px; --op: {touchDistance / 50}"
 		ontransitionend={ptrComplete}
 		class:ptr-release={/released|refreshing/.test(status)}
-		class="ptr border-b flex justify-center items-center"
+		class="ptr border-b flex justify-center items-center bg-slate-50 z-50 relative"
 	>
 		{#if status === 'refreshing'}
 			<div class="w-5"><Dots /></div>
