@@ -1,12 +1,12 @@
 <script>
 	import data from '$lib/dummy/destinations.json';
 	import { cart } from '$lib/stores/app-stores.svelte';
-	import hero from '@images/beach/klatak.jpg?format=webp';
+	import hero from '$images/beach/klatak.jpg?format=webp';
 
 	const getThumb = async (name) => {
 		try {
 			if (typeof name !== 'string') throw 'error';
-			const { default: url } = await import(`@images/destinations/${name}.jpg?format=webp&w=640`);
+			const { default: url } = await import(`$images/destinations/${name}.jpg?format=webp&w=640`);
 			return { url };
 		} catch (e) {
 			return { error: true };

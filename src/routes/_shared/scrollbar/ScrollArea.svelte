@@ -1,6 +1,6 @@
 <script>
-	import { OverlayScrollbars } from 'overlayscrollbars';
 	import { onDestroy } from 'svelte';
+	import { OverlayScrollbars } from 'overlayscrollbars';
 	import { createDefer } from './createDefer';
 
 	const {

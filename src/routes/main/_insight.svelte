@@ -1,6 +1,6 @@
 <script>
-	import ArticleLink from '$comp/post/ArticleLink.svelte';
-	import img from '@images/beach/klatak.jpg';
+	import ArticleLink from '$comp/card/ArticleLink.svelte';
+	import img from '$images/beach/klatak.jpg';
 </script>
 
 <section class="pt-28 px-[5%] md:px-[6.5%]">

@@ -2,10 +2,10 @@
 	import { fade, fly, scale } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import Splide from '@splidejs/splide';
-	import senggani from '@images/beach/jurang-senggani.jpg?format=webp';
-	import dlodo from '@images/beach/dlodo.jpg?format=webp';
-	import jls from '@images/beach/jls.jpg';
-	import pathok from '@images/beach/pathok-gebang.jpeg';
+	import senggani from '$images/beach/jurang-senggani.jpg?format=webp';
+	import dlodo from '$images/beach/dlodo.jpg?format=webp';
+	import jls from '$images/beach/jls.jpg';
+	import pathok from '$images/beach/pathok-gebang.jpeg';
 
 	let height = $state(0);
 	let active = $state(0);

@@ -1,5 +1,5 @@
 <script>
-	import img from '@images/beach/jls.jpg';
+	import img from '$images/beach/jls.jpg';
 </script>
 
 <section class="pt-28 px-[5%] md:px-[6.5%]">

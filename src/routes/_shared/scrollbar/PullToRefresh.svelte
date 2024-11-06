@@ -1,7 +1,7 @@
 <script>
-	import Dots from '$comp/loading/Dots.svelte';
-	import { spin } from '$lib/helpers/animation/transition';
 	import { fly } from 'svelte/transition';
+	import { spin } from '$lib/helpers/animation/transition';
+	import Dots from '$comp/loading/Dots.svelte';
 
 	const { children, enable } = $props();
 

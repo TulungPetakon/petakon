@@ -1,5 +1,5 @@
 <script>
-	import { html } from '$posts/what-to-do.md';
+	import { html } from '$post/what-to-do.md';
 </script>
 
 <section class="px-[6%] py-10">

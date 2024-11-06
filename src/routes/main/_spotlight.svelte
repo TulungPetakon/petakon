@@ -1,9 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
 	import Splide from '@splidejs/splide';
-	import batik from '@images/spotlight/batik.jpg';
-	import marmer from '@images/spotlight/marmer.jpg';
-	import lodho from '@images/spotlight/lodho.jpg';
+	import batik from '$images/spotlight/batik.jpg';
+	import marmer from '$images/spotlight/marmer.jpg';
+	import lodho from '$images/spotlight/lodho.jpg';
 
 	let active = $state(0);
 	let activeIndicator = $state(0);

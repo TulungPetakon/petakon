@@ -11,9 +11,9 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		alias: {
-			$comp: path.resolve('./src/components'),
-			$posts: path.resolve('./src/posts'),
-			'@images': path.resolve('./src/images')
+			$comp: path.resolve('./src/routes/_shared'),
+			$post: path.resolve('./src/posts'),
+			$images: path.resolve('./src/images')
 		}
 	}
 };

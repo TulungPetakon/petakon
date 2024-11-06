@@ -1,8 +1,8 @@
 <script>
 	import { fade } from 'svelte/transition';
 	import { screenSize } from '$lib/stores/app-stores.svelte';
-	import alun2 from '@images/destinations/taman-aloon-aloon.jpg?format=webp';
-	import img2 from '@images/beach/jls.jpg?format=webp';
+	import alun2 from '$images/destinations/taman-aloon-aloon.jpg?format=webp';
+	import img2 from '$images/beach/jls.jpg?format=webp';
 	import TulungagungMap from '$comp/svgs/TulungagungMap.svelte';
 	import Tooltips from '$comp/utils/Tooltips.svelte';
 	import Brand from '$comp/svgs/Brand.svelte';

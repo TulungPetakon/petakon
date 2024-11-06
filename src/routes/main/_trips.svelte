@@ -1,5 +1,5 @@
 <script>
-	import bus from '@images/utils/bus.png?format=webp&w=1200;200';
+	import bus from '$images/utils/bus.png?format=webp&w=1200;200';
 </script>
 
 <section class="flex items-center bg-slate-100 px-[5%] md:px-[6.5%] pt-20 pb-20">

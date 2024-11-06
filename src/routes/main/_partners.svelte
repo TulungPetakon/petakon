@@ -1,9 +1,9 @@
 <script>
-	import p0 from '@images/partners/tim-barista.png?format=webp&h=100';
-	import p1 from '@images/partners/harapan-jaya.png?format=webp&h=100';
-	import p2 from '@images/partners/hotel-surakarta.png?format=webp&h=100';
-	import p3 from '@images/partners/ilio-guest-house.png?format=webp&h=100';
-	import p4 from '@images/partners/jaya-mandiri.png?format=webp&h=100';
+	import p0 from '$images/partners/tim-barista.png?format=webp&h=100';
+	import p1 from '$images/partners/harapan-jaya.png?format=webp&h=100';
+	import p2 from '$images/partners/hotel-surakarta.png?format=webp&h=100';
+	import p3 from '$images/partners/ilio-guest-house.png?format=webp&h=100';
+	import p4 from '$images/partners/jaya-mandiri.png?format=webp&h=100';
 </script>
 
 <section class="pt-20 px-[5%] md:px-[10%]">

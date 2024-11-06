@@ -1,13 +1,13 @@
 <script>
-	import relaksasi from '@images/beach/coban.jpg?format=webp';
-	import kuliner from '@images/beach/jls2.jpg?format=webp';
-	import pantai from '@images/beach/pantai.webp?format=webp';
-	import gunung from '@images/beach/besuki.jpg?format=webp';
-	import budaya from '@images/beach/jurang-senggani.jpg?format=webp';
-	import edukasi from '@images/beach/kedung-tumpang.webp?format=webp';
-	import hiburan from '@images/beach/pathok.jpeg?format=webp';
-	import taman from '@images/beach/skyview.webp?format=webp';
-	import klathak from '@images/beach/klatak.jpg?format=webp';
+	import relaksasi from '$images/beach/coban.jpg?format=webp';
+	import kuliner from '$images/beach/jls2.jpg?format=webp';
+	import pantai from '$images/beach/pantai.webp?format=webp';
+	import gunung from '$images/beach/besuki.jpg?format=webp';
+	import budaya from '$images/beach/jurang-senggani.jpg?format=webp';
+	import edukasi from '$images/beach/kedung-tumpang.webp?format=webp';
+	import hiburan from '$images/beach/pathok.jpeg?format=webp';
+	import taman from '$images/beach/skyview.webp?format=webp';
+	import klathak from '$images/beach/klatak.jpg?format=webp';
 
 	const kategori = [
 		{ name: 'Gunung Budheg', img: gunung },

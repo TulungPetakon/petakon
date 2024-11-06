@@ -2,7 +2,7 @@
 	import Brand from '$comp/svgs/Brand.svelte';
 	import LangToggle from '$comp/utils/LangToggle.svelte';
 
-	const pictures = import.meta.glob(['@images/partners/**/*'], {
+	const pictures = import.meta.glob(['$images/partners/**/*'], {
 		query: { as: 'picture', format: 'webp', h: '75' },
 		import: 'default',
 		eager: true
@@ -37,13 +37,16 @@
 	];
 
 	const petakonMenu = [
-		{ href: '/', text: 'Kunjungan Pertama di Tulungagung?', title: 'Profil Kota Tulungagung' },
+		{
+			href: '/',
+			text: 'Kunjungan Pertama di Tulungagung?',
+			title: 'Profil Kota Tulungagung'
+		},
 		{ href: '/', text: 'Halaman Depan', title: '' },
 		{ href: '/', text: 'Destinasi Wisata', title: '' },
 		{ href: '/', text: 'Event dan Aktivitas', title: '' },
 		{ href: '/', text: 'Transportasi', title: '' },
-		{ href: '/', text: 'Penginapan', title: '' },
-		{ href: '/', text: 'Akomodasi', title: '' },
+		{ href: '/accommodation', text: 'Hotel dan Penginapan', title: 'Hotel dan Penginapan' },
 		{ href: '/', text: 'Souvenir dan Oleh-Oleh', title: '' },
 		{ href: '/', text: 'Wawasan Perjalanan', title: '' }
 	];
