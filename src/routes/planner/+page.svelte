@@ -1,7 +1,7 @@
 <script>
 	import { flip } from 'svelte/animate';
-	import { cart } from '$lib/stores/app-stores.svelte';
-	import hero from '@images/beach/klatak.jpg?format=webp';
+	import { cart } from '$lib/stores/app-writable.svelte';
+	import hero from '$images/beach/klatak.jpg?format=avif';
 
 	const removefromPlan = (i) => {
 		cart.update((v) => {
@@ -13,7 +13,7 @@
 	const getThumb = async (name) => {
 		try {
 			if (typeof name !== 'string') throw 'error';
-			const { default: url } = await import(`@images/destinations/${name}.jpg?format=webp&w=640`);
+			const { default: url } = await import(`$images/destinations/${name}.jpg?format=webp&w=640`);
 			return { url };
 		} catch (e) {
 			return { error: true };
@@ -69,7 +69,7 @@
 					<span class="ml-2 block text-2xl pk-text-gradient">Rp 999.000</span>
 				</div>
 				<div class="continue flex">
-					<button class="pk-button text-white pk-bg ml-auto mt-6"> CONTINUE </button>
+					<button class="pk-button text-white bg-sky-500 ml-auto mt-6"> CONTINUE </button>
 				</div>
 			</div>
 		</div>

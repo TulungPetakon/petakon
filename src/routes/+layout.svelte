@@ -4,8 +4,8 @@
 	import 'overlayscrollbars/overlayscrollbars.css';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import { scrollTop, screenSize, isMobile } from '$lib/stores/app-stores.svelte.js';
-	import { mobileDetect } from '$lib/helpers/mobile-detect';
+	import { isMobile } from '$lib/stores/app-readable.svelte';
+	import { scrollTop } from '$lib/stores/app-writable.svelte.js';
 
 	import ScrollArea from '$comp/scrollbar/ScrollArea.svelte';
 	import NavBar from '$comp/menu/NavBar.svelte';
@@ -18,17 +18,12 @@
 
 	let innerHeight = $state(0);
 	let innerWidth = $state(0);
-	const isApp = $derived.by(() => /\/((?!main).[a-zA-Z0-9]+)/.test($page.route.id));
+	const isApp = $derived(/\/((?!main).[a-zA-Z0-9]+)/.test($page.route.id));
 
 	const scrolled = ([, event]) => {
 		const isScroll = event.target.scrollTop > 0;
 		scrollTop.set(isScroll);
 	};
-
-	$effect(() => {
-		screenSize.set({ height: innerHeight, width: innerWidth });
-		isMobile.set(mobileDetect() || innerWidth < 768);
-	});
 
 	let loaded = $state(false);
 	onMount(() => (loaded = true));

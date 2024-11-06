@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import { scrollTop } from '$lib/stores/app-stores.svelte.js';
+	import { scrollTop } from '$lib/stores/app-writable.svelte.js';
 	import { mainLinks } from './navlink';
 	import Brand from '$comp/svgs/Brand.svelte';
 	import Drawer from './Drawer.svelte';

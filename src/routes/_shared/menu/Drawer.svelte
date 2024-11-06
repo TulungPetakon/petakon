@@ -2,7 +2,7 @@
 	import { fade, fly } from 'svelte/transition';
 	import { mainLinks } from './navlink';
 	import { self } from '$lib/helpers/event-handler';
-	import { screenSize } from '$lib/stores/app-stores.svelte.js';
+	import { screenSize } from '$lib/stores/app-readable.svelte';
 	import LangToggle from '$comp/utils/LangToggle.svelte';
 
 	const { toggle } = $props();

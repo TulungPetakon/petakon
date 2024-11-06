@@ -1,6 +1,6 @@
 <script>
 	import data from '$lib/dummy/destinations.json';
-	import { cart } from '$lib/stores/app-stores.svelte';
+	import { cart } from '$lib/stores/app-writable.svelte';
 	import hero from '$images/beach/klatak.jpg?format=webp';
 
 	const getThumb = async (name) => {
