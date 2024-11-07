@@ -8,7 +8,10 @@
 
 @layer base {
 	img {
-		object-fit: cover;
+		@apply object-cover;
+	}
+	img:not([src]):not([srcset]) {
+		visibility: hidden;
 	}
 }
 
@@ -27,8 +30,7 @@
 
 html,
 body {
-	@apply w-screen max-h-screen overflow-hidden text-gray-700 text-sm md:text-base;
+	@apply w-screen max-h-screen overflow-hidden text-gray-700 text-[.925rem] md:text-base;
 	font-family: 'Figtree', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	font-weight: 500;
 	font-style: normal;
 }
