@@ -66,7 +66,7 @@
 		style="--ptr-height:{touchDistance}px; --op: {touchDistance / 50}"
 		ontransitionend={ptrComplete}
 		class:ptr-release={/released|refreshing/.test(status)}
-		class="ptr border-b flex justify-center items-center bg-slate-50 z-50 relative"
+		class="ptr border-b flex justify-center items-center bg-slate-50 z-10 relative overflow-hidden"
 	>
 		{#if status === 'refreshing'}
 			<div class="w-5"><Dots /></div>
@@ -86,7 +86,7 @@
 	</div>
 {/if}
 
-<div {ontouchstart} {ontouchmove} {ontouchend} ontouchcancel={ontouchend}>
+<div {ontouchstart} {ontouchmove} {ontouchend} ontouchcancel={ontouchend} class="z-20">
 	{@render children()}
 </div>
 

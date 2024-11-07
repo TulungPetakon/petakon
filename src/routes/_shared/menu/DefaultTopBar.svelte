@@ -1,4 +1,5 @@
 <script>
+	import { fly } from 'svelte/transition';
 	import { page } from '$app/stores';
 	import { isTab } from '$lib/stores/app-readable.svelte';
 	import { scrollTop } from '$lib/stores/app-writable.svelte.js';
@@ -16,6 +17,7 @@
 
 <div
 	class="group w-full px-[6%] md:py-1 lg:py-0 sticky top-0 left-0 flex items-center justify-between text-white duration-500 z-50"
+	in:fly={{ y: -20 }}
 	class:active={$scrollTop > 0 || solidBG}
 >
 	<!-- <div class="block lg:hidden">
@@ -45,7 +47,7 @@
 				<Brand mono={$scrollTop < 1 && !solidBG} animate={animateIcon} />
 			</div>
 			<span
-				class="transition-transform duration-300"
+				class="transition-transform duration-300 font-semibold"
 				class:translate-x-5={$scrollTop < 1 && !solidBG}
 			>
 				petakon

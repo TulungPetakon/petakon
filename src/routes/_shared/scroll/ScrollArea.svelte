@@ -128,3 +128,12 @@
 		</div>
 	{/if}
 </svelte:element>
+
+<style>
+	:global {
+		.mobile .os-theme-dark,
+		.mobile .os-theme-light {
+			--os-size: 0.5rem;
+		}
+	}
+</style>
