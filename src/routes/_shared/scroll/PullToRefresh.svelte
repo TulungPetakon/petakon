@@ -16,7 +16,7 @@
 	};
 
 	const ontouchmove = (e) => {
-		// if (!enable || status === 'refreshing') return;
+		if (touchstartY > 80) return;
 		const touchY = e.touches[0].clientY;
 		const elScrollY = e.currentTarget.parentElement.scrollTop | 0;
 		const touchDiff = touchY - touchstartY;
