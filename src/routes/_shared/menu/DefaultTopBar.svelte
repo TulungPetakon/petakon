@@ -1,8 +1,9 @@
 <script>
+	import { onDestroy } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { page } from '$app/stores';
 	import { isTab } from '$lib/stores/app-readable.svelte';
-	import { scrollTop } from '$lib/stores/app-writable.svelte.js';
+	import { scrollTop, topbarHeight } from '$lib/stores/app-writable.svelte.js';
 	import { mainLinks } from './navlink';
 
 	import Brand from '$comp/svgs/Brand.svelte';
@@ -13,12 +14,17 @@
 	let animateIcon = $state(false);
 	let showdrawer = $state(false);
 	const drawerToggle = () => (showdrawer = !showdrawer);
+
+	let clientHeight = $state(0);
+	$effect(() => topbarHeight.set(clientHeight || 0));
+	onDestroy(() => topbarHeight.set(0));
 </script>
 
 <div
 	class="group w-full px-[6%] md:py-1 lg:py-0 sticky top-0 left-0 flex items-center justify-between text-white duration-500 z-50"
 	in:fly={{ y: -20 }}
 	class:active={$scrollTop > 0 || solidBG}
+	bind:clientHeight
 >
 	<!-- <div class="block lg:hidden">
 		<button

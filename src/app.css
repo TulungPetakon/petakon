@@ -5,6 +5,9 @@
 :root {
 	--line-number: 2;
 }
+::-webkit-scrollbar {
+	display: none;
+}
 
 @layer base {
 	img {
@@ -13,11 +16,15 @@
 	img:not([src]):not([srcset]) {
 		visibility: hidden;
 	}
+
+	p {
+		@apply pb-5;
+	}
 }
 
 @layer utilities {
 	.pk-button {
-		@apply duration-200 rounded-sm active:scale-95 px-5 py-2;
+		@apply transition-all duration-300 active:scale-95 px-5 py-2;
 	}
 
 	.text-overflow {
@@ -25,6 +32,16 @@
 		display: -webkit-box;
 		-webkit-line-clamp: var(--line-number);
 		-webkit-box-orient: vertical;
+	}
+
+	.pk-article {
+		@apply text-base md:text-lg;
+	}
+
+	.pk-overlay {
+		@apply overflow-hidden;
+		@apply after:bg-sky-950/30 after:absolute after:top-0 after:left-0 after:w-full after:h-full;
+		@apply before:bg-black/30 before:absolute before:top-0 before:left-0 before:w-full before:h-full;
 	}
 }
 

@@ -79,7 +79,7 @@
 								</p>
 								<div class="h-10 capitalize">
 									<a
-										href="/"
+										href="/kecamatan/{active}"
 										class="flex items-center justify-center h-full w-full bg-orange-400 text-white active:bg-orange-600 transition-colors"
 									>
 										<span>Jelajahi {active}</span>
