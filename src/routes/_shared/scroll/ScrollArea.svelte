@@ -1,18 +1,45 @@
 <script>
-	import { onDestroy } from 'svelte';
+	import { onDestroy, setContext } from 'svelte';
 	import { OverlayScrollbars } from 'overlayscrollbars';
 	import { createDefer } from './createDefer';
+	import { scrollTop } from '$lib/stores/app-writable.svelte';
+	import ScrollPositionControl from './ScrollPositionControl.svelte';
 
 	const {
 		element = 'div',
 		options,
-		events,
+		events = [],
 		defer,
 		class: klass,
 		children,
 		...properties
 	} = $props();
 
+	// Contains client who listen scroll Event;
+	const scrollFnList = [];
+	setContext('scrollHandler', {
+		add: (fn) => scrollFnList.push(fn),
+		remove: (fn) => {
+			const index = scrollFnList.indexOf(fn);
+			if (index < 0) return;
+			scrollFnList.splice(index, 1);
+		}
+	});
+
+	// Since we use Overlayscrollbar instead of native scrollbar, Scroll event won't be retrived from window element
+	events['scroll'] = (el, event) => {
+		const isScroll = event.target.scrollTop > 0;
+		scrollTop.set(isScroll);
+		scrollFnList.forEach((fn) => fn(event));
+
+		if (!properties['onscroll']) return;
+		properties['onscroll'](event);
+	};
+
+	let scrollControl = $state({ reset: false, scrollTo: 0 });
+	setContext('scrollControl', (val) => (scrollControl = val));
+
+	// OverlayScrollBar
 	let instance = $state();
 	let elementRef = $state(null);
 	let slotRef = $state(null);
@@ -92,7 +119,7 @@
 	$effect(() => {
 		combinedEvents = Object.keys(dispatchEvents).reduce((obj, name) => {
 			const eventName = name.replace('on', '');
-			const eventListener = currEvents[event];
+			const eventListener = currEvents[eventName];
 			obj[eventName] = [
 				(...args) => (properties[name] || (() => 0))(args),
 				...(Array.isArray(eventListener) ? eventListener : [eventListener]).filter(Boolean)
@@ -113,6 +140,8 @@
 		}
 	});
 </script>
+
+<ScrollPositionControl target="div[data-overlayscrollbars-contents]" {...scrollControl} />
 
 <svelte:element
 	this={element}

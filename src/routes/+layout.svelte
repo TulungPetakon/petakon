@@ -4,7 +4,6 @@
 	import 'overlayscrollbars/overlayscrollbars.css';
 	import { onMount } from 'svelte';
 	import { isMobile, screenSize } from '$lib/stores/app-readable.svelte';
-	import { scrollTop } from '$lib/stores/app-writable.svelte.js';
 
 	import ScrollArea from '$comp/scroll/ScrollArea.svelte';
 	import NavBarTop from '$comp/menu/NavBarTop.svelte';
@@ -15,11 +14,6 @@
 
 	const { children } = $props();
 	const { height, width } = $derived($screenSize);
-
-	const scrolled = ([, event]) => {
-		const isScroll = event.target.scrollTop > 0;
-		scrollTop.set(isScroll);
-	};
 
 	let loaded = $state(false);
 	onMount(() => (loaded = true));
@@ -39,7 +33,6 @@
 	<ScrollArea
 		defer
 		class="!h-[var(--app-height)]"
-		onscroll={scrolled}
 		options={{ scrollbars: { theme: 'os-theme-dark', autoHide: 'scroll', autoHideSuspend: true } }}
 	>
 		<PullToRefresh>

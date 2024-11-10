@@ -6,15 +6,11 @@
 	import delay from '$lib/helpers/timer/delay';
 
 	let show = $state(false);
+
 	const progress = tweened(0, {
 		duration: 3500,
 		easing: cubicOut
 	});
-
-	const resetScrollPosition = () => {
-		const scrollArea = document.querySelector('div[data-overlayscrollbars-contents]');
-		scrollArea.scrollTo({ top: 0 });
-	};
 
 	$effect(async () => {
 		const { complete, from, to } = $navigating || {};
@@ -23,8 +19,6 @@
 		show = true;
 		progress.set(0.7);
 		await complete; // waiting to be fulfilled
-
-		resetScrollPosition();
 
 		progress.set(1, { duration: 500 });
 		await delay(500);
