@@ -1,24 +1,27 @@
 <script>
 	import { fly } from 'svelte/transition';
 	import { spin } from '$lib/helpers/animation/transition';
+	import { scrollTop } from '$lib/stores/app-writable.svelte';
 	import Dots from '$comp/loading/Dots.svelte';
 
 	const { children } = $props();
 	const maxPtrHeight = 120;
 
 	let touchstartY = 0;
+	let scrollStart = 0;
 	let status = $state('ready');
 	let touchDistance = $state(0);
 
 	const ontouchstart = (e) => {
 		if (status !== 'ready') return;
 		touchstartY = e.touches[0].clientY;
+		scrollStart = $scrollTop;
 	};
 
 	const ontouchmove = (e) => {
-		if (touchstartY > 80) return;
-		const touchY = e.touches[0].clientY;
+		if (touchstartY > 80 || scrollStart > 0) return;
 		const elScrollY = e.currentTarget.parentElement.scrollTop | 0;
+		const touchY = e.touches[0].clientY;
 		const touchDiff = touchY - touchstartY;
 
 		if (elScrollY === 0) {
