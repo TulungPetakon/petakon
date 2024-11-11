@@ -25,7 +25,7 @@
 </script>
 
 <div
-	class="overflow-hidden duration-200 transition-all"
+	class="overflow-hidden duration-200 transition-all rounded-br-[2.5rem] md:rounded-br-[4rem]"
 	style="height: {heroHeight}px;"
 	class:!h-0={isMapOpen}
 >

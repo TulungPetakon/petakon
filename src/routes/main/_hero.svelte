@@ -72,9 +72,7 @@
 
 <div
 	style="clip-path: inset(0);"
-	class="absolute left-0 top-0 h-[var(--app-height)] w-full overflow-hidden
-	after:bg-sky-950/30 after:absolute after:top-0 after:left-0 after:w-full after:h-full
-	before:bg-black/35 before:absolute before:top-0 before:left-0 before:w-full before:h-full"
+	class="absolute left-0 top-0 h-[var(--app-height)] w-full pk-overlay"
 >
 	{#key activeIndicator}
 		<img

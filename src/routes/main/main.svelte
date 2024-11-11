@@ -25,6 +25,8 @@
 
 <About />
 
+<div class="mt-20"></div>
+
 <!-- <Homestay /> -->
 
 <!-- <Transport /> -->
