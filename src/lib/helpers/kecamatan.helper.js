@@ -1,7 +1,7 @@
 import kecamatan from '$lib/dummy/kecamatan.json';
 
+export const districtList = kecamatan.map(({ name }) => name);
 export const isDistrictValid = (location) => {
-	const list = kecamatan.map(({ name }) => name);
-	const isValid = list.includes(location);
+	const isValid = districtList.includes(location);
 	return isValid;
 };
