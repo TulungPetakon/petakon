@@ -1,10 +1,10 @@
 <script>
 	import img from '$images/beach/buper.jpg?format=webp';
-	let { kecamatan, height = $bindable() } = $props();
+	let { district, height = $bindable() } = $props();
 </script>
 
 <div
-	class="pk-overlay bg-cover bg-center bg-fixed w-full relative rounded-br-[2.5rem] md:rounded-br-[4rem]"
+	class="pk-overlay bg-cover bg-center bg-fixed w-full h-fit relative rounded-br-[2.5rem] md:rounded-br-[4rem]"
 	style="background-image: url({img});"
 	bind:clientHeight={height}
 >
@@ -12,15 +12,15 @@
 		<div class="hidden md:block text-sm text-slate-200 pb-8">
 			<a href="/" class="hover:text-orange-300 transition-all"> Home </a>
 			<span> / </span>
-			<a href="/kecamatan" class=" hover:text-orange-300 transition-all">Kecamatan</a>
+			<a href="/explore" class=" hover:text-orange-300 transition-all">Explore</a>
 			<span> / </span>
-			<span class="font-bold text-blue-300 capitalize">Jelajahi {kecamatan}</span>
+			<span class="font-bold text-blue-300 capitalize">Jelajahi {district}</span>
 		</div>
 
 		<div class="flex flex-col sm:flex-row pb-3">
 			<h1 class="capitalize pb-3 w-full">
 				<span class="block text-lg md:text-2xl pb-2">Jelajahi Kecamatan</span>
-				<span class="block text-3xl md:text-5xl font-bold">{kecamatan} </span>
+				<span class="block text-3xl md:text-5xl font-bold">{district} </span>
 			</h1>
 			<div class="flex items-center">
 				<button

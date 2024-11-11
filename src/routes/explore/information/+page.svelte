@@ -3,7 +3,7 @@
 	const { kecamatan } = $props();
 </script>
 
-<div class="relative flex px-[5%] md:px-[10%] py-5">
+<section class="relative flex px-[5%] md:px-[10%] py-10 mb-20">
 	<article class="pk-article basis-full md:basis-8/12">
 		<h1 class="mb-2 font-bold text-2xl capitalize">Tentang {kecamatan}</h1>
 		<p>
@@ -57,14 +57,14 @@
 		</p>
 	</article>
 
-	<div class="min-w-60 basis-4/12 hidden md:flex pl-10 relative">
-		<div class="ml-auto sticky right-0 h-fit pb-5" style="top:{$topbarHeight + 70}px;">
+	<aside class="min-w-60 basis-4/12 hidden md:flex pl-10 relative">
+		<div class="ml-auto sticky right-0 h-fit pb-5" style="top:{$topbarHeight + 110}px;">
 			<h2 class="font-bold text-lg mb-2">Daftar Isi</h2>
 			<ol class="capitalize">
 				<li class="py-1 xl:py-0">
-					<a href="#hubla" class="hover:underline hover:text-black inline-block"
-						>Tentang {kecamatan}</a
-					>
+					<a href="#hubla" class="hover:underline hover:text-black inline-block">
+						Tentang {kecamatan}
+					</a>
 				</li>
 				<li class="py-1 xl:py-0">
 					<a
@@ -77,5 +77,5 @@
 				</li>
 			</ol>
 		</div>
-	</div>
-</div>
+	</aside>
+</section>
