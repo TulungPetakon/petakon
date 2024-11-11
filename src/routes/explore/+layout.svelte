@@ -1,5 +1,5 @@
 <script>
-	import { fade, fly } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 	import { getContext, onDestroy } from 'svelte';
 	import Hero from './_hero.svelte';
 	import Menu from './_menu.svelte';
@@ -21,7 +21,7 @@
 		footerMode.set(!isMapOpen ? 'default' : 'hidden');
 		// scrollControl({ scrollTo: heroHeight, instant: true });
 	};
-	onDestroy(() => footerMode.set('hidden'));
+	onDestroy(() => footerMode.set('default'));
 </script>
 
 <div
@@ -35,14 +35,12 @@
 <Menu {onclick} {district} {onmap} {isMapOpen} bind:height={menuHeight} />
 
 {#if isMapOpen}
-	<div class="w-full overflow-hidden" style="height: {mapHeight}px;">
-		<div
-			class="w-full bg-slate-100 left-0 bottom-0 z-20 flex items-center justify-center"
-			style="height: {mapHeight}px"
-			transition:fly={{ y: 1000, duration: 200 }}
-		>
-			<span> Map In Progress</span>
-		</div>
+	<div
+		class="w-full bg-slate-100 left-0 bottom-0 z-20 flex items-center justify-center"
+		style="height: {mapHeight}px"
+		in:fade={{ duration: 200 }}
+	>
+		<span> Map In Progress </span>
 	</div>
 {:else}
 	<div in:fade>

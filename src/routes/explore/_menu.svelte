@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import { topbarHeight } from '$lib/stores/app-writable.svelte';
-	let { onclick, district = '', isMapOpen, onmap, height = $bindable() } = $props();
+	let { onclick, isMapOpen, onmap, district, height = $bindable() } = $props();
 
 	const menu = $derived.by(() => {
 		const information = district ? [{ text: 'Informasi Umum', slug: 'information' }] : [];
@@ -16,10 +16,11 @@
 		];
 	});
 
-	const checkActivePage = (param) => {
+	const checkActivePage = (slug) => {
 		const { pathname } = $page.url;
 		const [, ctx = 'general'] = pathname.split('explore/');
-		return ctx.match(param);
+		if (ctx === district) return slug === 'activities';
+		return ctx.match(slug);
 	};
 
 	let contentBoxSize = $state(0);
