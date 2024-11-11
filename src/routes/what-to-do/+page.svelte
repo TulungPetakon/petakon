@@ -1,7 +1,10 @@
 <script>
-	import { html } from '$post/what-to-do.md';
+	import { md } from '$lib/helpers/markdown.helper';
+	import markdown from '$post/what-to-do.md?raw';
 </script>
 
 <section class="px-[6%] py-10">
-	{@html html}
+	<article class="pk-article mx-auto max-w-[800px] pb-20">
+		{@html md(markdown).html}
+	</article>
 </section>
