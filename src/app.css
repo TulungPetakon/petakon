@@ -38,6 +38,10 @@
 		@apply text-base md:text-lg;
 	}
 
+	.pk-article li p {
+		@apply pb-0;
+	}
+
 	.pk-overlay {
 		@apply overflow-hidden;
 		@apply after:bg-sky-950/30 after:absolute after:top-0 after:left-0 after:w-full after:h-full;

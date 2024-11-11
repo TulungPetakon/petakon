@@ -6,5 +6,5 @@ export const prerender = false;
 export const load = ({ params }) => {
 	const isValid = isDistrictValid(params.district);
 	if (!isValid) return error(404, { message: 'Not Found' });
-	redirect(302, `/explore/${params.district}`);
+	redirect(302, `/explore/${params.district}/information`);
 };
