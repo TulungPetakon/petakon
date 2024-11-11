@@ -1,10 +1,10 @@
 <script>
 	import { fade, fly } from 'svelte/transition';
-	import { getContext } from 'svelte';
+	import { getContext, onDestroy } from 'svelte';
 	import Hero from './_hero.svelte';
 	import Menu from './_menu.svelte';
 	import { screenSize } from '$lib/stores/app-readable.svelte';
-	import { topbarHeight } from '$lib/stores/app-writable.svelte';
+	import { footerMode, topbarHeight } from '$lib/stores/app-writable.svelte';
 
 	const { children, data } = $props();
 	const { name: district } = $derived(data.district);
@@ -18,8 +18,10 @@
 
 	const onmap = () => {
 		isMapOpen = !isMapOpen;
+		footerMode.set(!isMapOpen ? 'default' : 'hidden');
 		// scrollControl({ scrollTo: heroHeight, instant: true });
 	};
+	onDestroy(() => footerMode.set('hidden'));
 </script>
 
 <div
