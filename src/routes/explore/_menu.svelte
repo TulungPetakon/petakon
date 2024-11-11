@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import { topbarHeight } from '$lib/stores/app-writable.svelte';
-	let { onclick, district = '', height = $bindable() } = $props();
+	let { onclick, district = '', isMapOpen, onmap, height = $bindable() } = $props();
 
 	const menu = $derived.by(() => {
 		const information = district ? [{ text: 'Informasi Umum', slug: 'information' }] : [];
@@ -51,9 +51,14 @@
 		</ul>
 	</div>
 	<div class="flex items-center">
-		<button class="flex items-center pk-button text-base hover:bg-slate-100">
-			<i class="fasl fa-map inline-block sm:pr-2"></i>
-			<span class="hidden sm:inline-block w-max">Buka Peta</span>
+		<button class="flex items-center pk-button text-base hover:bg-slate-100" onclick={onmap}>
+			{#if isMapOpen}
+				<i class="fasl fa-list-ul inline-block sm:pr-2"></i>
+				<span class="hidden sm:inline-block w-max">Lihat List</span>
+			{:else}
+				<i class="fasl fa-map inline-block sm:pr-2"></i>
+				<span class="hidden sm:inline-block w-max">Buka Peta</span>
+			{/if}
 		</button>
 	</div>
 </div>

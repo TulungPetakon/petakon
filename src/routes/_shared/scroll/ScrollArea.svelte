@@ -28,8 +28,7 @@
 
 	// Since we use Overlayscrollbar instead of native scrollbar, Scroll event won't be retrived from window element
 	events['scroll'] = (el, event) => {
-		const isScroll = event.target.scrollTop > 0;
-		scrollTop.set(isScroll);
+		scrollTop.set(event.target.scrollTop);
 		scrollFnList.forEach((fn) => fn(event));
 
 		if (!properties['onscroll']) return;
