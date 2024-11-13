@@ -1,5 +1,5 @@
 <script>
-	import { preventDefault } from '$lib/helpers/event-handler';
+	import { preventDefault } from '$lib/helpers/event-handler.helper';
 
 	let { svg = $bindable(), onhover, onleave, onclick: click, active } = $props();
 	const hoverFn = onhover || (() => null);

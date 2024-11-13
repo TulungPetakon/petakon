@@ -1,7 +1,7 @@
 <script>
 	import { fade, fly } from 'svelte/transition';
 	import { mainLinks } from './navlink';
-	import { self } from '$lib/helpers/event-handler';
+	import { self } from '$lib/helpers/event-handler.helper';
 	import { screenSize } from '$lib/stores/app-readable.svelte';
 	import LangToggle from '$comp/utils/LangToggle.svelte';
 
