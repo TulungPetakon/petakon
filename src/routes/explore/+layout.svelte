@@ -43,7 +43,7 @@
 		<span> Map In Progress </span>
 	</div>
 {:else}
-	<div in:fade>
+	<div in:fade style="min-height:{mapHeight}px">
 		{@render children()}
 	</div>
 {/if}
