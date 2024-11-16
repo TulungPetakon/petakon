@@ -1,9 +1,11 @@
 <script>
 	import { page } from '$app/stores';
 	import { topbarHeight } from '$lib/stores/app-writable.svelte';
-	import { onMount } from 'svelte';
+	import { getContext, onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-	let { onclick, isMapOpen, onmap, district, height = $bindable() } = $props();
+	let { onclick, isMapOpen, district, height = $bindable() } = $props();
+
+	const mapToggle = getContext('mapToggle');
 
 	const menu = $derived.by(() => {
 		const information = district ? [{ text: 'Informasi Umum', slug: 'information' }] : [];
@@ -74,10 +76,10 @@
 
 <div
 	bind:clientHeight={height}
-	class="menu sticky px-[5%] md:px-[10%] w-full left-0 bg-white flex border-b-2 font-semibold z-20"
+	class="menu sticky px-[5%] md:px-[10%] left-0 bg-white flex border-b-2 font-semibold z-20"
 	style="top:{$topbarHeight - 1}px"
 >
-	<div class="block relative w-10/12 pr-3 md:pr-5">
+	<div class="block relative w-10/12 sm:w-9/12 lg:w-10/12 pr-3 md:pr-5">
 		{#snippet nav(position)}
 			{@const isLeft = position === 'left'}
 			{@const isRight = position === 'right'}
@@ -134,7 +136,7 @@
 	<div class="flex items-center ml-auto">
 		<button
 			class="flex items-center pk-button text-base hover:bg-slate-100 border-[0.075rem] border-slate-300"
-			onclick={onmap}
+			onclick={mapToggle}
 		>
 			{#if isMapOpen}
 				<i class="fasl fa-list-ul inline-block sm:pr-2"></i>

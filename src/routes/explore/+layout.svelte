@@ -1,6 +1,6 @@
 <script>
 	import { fade } from 'svelte/transition';
-	import { getContext, onDestroy } from 'svelte';
+	import { getContext, onDestroy, setContext } from 'svelte';
 	import Hero from './_hero.svelte';
 	import Menu from './_menu.svelte';
 	import { screenSize } from '$lib/stores/app-readable.svelte';
@@ -9,18 +9,29 @@
 	const { children, data } = $props();
 	const { name: district } = $derived(data.district);
 
-	let isMapOpen = $state(false);
 	let heroHeight = $state();
 	let menuHeight = $state();
 	const mapHeight = $derived($screenSize.height - $topbarHeight - menuHeight);
 	const scrollControl = getContext('scrollControl');
 	const onclick = () => scrollControl({ scrollTo: heroHeight });
 
-	const onmap = () => {
-		isMapOpen = !isMapOpen;
-		footerMode.set(!isMapOpen ? 'default' : 'hidden');
+	let isMapOpen = $state(false);
+	let mapData = $state({ location: '' });
+	const mapToggle = ({ location, action = null }) => {
+		if (typeof action !== 'string') {
+			isMapOpen = !isMapOpen;
+			mapData = {};
+			return;
+		}
+
+		const isOpen = action === 'open';
+		mapData = { location };
+		isMapOpen = isOpen;
 		// scrollControl({ scrollTo: heroHeight, instant: true });
 	};
+	$effect(() => footerMode.set(!isMapOpen ? 'default' : 'hidden'));
+
+	setContext('mapToggle', mapToggle);
 	onDestroy(() => footerMode.set('default'));
 </script>
 
@@ -32,7 +43,7 @@
 	<Hero {district} bind:height={heroHeight} />
 </div>
 
-<Menu {onclick} {district} {onmap} {isMapOpen} bind:height={menuHeight} />
+<Menu {onclick} {district} {isMapOpen} bind:height={menuHeight} />
 
 {#if isMapOpen}
 	<div
