@@ -1,5 +1,9 @@
 <script>
 	import img from '$images/beach/buper.jpg';
+	import { preventDefault, stopPropagation } from '$lib/helpers/event-handler.helper';
+	import { getContext } from 'svelte';
+	const mapToggle = getContext('mapToggle');
+	const openMap = () => mapToggle({ action: 'open', location: '' });
 </script>
 
 <div class="px-2 flex flex-wrap sm:flex-nowrap items-center mb-4">
@@ -26,7 +30,7 @@
 		<button
 			aria-label="Grid Mode"
 			title="Grid View"
-			class="inline-flex items-center pk-button !p-0 text-2xl ml-4 mr-4"
+			class="inline-flex items-center pk-button !p-0 text-2xl ml-4"
 		>
 			<i class="fasl fa-grid"></i>
 		</button>
@@ -41,14 +45,14 @@
 					<img src={img} alt="Buper" class="size-full" />
 				</div>
 
-				<div class="px-4 pt-3 pb-2">
+				<div class="px-4 pt-3 pb-5">
 					<div class="text-xs md:text-sm flex items-center">
-						<div class="left">
+						<div class="left text-overflow" style="--line-number:1">
 							<i class="fasl fa-location-dot"></i> <span> Sendang, Kec. Sendang</span>
 						</div>
 						<div class="ml-auto">
 							<button
-								class="pk-button !p-0 w-8 text-2xl leading-tight"
+								class="pk-button !p-0 text-2xl leading-none"
 								aria-label="Save for Later"
 								title="Save for Later"
 							>
@@ -57,9 +61,12 @@
 						</div>
 					</div>
 
-					<h3 class="py-2 font-bold text-base md:text-lg leading-tight text-overflow">
+					<h3 class="py-2 font-bold text-base md:text-lg text-overflow" style="line-height: 1.25;">
 						Bumi Perkemahan Jurang Senggani
 					</h3>
+					<button class="block underline" onclick={stopPropagation(preventDefault(openMap))}>
+						Lihat di Peta</button
+					>
 				</div>
 			</div>
 		</div>
