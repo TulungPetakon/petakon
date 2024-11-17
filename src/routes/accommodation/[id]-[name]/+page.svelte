@@ -1,7 +1,12 @@
 <script>
 	import { isMobile } from '$lib/stores/app-readable.svelte';
 	import { topBarMode } from '$lib/stores/app-writable.svelte';
-	import hotel from '$images/accomodations/frontone.jpg';
+	import { md } from '$lib/helpers/markdown.helper.js';
+	import hotel from '$images/accomodations/front-one.jpg';
+
+	const { data } = $props();
+	const { html } = md(data.post);
+	const description = $derived(`${html.substring(0, 800)}...`);
 
 	$effect(() => topBarMode.set($isMobile ? 'hidden' : 'default')); // Change TopBar on mobile screen
 	$effect.pre(() => () => topBarMode.set('default')); // Set back to default Topbar after leaving the page
@@ -62,7 +67,8 @@
 	<div class="md:px-[6.5%]">
 		<div class="grid grid-cols-1 lg:grid-cols-2 rounded overflow-hidden relative">
 			<button
-				class="bg-white pk-button absolute text-sm !px-3 !py-1 right-3 bottom-5 hidden hover:bg-gray-200 sm:hidden lg:block"
+				class="bg-white pk-button absolute text-sm !px-3 !py-1 right-3 bottom-5 hidden
+				hover:bg-gray-200 sm:hidden lg:block"
 			>
 				<i class="fasl fa-image"></i>
 				<span>Show All Photos</span>
@@ -80,10 +86,7 @@
 				</div>
 			</div>
 			<div class="w-full pt-1 hidden h-24 sm:block lg:pt-0 lg:pl-1 lg:h-[25rem]">
-				<div
-					class="grid size-full grid-cols-5 grid-rows-1
-			lg:grid-rows-2 lg:grid-cols-2"
-				>
+				<div class="grid size-full grid-cols-5 grid-rows-1 lg:grid-rows-2 lg:grid-cols-2">
 					{#each Array(4) as _}
 						<div
 							class="size-full
@@ -101,17 +104,47 @@
 
 	<!-- Details -->
 	<div class="relative py-2 sm:py-5 px-[5%] md:px-[6.5%]">
-		<div id="general">
-			<h1 class="font-bold py-2 text-2xl md:text-3xl">Front Hotel Tulungagung</h1>
-			<div class="flex items-center">
-				<span class="text-gray-500 leading-4 text-overflow block pb-1">
-					Jalan Pangeran Antasari Nomor 1 Kenayan - Kabupaten Tulungagung, Tulungagung, Indonesia,
-					66212
-				</span>
+		<div class="flex">
+			<div class="basis-8/12 pr-20">
+				<div id="general" class="pb-7 border-b">
+					<h1 class="font-semibold py-2 text-2xl md:text-3xl">Front Hotel Tulungagung</h1>
+					<div class="flex items-center">
+						<span class="text-gray-500 leading-tight text-overflow block pb-1 text-lg">
+							Jalan Pangeran Antasari Nomor 1 Kenayan - Kabupaten Tulungagung, Tulungagung,
+							Indonesia, 66212
+						</span>
+					</div>
+					<div class="flex mt-2 items-center">
+						<i class="fas fa-star inline-block mr-2"></i>
+						<button class="text-black underline"> 0 Review </button>
+					</div>
+				</div>
+
+				<div class="py-10 border-b">
+					<article class="pk-article text-gray-600">
+						{@html description}
+					</article>
+					<button class="inline-flex items-center text-black">
+						<span class="underline">Baca Selengkapnya</span>
+						<i class="fasl fa-angle-right ml-2 leading-none"></i>
+					</button>
+				</div>
 			</div>
-			<div class="flex mt-2 items-center">
-				<i class="fas fa-star inline-block mr-2"></i>
-				<button class="text-black underline"> 0 Review </button>
+
+			<div class="basis-4/12 relative">
+				<div class="sticky right-0 top-24 w-full bg-white shadow mt-5 p-5 border">
+					<div class="flex items-center">
+						<div class="price">
+							<span class="font-semibold text-2xl">Rp999.999</span>
+							<span>/malam</span>
+						</div>
+						<div class="ml-auto">
+							<button class="pk-button bg-sky-500 text-white">
+								<i class="fasl fa-location-dot"></i> <span>Lihat di Peta</span>
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
