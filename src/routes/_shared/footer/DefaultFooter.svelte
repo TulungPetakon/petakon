@@ -63,14 +63,14 @@
 			title: 'Email Support',
 			icon: 'pk-mail',
 			color: '#000'
-		},
-		{
-			href: '/',
-			text: '+620000000000',
-			title: 'Call Center',
-			icon: 'pk-whatsapp',
-			color: '#128C7E'
 		}
+		// {
+		// 	href: '/',
+		// 	text: '+620000000000',
+		// 	title: 'Call Center',
+		// 	icon: 'pk-whatsapp',
+		// 	color: '#128C7E'
+		// }
 	];
 
 	const social = [

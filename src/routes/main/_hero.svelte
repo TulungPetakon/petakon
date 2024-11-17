@@ -121,10 +121,11 @@
 					{#key active}
 						<div class="px-1" in:fly={{ x: 20 }}>
 							<h2 class="text-2xl uppercase font-bold">{wisata[active].title}</h2>
-							<p in:fly={{ x: 20, delay: 150 }} class="mt-5 opacity-85">
+							<div class="h-20"></div>
+							<!-- <p in:fly={{ x: 20, delay: 150 }} class="mt-5 opacity-85">
 								Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem veniam
 								nostrum ex pariatur consequatur reprehenderit rem adipisci debitis suscipit numquam.
-							</p>
+							</p> -->
 							<button
 								in:fly={{ x: 20, delay: 300 }}
 								class="mt-5 border-2 border-sky-400 pk-button hover:border-sky-500 hover:bg-sky-500 transition-all duration-300"
