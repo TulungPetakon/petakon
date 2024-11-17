@@ -2,10 +2,10 @@
 	import { fade, fly, scale } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import Splide from '@splidejs/splide';
-	import senggani from '$images/beach/jurang-senggani.jpg?format=webp';
-	import dlodo from '$images/beach/dlodo.jpg?format=webp';
-	import jls from '$images/beach/jls.jpg';
-	import pathok from '$images/beach/pathok-gebang.jpeg';
+	import destinasi from '$images/destinations/pantai-molang.jpg?format=webp';
+	import kuliner from '$images/spotlight/lodho.jpg?format=webp';
+	import karnaval from '$images/events/karnaval.jpg?format=webp';
+	import jaranan from '$images/events/budaya.jpg?format=webp';
 
 	let height = $state(0);
 	let active = $state(0);
@@ -13,10 +13,34 @@
 	let splide;
 
 	const wisata = [
-		{ title: 'Event dan Festival', img: pathok, tmbl: 'Partisipasi' },
-		{ title: 'Kuliner', img: dlodo, tmbl: 'Explore' },
-		{ title: 'Destinasi Populer', img: senggani, tmbl: 'Rencanakan Perjalanan' },
-		{ title: 'Pertunjukan Budaya', img: jls, tmbl: 'Kunjungi' }
+		{
+			title: 'Event dan Festival',
+			img: karnaval,
+			tmbl: 'Partisipasi',
+			description:
+				'Rasakan pesona budaya lokal melalui beragam Event dan Festival di Kabupaten Tulungagung! Dari seni tradisional hingga pertunjukan musik modern, setiap acara menawarkan pengalaman yang unik dan memikat.'
+		},
+		{
+			title: 'Kuliner',
+			img: kuliner,
+			tmbl: 'Explore',
+			description:
+				'Nikmati Keunikan Kuliner Khas Kabupaten Tulungagung yang menggugah selera! Dari hidangan tradisional hingga makanan modern dengan sentuhan lokal, setiap sajian menghadirkan cita rasa yang autentik.'
+		},
+		{
+			title: 'Destinasi Populer',
+			img: destinasi,
+			tmbl: 'Rencanakan Perjalanan',
+			description:
+				'Jelajahi Destinasi Populer di Kabupaten Tulungagung, tempat keindahan alam dan budaya bertemu. Temukan pesona pantai yang memukau, air terjun yang menenangkan, serta situs budaya yang penuh sejarah.'
+		},
+		{
+			title: 'Pertunjukan Budaya',
+			img: jaranan,
+			tmbl: 'Kunjungi',
+			description:
+				'Selami Kekayaan Budaya di Kabupaten Tulungagung melalui Beragam Pertunjukan Tradisional! Nikmati tarian, musik, dan seni tradisional yang memukau dan kaya akan nilai sejarah!'
+		}
 	];
 
 	onMount(() => {
@@ -121,11 +145,9 @@
 					{#key active}
 						<div class="px-1" in:fly={{ x: 20 }}>
 							<h2 class="text-2xl uppercase font-bold">{wisata[active].title}</h2>
-							<div class="h-20"></div>
-							<!-- <p in:fly={{ x: 20, delay: 150 }} class="mt-5 opacity-85">
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem veniam
-								nostrum ex pariatur consequatur reprehenderit rem adipisci debitis suscipit numquam.
-							</p> -->
+							<p in:fly={{ x: 20, delay: 150 }} class="mt-5 opacity-85">
+								{wisata[active].description}
+							</p>
 							<button
 								in:fly={{ x: 20, delay: 300 }}
 								class="mt-5 border-2 border-sky-400 pk-button hover:border-sky-500 hover:bg-sky-500 transition-all duration-300"
@@ -153,7 +175,7 @@
 										<div class="p-2 sm:p-5 opacity-85">
 											<h3 class="font-bold">{title}</h3>
 											<div class="info text-xs sm:text-sm sm:mt-2 text-cyan-200 opacity-75">
-												<i class="fa-light fa-location-dot"></i> Location/Time/Date:
+												<!-- <i class="fa-light fa-location-dot"></i> Location/Time/Date: -->
 											</div>
 										</div>
 									</div>
