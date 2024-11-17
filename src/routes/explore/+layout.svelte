@@ -51,7 +51,15 @@
 		style="height: {mapHeight}px"
 		in:fade={{ duration: 200 }}
 	>
-		<span> Map In Progress </span>
+		<iframe
+			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d505636.05801829736!2d111.5869938517723!3d-8.072724083247827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78e3b74eb610b9%3A0x3027a76e352be20!2sKabupaten%20Tulungagung%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1731827674308!5m2!1sid!2sid"
+			style="border:0;"
+			allowfullscreen=""
+			loading="lazy"
+			class="size-full"
+			referrerpolicy="no-referrer-when-downgrade"
+			title="Tulungagung Map"
+		></iframe>
 	</div>
 {:else}
 	<div in:fade style="min-height:{mapHeight}px">
