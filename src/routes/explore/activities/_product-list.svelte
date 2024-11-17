@@ -1,14 +1,20 @@
 <script>
-	import img from '$images/beach/buper.jpg';
-	import { preventDefault, stopPropagation } from '$lib/helpers/event-handler.helper';
 	import { getContext } from 'svelte';
+	import { preventDefault, stopPropagation } from '$lib/helpers/event-handler.helper';
+
+	const { destinations } = $props();
+	const getThumb = async (slug) => {
+		const { default: raw } = await import(`$images/destinations/${slug}.jpg?w=300`);
+		return raw;
+	};
+
 	const mapToggle = getContext('mapToggle');
 	const openMap = () => mapToggle({ action: 'open', location: '' });
 </script>
 
 <div class="px-2 flex flex-wrap sm:flex-nowrap items-center mb-4">
 	<h2 class="font-bold leading-tight text-overflow sm:mb-0 mb-2 sm:pr-2">
-		Menampilkan <span class="text-orange-400">15</span> Hasil untuk
+		Menampilkan <span class="text-orange-400">{destinations.length}</span> Hasil untuk
 		<span class="text-sky-600"> Aktivitas di kecamatan Sendang </span>
 	</h2>
 	<div class="ml-auto flex items-center">
@@ -38,17 +44,19 @@
 </div>
 
 <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3 grid-cols-2">
-	{#each Array(15) as _}
+	{#each destinations as { name, slug }}
 		<div class="h-30 px-2 pb-4">
 			<div class="bg-white rounded overflow-hidden shadow-lg">
 				<div class="w-full aspect-[5/3.5] bg-gray-200 overflow-hidden">
-					<img src={img} alt="Buper" class="size-full" />
+					{#await getThumb(slug) then img}
+						<img src={img} alt={name} class="size-full" />
+					{/await}
 				</div>
 
 				<div class="px-4 pt-3 pb-5">
 					<div class="text-xs md:text-sm flex items-center">
 						<div class="left text-overflow" style="--line-number:1">
-							<i class="fasl fa-location-dot"></i> <span> Sendang, Kec. Sendang</span>
+							<i class="fasl fa-location-dot"></i> <span> Kec. Sendang</span>
 						</div>
 						<div class="ml-auto">
 							<button
@@ -62,11 +70,11 @@
 					</div>
 
 					<h3 class="py-2 font-bold text-base md:text-lg text-overflow" style="line-height: 1.25;">
-						Bumi Perkemahan Jurang Senggani
+						{name}
 					</h3>
 					<button class="block underline" onclick={stopPropagation(preventDefault(openMap))}>
-						Lihat di Peta</button
-					>
+						Lihat di Peta
+					</button>
 				</div>
 			</div>
 		</div>

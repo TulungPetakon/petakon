@@ -1,6 +1,8 @@
 <script>
 	import Aside from './_aside.svelte';
 	import ProductList from './_product-list.svelte';
+	const { data } = $props();
+	const { destinations = [] } = data || {};
 </script>
 
 <section class="px-[calc(5%-0.5rem)] md:pl-[10%] md:pr-[calc(10%-0.5rem)] py-5 bg-slate-100 w-full">
@@ -10,7 +12,7 @@
 		</aside>
 
 		<div class="lg:basis-9/12 md:basis-8/12 basis-full">
-			<ProductList />
+			<ProductList {destinations} />
 		</div>
 	</div>
 </section>
