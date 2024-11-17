@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import Splide from '@splidejs/splide';
-	import batik from '$images/spotlight/batik.jpg';
+	import batik from '$images/essentials/batik-gm.jpg';
 	import marmer from '$images/spotlight/marmer.jpg';
 	import lodho from '$images/spotlight/lodho.jpg';
 
@@ -122,9 +122,9 @@
 			</h2>
 
 			<p class="text-lg mt-6">
-				Temukan keunikan budaya Indonesia melalui ciri khas yang menarik, seperti kerajinan tangan,
-				tradisi lokal, dan kuliner khas yang menggugah selera. Eksplorasi ini mengungkap keindahan
-				dan kekayaan identitas bangsa.
+				Temukan pesona kota ini yang sarat dengan kekayaan budaya dan alamnya. Dari batik tulis
+				bercorak unik, seni pahat batu marmer berkualitas tinggi, hingga kuliner yang autentik.
+				Jelajahi setiap sudut kota ini dan temukan pesona yang menjadikannya begitu istimewa!
 			</p>
 
 			<a
