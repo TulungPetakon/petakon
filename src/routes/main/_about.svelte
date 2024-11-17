@@ -1,5 +1,10 @@
 <script>
+	import { md } from '$lib/helpers/markdown.helper';
 	import MiniMap from '../about-tulungagung/MiniMap.svelte';
+	import article from '$post/tulungagung.md?raw';
+
+	const short = article.replace('## Sejarah Tulungagung', '').substring(0, 602);
+	const { html } = md(`${short}...`);
 </script>
 
 <section
@@ -18,23 +23,13 @@
 			</h2>
 		</div>
 
-		<div class="mt-10">
-			<p>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil perferendis nulla alias
-				dignissimos temporibus iure aut facilis qui animi. Iure ab doloremque incidunt saepe quae
-				magnam minima. Natus, ratione? Veniam asperiores nobis voluptatum dicta, sit enim laudantium
-				consectetur, ab mollitia tempora deserunt doloribus veritatis impedit aut rem, sunt non. Id!
-			</p>
-			<p class="mt-4">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa in quaerat voluptate
-				perspiciatis! Facilis nihil similique impedit earum eos. Tempora doloribus voluptatum
-				perspiciatis minus nesciunt atque tempore ut quas possimus.
-			</p>
+		<div class="mt-10 pk-article">
+			{@html html}
 		</div>
 
 		<div class="mt-10">
 			<a
-				href="/"
+				href="/about-tulungagung"
 				class="border-2 border-sky-600/50 px-4 py-2 rounded transition-all text-center
       hover:border-sky-500 hover:bg-sky-500 hover:text-white"
 			>

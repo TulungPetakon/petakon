@@ -1,7 +1,7 @@
 <script>
 	import { fade } from 'svelte/transition';
 	import { screenSize } from '$lib/stores/app-readable.svelte';
-	import alun2 from '$images/destinations/taman-aloon-aloon.jpg?format=webp';
+	import alun2 from '$images/destinations/tulungagung.jpg';
 	import img2 from '$images/beach/jls.jpg?format=webp';
 	import TulungagungMap from '$comp/svgs/TulungagungMap.svelte';
 	import Tooltips from '$comp/utils/Tooltips.svelte';
@@ -73,18 +73,13 @@
 						{/if}
 
 						<div class="h-10 overflow-hidden">
-							<div class="h-20 transition-all hover:-translate-y-1/2">
-								<p class="leading-tight text-xs px-2 py-1 h-10 block basis-full">
-									Pusat Pemerintahan Lorem ipsum dolor sit amet.
-								</p>
-								<div class="h-10 capitalize">
-									<a
-										href="/kecamatan/{active}"
-										class="flex items-center justify-center h-full w-full bg-orange-400 text-white active:bg-orange-600 transition-colors"
-									>
-										<span>Jelajahi {active}</span>
-									</a>
-								</div>
+							<div class="h-10 capitalize">
+								<a
+									href="/kecamatan/{active}"
+									class="flex items-center justify-center h-full w-full bg-orange-400 text-white active:bg-orange-600 transition-colors"
+								>
+									<span>Jelajahi</span>
+								</a>
 							</div>
 						</div>
 					</div>
