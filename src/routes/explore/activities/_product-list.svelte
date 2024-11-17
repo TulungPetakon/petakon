@@ -1,10 +1,23 @@
 <script>
+	import { goto } from '$app/navigation';
 	import { getContext } from 'svelte';
 	import { preventDefault, stopPropagation } from '$lib/helpers/event-handler.helper';
+	import placeholder from '$images/utils/petakon-placeholder.webp';
 
-	const { destinations } = $props();
+	const { destinations, district } = $props();
+	const { list = [], isEnd, page, total = 0 } = $derived(destinations);
+
+	const next = () => {
+		const l = district ? `l=${district}&` : '';
+		goto(`/explore/activities?${l}p=${page + 1}`);
+	};
+	const previous = () => {
+		const l = district ? `l=${district}&` : '';
+		goto(`/explore/activities?${l}p=${page - 1}`);
+	};
+
 	const getThumb = async (slug) => {
-		const { default: raw } = await import(`$images/destinations/${slug}.jpg?w=300`);
+		const { default: raw } = await import(`$images/destinations/${slug}.jpg?w=300?format=webp`);
 		return raw;
 	};
 
@@ -13,10 +26,16 @@
 </script>
 
 <div class="px-2 flex flex-wrap sm:flex-nowrap items-center mb-4">
-	<h2 class="font-bold leading-tight text-overflow sm:mb-0 mb-2 sm:pr-2">
-		Menampilkan <span class="text-orange-400">{destinations.length}</span> Hasil untuk
-		<span class="text-sky-600"> Aktivitas di kecamatan Sendang </span>
-	</h2>
+	{#if district}
+		<h2 class="font-bold leading-tight text-overflow sm:mb-0 mb-2 sm:pr-2">
+			Menampilkan <span class="text-orange-400">{total}</span> Hasil untuk Aktivitas di kecamatan
+			<span class="text-sky-600 capitalize">{district} </span>
+		</h2>
+	{:else}
+		<h2 class="font-bold leading-tight text-overflow sm:mb-0 mb-2 sm:pr-2">
+			Menampilkan <span class="text-orange-400">{total}</span> Aktivitas di Kabupaten Tulungagung
+		</h2>
+	{/if}
 	<div class="ml-auto flex items-center">
 		<button
 			class="inline-flex items-center pk-button !pr-3 !pl-4 !py-1 bg-white text-base hover:bg-slate-100 border-[0.075rem] border-slate-300"
@@ -44,19 +63,21 @@
 </div>
 
 <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3 grid-cols-2">
-	{#each destinations as { name, slug }}
+	{#each list as { name, slug, address }}
 		<div class="h-30 px-2 pb-4">
-			<div class="bg-white rounded overflow-hidden shadow-lg">
+			<div class="bg-white rounded overflow-hidden shadow-lg h-full">
 				<div class="w-full aspect-[5/3.5] bg-gray-200 overflow-hidden">
 					{#await getThumb(slug) then img}
 						<img src={img} alt={name} class="size-full" />
+					{:catch}
+						<img src={placeholder} alt={name} class="size-full" />
 					{/await}
 				</div>
 
 				<div class="px-4 pt-3 pb-5">
 					<div class="text-xs md:text-sm flex items-center">
-						<div class="left text-overflow" style="--line-number:1">
-							<i class="fasl fa-location-dot"></i> <span> Kec. Sendang</span>
+						<div class="text-overflow pr-2" style="--line-number:1">
+							<i class="fasl fa-location-dot"></i> <span> {address}</span>
 						</div>
 						<div class="ml-auto">
 							<button
@@ -81,11 +102,28 @@
 	{/each}
 </div>
 
-<div class="flex">
-	<div class="ml-auto pr-2 pb-10 py-14">
-		<button class="pk-button border-2 bg-white hover:text-sky-600 hover:border-sky-500">
-			<span>Halaman Selanjutnya</span>
-			<i class="fasl fa-arrow-right-long"></i>
-		</button>
-	</div>
+<div class="flex flex-wrap pb-10 py-14">
+	{#if page > 1}
+		<div class="mr-auto pr-2">
+			<button
+				onclick={previous}
+				class="pk-button border-2 bg-white hover:text-sky-600 hover:border-sky-500"
+			>
+				<i class="fasl fa-arrow-left-long"></i>
+				<span>Sebelumnya</span>
+			</button>
+		</div>
+	{/if}
+
+	{#if !isEnd}
+		<div class="ml-auto pr-2">
+			<button
+				onclick={next}
+				class="pk-button border-2 bg-white hover:text-sky-600 hover:border-sky-500"
+			>
+				<span>Selanjutnya</span>
+				<i class="fasl fa-arrow-right-long"></i>
+			</button>
+		</div>
+	{/if}
 </div>

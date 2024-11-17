@@ -1,9 +1,8 @@
 <script>
-	import Activities from '../activities/+page.svelte';
+	import Activities from '../activities/main.svelte';
 
 	const { data } = $props();
-	const { name: district } = data.district;
 </script>
 
 <!-- Content -->
-<Activities {district} />
+<Activities district={data?.district?.name} destinations={data.destinations} />
