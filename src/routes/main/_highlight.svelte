@@ -1,24 +1,20 @@
 <script>
-	import relaksasi from '$images/beach/coban.jpg?format=webp';
-	import kuliner from '$images/beach/jls2.jpg?format=webp';
-	import pantai from '$images/beach/pantai.webp?format=webp';
-	import gunung from '$images/beach/besuki.jpg?format=webp';
-	import budaya from '$images/beach/jurang-senggani.jpg?format=webp';
-	import edukasi from '$images/beach/kedung-tumpang.webp?format=webp';
 	import hiburan from '$images/beach/pathok.jpeg?format=webp';
-	import taman from '$images/beach/skyview.webp?format=webp';
-	import klathak from '$images/beach/klatak.jpg?format=webp';
 
 	const kategori = [
-		{ name: 'Gunung Budheg', img: gunung },
-		{ name: 'Pantai Coro', img: pantai },
-		{ name: 'Air Terjun Jurang Senggani', img: budaya },
-		{ name: 'Jalur Lintas Selatan', img: kuliner },
-		{ name: 'Pantai Kedung Tumpang', img: edukasi },
-		{ name: 'Dendy Skyview', img: taman },
-		{ name: 'Coban Kromo', img: relaksasi },
-		{ name: 'Pantai Klathak', img: klathak }
+		{ name: 'Air Terjun Jurang Senggani', slug: 'jurang-senggani' },
+		{ name: 'Pantai Molang', slug: 'pantai-molang' },
+		{ name: 'Candi Sanggrahan', slug: 'candi-sanggrahan' },
+		{ name: 'Pantai Kedung Tumpang', slug: 'pantai-kedung-tumpang' },
+		{ name: 'Coban Kromo', slug: 'coban-kromo' },
+		{ name: 'Telaga Buret', slug: 'telaga-buret' },
+		{ name: 'Pantai Kelinci', slug: 'pantai-kelinci' }
 	];
+
+	const getThumb = async (slug) => {
+		const { default: raw } = await import(`$images/destinations/${slug}.jpg?format=webp`);
+		return raw;
+	};
 </script>
 
 <section class="pt-28">
@@ -38,17 +34,19 @@
 	</div>
 
 	<div class="flex flex-wrap mt-10">
-		{#each kategori as { img, name }, i}
+		{#each kategori as { slug, name }, i}
 			<div
 				class="aspect-square relative group overflow-hidden basis-1/2
 				md:basis-1/3 lg:basis-1/4 sm:aspect-[16/9]
 				has-[#group7]:hidden md:has-[#group7]:block lg:has-[#group7]:hidden"
 			>
-				<div
-					id="group{i}"
-					class="h-full w-full bg-cover bg-center transition-all duration-300 group-[:hover]:scale-110"
-					style="background-image: url({img});"
-				></div>
+				{#await getThumb(slug) then img}
+					<div
+						id="group{i}"
+						class="h-full w-full bg-cover bg-center transition-all duration-300 group-[:hover]:scale-110"
+						style="background-image: url({img});"
+					></div>
+				{/await}
 
 				<div
 					class="bg-black/30 backdrop-blur-sm absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center scale-150 opacity-0 transition-all duration-300
