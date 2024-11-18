@@ -1,9 +1,11 @@
+import { getItem } from '$lib/helpers/accomodation.helper.js';
+
 export const prerender = false;
 
 const loadPost = async (k = '') => {
 	if (!k) return '';
 	try {
-		const { default: raw } = await import(`$post/accomodation/front-one.md?raw`);
+		const { default: raw } = await import(`$post/accomodation/${k}.md?raw`);
 		return raw;
 	} catch (e) {
 		console.error(e);
@@ -11,7 +13,9 @@ const loadPost = async (k = '') => {
 	}
 };
 
-export const load = async () => {
-	const post = await loadPost('front-one');
-	return { accomodation: { name: 'Front Hotel Tulungagung' }, post };
+export const load = async ({ params }) => {
+	const { id, name } = params;
+	const accomodation = getItem(id, name);
+	const post = await loadPost(name);
+	return { accomodation, post };
 };

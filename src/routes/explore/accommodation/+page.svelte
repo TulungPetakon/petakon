@@ -3,7 +3,7 @@
 	import { preventDefault, stopPropagation } from '$lib/helpers/event-handler.helper';
 
 	const { data } = $props();
-	const { hotels } = data;
+	const { accomodation } = data;
 
 	const hello = (e) => {
 		console.log('hallo', e);
@@ -21,7 +21,7 @@
 	<div
 		class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:flex 2xl:grid-cols-none 2xl:flex-wrap"
 	>
-		{#each hotels as { id, name, location, slug }}
+		{#each accomodation as { id, name, location, slug }}
 			<div class="p-3 pb-5 2xl:w-72">
 				<a href="/accommodation/{id}-{slug}">
 					<div class="w-full aspect-[280/265] bg-gray-300 rounded-xl overflow-hidden relative">

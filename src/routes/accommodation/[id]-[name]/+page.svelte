@@ -2,11 +2,18 @@
 	import { isMobile } from '$lib/stores/app-readable.svelte';
 	import { topBarMode } from '$lib/stores/app-writable.svelte';
 	import { md } from '$lib/helpers/markdown.helper.js';
-	import hotel from '$images/accomodations/front-one.jpg';
 
 	const { data } = $props();
 	const { html } = md(data.post);
 	const description = $derived(`${html.substring(0, 800)}...`);
+
+	const { name, gallery, location, slug } = $derived(data.accomodation);
+	const { type, url } = $derived(gallery?.[0] || {});
+
+	const getThumb = async (slug) => {
+		const { default: raw } = await import(`$images/accomodations/${slug}.jpg?format=webp`);
+		return raw;
+	};
 
 	$effect(() => topBarMode.set($isMobile ? 'hidden' : 'default')); // Change TopBar on mobile screen
 	$effect.pre(() => () => topBarMode.set('default')); // Set back to default Topbar after leaving the page
@@ -77,12 +84,18 @@
 			<span
 				class="bg-black/35 text-white absolute text-sm px-3 py-1 right-2 bottom-5 rounded-md sm:hidden"
 			>
-				1 / 20
+				1 / 5
 			</span>
 
 			<div class="w-full h-72 sm:h-80 md:h-96 lg:pr-1 lg:h-[25rem]">
-				<div class="size-full overflow-hidden">
-					<img src={hotel} alt="Front Hotel" class="size-full" />
+				<div class="size-full overflow-hidden bg-gray-200">
+					{#if type === 'video'}
+						<video src={url} controls class="size-full"> <track kind="captions" /></video>
+					{:else}
+						{#await getThumb(slug) then src}
+							<img {src} alt={name} class="size-full" />
+						{/await}
+					{/if}
 				</div>
 			</div>
 			<div class="w-full pt-1 hidden h-24 sm:block lg:pt-0 lg:pl-1 lg:h-[25rem]">
@@ -92,8 +105,10 @@
 							class="size-full
 						lg:odd:pr-1 lg:even:pl-1 lg:first:pb-1 lg:[&:nth-child(3)]:pt-1 lg:[&:nth-child(2)]:pb-1 lg:last:pt-1"
 						>
-							<div class="size-full overflow-hidden">
-								<img src={hotel} alt="Rooms" class="size-full" />
+							<div class="size-full overflow-hidden px-[1px]">
+								{#await getThumb(slug) then src}
+									<img {src} alt={name} class="size-full" />
+								{/await}
 							</div>
 						</div>
 					{/each}
@@ -105,13 +120,12 @@
 	<!-- Details -->
 	<div class="relative py-2 sm:py-5 px-[5%] md:px-[6.5%]">
 		<div class="flex">
-			<div class="basis-8/12 pr-20">
+			<div class="basis-full md:basis-8/12 pr-20">
 				<div id="general" class="pb-7 border-b">
-					<h1 class="font-semibold py-2 text-2xl md:text-3xl">Front Hotel Tulungagung</h1>
+					<h1 class="font-semibold py-2 text-2xl md:text-3xl">{name}</h1>
 					<div class="flex items-center">
 						<span class="text-gray-500 leading-tight text-overflow block pb-1 text-lg">
-							Jalan Pangeran Antasari Nomor 1 Kenayan - Kabupaten Tulungagung, Tulungagung,
-							Indonesia, 66212
+							{location?.address || ''}
 						</span>
 					</div>
 					<div class="flex mt-2 items-center">
@@ -131,7 +145,7 @@
 				</div>
 			</div>
 
-			<div class="basis-4/12 relative">
+			<div class="md:basis-4/12 relative">
 				<div class="sticky right-0 top-24 w-full bg-white shadow mt-5 p-5 border">
 					<div class="flex items-center">
 						<div class="price">
