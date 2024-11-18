@@ -23,7 +23,7 @@
 	>
 		{#each essentials as { location, name, slug }}
 			<div class="p-3 pb-5 2xl:w-72">
-				<a href="/accommodation/88390-front">
+				<span>
 					<div class="w-full aspect-[280/265] bg-gray-300 rounded-xl overflow-hidden relative">
 						{#await getThumb(slug) then img}
 							<img src={img} alt="Hotels" class="size-full" />
@@ -62,7 +62,7 @@
 							Lihat di Peta</button
 						>
 					</div>
-				</a>
+				</span>
 			</div>
 		{/each}
 	</div>
