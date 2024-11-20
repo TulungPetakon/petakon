@@ -43,11 +43,11 @@
 			title: 'Profil Kota Tulungagung'
 		},
 		{ href: '/', text: 'Halaman Depan', title: '' },
-		{ href: '/', text: 'Destinasi Wisata', title: '' },
+		{ href: '/explore', text: 'Destinasi Wisata', title: '' },
 		{ href: '/', text: 'Event dan Aktivitas', title: '' },
-		{ href: '/', text: 'Transportasi', title: '' },
-		{ href: '/accommodation', text: 'Hotel dan Penginapan', title: 'Hotel dan Penginapan' },
-		{ href: '/', text: 'Souvenir dan Oleh-Oleh', title: '' },
+		{ href: '/explore/transport', text: 'Transportasi', title: '' },
+		{ href: '/explore/accommodation', text: 'Hotel dan Penginapan', title: 'Hotel dan Penginapan' },
+		{ href: '/explore/essentials', text: 'Souvenir dan Oleh-Oleh', title: '' },
 		{ href: '/', text: 'Wawasan Perjalanan', title: '' }
 	];
 
@@ -58,7 +58,7 @@
 
 	const contact = [
 		{
-			href: '/',
+			href: 'mailto:support@petakon.id',
 			text: 'support@petakon.id',
 			title: 'Email Support',
 			icon: 'pk-mail',
