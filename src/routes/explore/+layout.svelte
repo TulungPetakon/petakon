@@ -1,10 +1,10 @@
 <script>
 	import { fade } from 'svelte/transition';
 	import { getContext, onDestroy, setContext } from 'svelte';
-	import Hero from './_hero.svelte';
-	import Menu from './_menu.svelte';
 	import { screenSize } from '$lib/stores/app-readable.svelte';
 	import { footerMode, topbarHeight } from '$lib/stores/app-writable.svelte';
+	import Hero from './_main/_hero.svelte';
+	import Menu from './_main/_menu.svelte';
 
 	const { children, data } = $props();
 	const { name: district } = $derived(data.district);
