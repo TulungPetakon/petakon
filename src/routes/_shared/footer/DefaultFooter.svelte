@@ -47,7 +47,7 @@
 		{ href: '/', text: 'Event dan Aktivitas', title: '' },
 		{ href: '/explore/transport', text: 'Transportasi', title: '' },
 		{ href: '/explore/accommodation', text: 'Hotel dan Penginapan', title: 'Hotel dan Penginapan' },
-		{ href: '/explore/essentials', text: 'Souvenir dan Oleh-Oleh', title: '' },
+		{ href: '/explore/essential', text: 'Souvenir dan Oleh-Oleh', title: '' },
 		{ href: '/', text: 'Wawasan Perjalanan', title: '' }
 	];
 
