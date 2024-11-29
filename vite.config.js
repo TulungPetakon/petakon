@@ -9,4 +9,13 @@ export default defineConfig({
 		chunkSizeWarningLimit: 350,
 		target: ['es2020']
 	}
+	// base: '/static/',
+	// experimental: {
+	// 	renderBuiltUrl(filename, { hostType }) {
+	// 		if (hostType === 'js') {
+	// 			return { runtime: `window.cdnUrl(${JSON.stringify(filename)})` };
+	// 		}
+	// 		return { relative: true };
+	// 	}
+	// }
 });
