@@ -1,68 +1,43 @@
-/**
- * Substitute for the `preventDefault` event modifier
- * @param {(event: Event, ...args: Array<unknown>) => void} fn
- * @returns {(event: Event, ...args: unknown[]) => void}
- */
-export function preventDefault(fn) {
-	return function (...args) {
-		const event = args[0];
+type Callback = (e: Event, ...args: unknown[]) => void;
+
+export function preventDefault(fn: Callback) {
+	return function (...args: unknown[]) {
+		const event = args[0] as Event;
 		event.preventDefault();
-		return fn?.apply(this, args);
+		return fn?.apply(this, [event, ...args]);
 	};
 }
 
-/**
- * Substitute for the `self` event modifier
- * @param {(event: Event, ...args: Array<unknown>) => void} fn
- * @returns {(event: Event, ...args: unknown[]) => void}
- */
-export function self(fn) {
-	return function (...args) {
-		var event = /** @type {Event} */ args[0];
-		// @ts-ignore
+export const self = (fn: Callback) => {
+	return function (...args: unknown[]) {
+		const event = args[0] as Event;
 		if (event.target === this) {
-			// @ts-ignore
-			fn?.apply(this, args);
+			fn?.apply(this, [event, ...args]);
 		}
 	};
-}
+};
 
-/**
- * Substitute for the `stopPropagation` event modifier
- * @param {(event: Event, ...args: Array<unknown>) => void} fn
- * @returns {(event: Event, ...args: unknown[]) => void}
- */
-export function stopPropagation(fn) {
-	return function (...args) {
-		var event = /** @type {Event} */ args[0];
+export function stopPropagation(fn: Callback) {
+	return function (...args: unknown[]) {
+		const event = args[0] as Event;
 		event.stopPropagation();
-		return fn?.apply(this, args);
+		return fn?.apply(this, [event, ...args]);
 	};
 }
 
-/**
- * Substitute for the `once` event modifier
- * @param {(event: Event, ...args: Array<unknown>) => void} fn
- * @returns {(event: Event, ...args: unknown[]) => void}
- */
-export function once(fn) {
-	var ran = false;
-	return function (...args) {
+export function once(fn: Callback) {
+	let ran = false;
+	return function (...args: unknown[]) {
 		if (ran) return;
 		ran = true;
-		return fn?.apply(this, args);
+		return fn?.apply(this, [args[0] as Event, ...args]);
 	};
 }
 
-/**
- * Substitute for the `stopImmediatePropagation` event modifier
- * @param {(event: Event, ...args: Array<unknown>) => void} fn
- * @returns {(event: Event, ...args: unknown[]) => void}
- */
-export function stopImmediatePropagation(fn) {
-	return function (...args) {
-		var event = /** @type {Event} */ args[0];
+export function stopImmediatePropagation(fn: Callback) {
+	return function (...args: unknown[]) {
+		const event = args[0] as Event;
 		event.stopImmediatePropagation();
-		return fn?.apply(this, args);
+		return fn?.apply(this, [event, ...args]);
 	};
 }

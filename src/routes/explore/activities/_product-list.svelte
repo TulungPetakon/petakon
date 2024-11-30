@@ -4,8 +4,14 @@
 	import { preventDefault, stopPropagation } from '$lib/helpers/event-handler.helper';
 	import placeholder from '$images/utils/petakon-placeholder.webp';
 	import type { PKMap } from '$lib/types/map';
+	import type { Activities } from '$lib/types/activities';
 
-	const { destinations, district }: { destinations: unknown; district: App.District } = $props();
+	interface Props {
+		destinations: Activities.PaginationList;
+		district: App.District;
+	}
+
+	const { destinations, district }: Props = $props();
 	const { list = [], isEnd, page, total = 0 } = $derived(destinations);
 
 	const next = () => {

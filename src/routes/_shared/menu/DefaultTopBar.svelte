@@ -106,7 +106,7 @@
 	<Drawer toggle={drawerToggle} />
 {/if}
 
-<style>
+<style lang="postcss">
 	.active {
 		@apply bg-white shadow;
 	}

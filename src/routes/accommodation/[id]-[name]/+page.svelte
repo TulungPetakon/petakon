@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { isMobile } from '$lib/stores/app-readable.svelte';
 	import { topBarMode } from '$lib/stores/app-writable.svelte';
-	import { md } from '$lib/helpers/markdown.helper.js';
+	import { md } from '$lib/helpers/markdown.helper';
+	import type { Acc } from '$lib/types/accomodation';
 
 	const { data } = $props();
 	const { html } = md(data.post);
 	const description = $derived(`${(html as string).substring(0, 800)}...`);
 
-	const { name, gallery, location, slug } = $derived(data.accomodation);
-	const { type, url } = $derived(gallery?.[0] || {});
+	const { accomodation } = $derived(data);
+	const { name, gallery, location, slug } = $derived(accomodation) as unknown as Acc.Accomodation;
+	const { type, url } = $derived(gallery?.[0] || {}) as Acc.Gallery;
 
 	const getThumb = async (slug: string) => {
 		const { default: raw } = await import(`$images/accomodations/${slug}.jpg?format=webp`);
@@ -100,6 +102,7 @@
 			</div>
 			<div class="hidden h-24 w-full pt-1 sm:block lg:h-[25rem] lg:pl-1 lg:pt-0">
 				<div class="grid size-full grid-cols-5 grid-rows-1 lg:grid-cols-2 lg:grid-rows-2">
+					<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
 					{#each Array(4) as _}
 						<div
 							class="size-full

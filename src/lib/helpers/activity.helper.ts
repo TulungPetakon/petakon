@@ -1,6 +1,7 @@
 import activities from '$lib/dummy/destinations.json';
+import type { Activities } from '$lib/types/activities';
 
-const paging = (list: unknown[] = [], limit: number, page: number) => {
+const paging = (list: Activities.Item[] = [], limit: number, page: number) => {
 	const start = (page - 1) * limit;
 	const end = limit * page;
 	const filterLimit = list.filter((v, i) => i < end && i >= start);
@@ -15,6 +16,7 @@ interface ActivitiesParam {
 	limit: number;
 	page: number;
 }
+
 export const listActivities = ({ district, limit = 12, page = 1 }: ActivitiesParam) => {
 	if (!district) return paging(activities, limit, page);
 	const filtered = activities.filter(({ address }) => {

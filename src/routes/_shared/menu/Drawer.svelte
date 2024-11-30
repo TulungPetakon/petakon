@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade, fly } from 'svelte/transition';
 	import { mainLinks } from './navlink';
-	import { callable } from '$lib/helpers/event-handler.helper';
+	import { self } from '$lib/helpers/event-handler.helper';
 	import { screenSize } from '$lib/stores/app-readable.svelte';
 	import LangToggle from '$comp/utils/LangToggle.svelte';
 
@@ -14,7 +14,7 @@
 </script>
 
 <div
-	onmousedown={callable(toggle).self}
+	onmousedown={self(toggle)}
 	class="fixed right-0 top-0 z-50 h-full w-full bg-black/50"
 	transition:fade={{ duration: 250 }}
 	role="button"

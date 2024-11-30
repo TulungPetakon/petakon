@@ -2,7 +2,7 @@
 	import Aside from './_aside.svelte';
 	import ProductList from './_product-list.svelte';
 
-	const { destinations = [], district } = $props();
+	const properties = $props();
 </script>
 
 <section class="w-full bg-slate-100 px-[calc(5%-0.5rem)] py-5 md:pl-[10%] md:pr-[calc(10%-0.5rem)]">
@@ -12,7 +12,7 @@
 		</aside>
 
 		<div class="basis-full md:basis-8/12 lg:basis-9/12">
-			<ProductList {destinations} {district} />
+			<ProductList {...properties} />
 		</div>
 	</div>
 </section>
