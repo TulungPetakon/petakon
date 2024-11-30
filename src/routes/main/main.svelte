@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import About from './_about.svelte';
 	import Hero from './_hero.svelte';
 	import Highlight from './_highlight.svelte';

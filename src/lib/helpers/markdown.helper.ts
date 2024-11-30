@@ -1,12 +1,18 @@
 import { marked } from 'marked';
 
-export const md = (markdown) => {
+interface TOC {
+	slug: string;
+	depth: number;
+	text: string;
+}
+
+export const md = (markdown: string) => {
 	const txt = markdown.replaceAll('Tulungagung', '<ins>Tulungagung</ins>');
-	const toc = [];
+	const toc: TOC[] = [];
 	const renderer = new marked.Renderer();
 	renderer.heading = ({ text, depth, raw }) => {
 		const parsed = raw.toLowerCase().replace(/[^\w]+/g, ' ');
-		const slug = parsed.trim('').replaceAll(' ', '-');
+		const slug = parsed.trim().replaceAll(' ', '-');
 		toc.push({ slug, depth, text });
 		return '<h' + depth + ' id="' + slug + '">' + text + '</h' + depth + '>\n';
 	};

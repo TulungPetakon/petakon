@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import '@splidejs/splide/dist/css/splide-core.min.css';
 	import 'overlayscrollbars/overlayscrollbars.css';
@@ -15,7 +15,7 @@
 	const { children } = $props();
 	const { height, width } = $derived($screenSize);
 
-	let loaded = $state(false);
+	let loaded: boolean = $state(false);
 	onMount(() => (loaded = true));
 </script>
 

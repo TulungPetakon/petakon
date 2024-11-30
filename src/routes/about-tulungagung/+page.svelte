@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { md } from '$lib/helpers/markdown.helper';
 	import markdown from '$post/tulungagung.md?raw';
 	import img from '$images/destinations/tulungagung.jpg';

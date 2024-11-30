@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import ArticleLink from '$comp/card/ArticleLink.svelte';
 	import img from '$images/beach/klatak.jpg';
 </script>

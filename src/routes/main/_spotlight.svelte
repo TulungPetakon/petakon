@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import Splide from '@splidejs/splide';
 	import batik from '$images/essentials/batik-gm.jpg';
@@ -7,7 +7,7 @@
 
 	let active = $state(0);
 	let activeIndicator = $state(0);
-	let splide;
+	let splide: Splide;
 
 	const spots = [
 		{ title: 'Batik Gajah Mada', img: batik },

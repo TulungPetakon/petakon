@@ -1,54 +1,55 @@
-<script>
+<script lang="ts">
 	import { getContext } from 'svelte';
 	import { preventDefault, stopPropagation } from '$lib/helpers/event-handler.helper';
+	import type { PKMap } from '$lib/types/map.js';
 
 	const { data } = $props();
 	const { accomodation } = data;
 
-	const hello = (e) => {
+	const hello = (e: Event) => {
 		console.log('hallo', e);
 	};
-	const mapToggle = getContext('mapToggle');
-	const openMap = () => mapToggle({ action: 'open', location: '' });
+	const mapToggle: PKMap.Toggle = getContext('mapToggle');
+	const openMap = () => mapToggle({ action: 'open', location: { 0: 0 } });
 
-	const getThumb = async (name) => {
+	const getThumb = async (name: string) => {
 		const { default: img } = await import(`$images/accomodations/${name}.jpg?w-300`);
 		return img;
 	};
 </script>
 
-<section class="px-[calc(5%-0.75rem)] md:px-[calc(10%-0.75rem)] pt-5 pb-20 w-full">
+<section class="w-full px-[calc(5%-0.75rem)] pb-20 pt-5 md:px-[calc(10%-0.75rem)]">
 	<div
 		class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:flex 2xl:grid-cols-none 2xl:flex-wrap"
 	>
 		{#each accomodation as { id, name, location, slug }}
 			<div class="p-3 pb-5 2xl:w-72">
 				<a href="/accommodation/{id}-{slug}">
-					<div class="w-full aspect-[280/265] bg-gray-300 rounded-xl overflow-hidden relative">
+					<div class="relative aspect-[280/265] w-full overflow-hidden rounded-xl bg-gray-300">
 						{#await getThumb(slug) then img}
 							<img src={img} alt="Hotels" class="size-full" />
 						{/await}
-						<div class="absolute top-2 right-2">
+						<div class="absolute right-2 top-2">
 							<button
 								onclick={stopPropagation(preventDefault(hello))}
-								class="pk-button !p-0 w-8 text-3xl leading-none relative"
+								class="pk-button relative w-8 !p-0 text-3xl leading-none"
 								aria-label="Save for Later"
 								title="Save for Later"
 							>
-								<i class="fas fa-bookmark block relative text-gray-600/50"></i>
+								<i class="fas fa-bookmark relative block text-gray-600/50"></i>
 								<i
-									class="fasl fa-bookmark block absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-white"
+									class="fasl fa-bookmark absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 text-white"
 								></i>
 							</button>
 						</div>
 					</div>
 					<div class="mt-2 flex items-start">
-						<div style="--line-number:1" class="basis-10/12 w-10/12">
-							<h2 class="font-semibold text-lg leading-none text-overflow pt-2 pb-1 pr-5">
+						<div style="--line-number:1" class="w-10/12 basis-10/12">
+							<h2 class="text-overflow pb-1 pr-5 pt-2 text-lg font-semibold leading-none">
 								{name}
 							</h2>
 							<button class="flex">
-								<div class="text-gray-600 text-sm text-overflow">
+								<div class="text-overflow text-sm text-gray-600">
 									<i class="fasl fa-location-dot"></i>
 									<span> {location.desa}, Kec. {location.kecamatan} </span>
 								</div>
@@ -64,7 +65,7 @@
 						</div>
 
 						<div class="ml-auto flex items-center">
-							<i class="fas fa-star text-xs mr-1"></i>
+							<i class="fas fa-star mr-1 text-xs"></i>
 							<span class="text-lg">5.0</span>
 						</div>
 					</div>

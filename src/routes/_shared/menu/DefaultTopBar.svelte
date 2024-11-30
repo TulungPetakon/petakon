@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { onDestroy } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { page } from '$app/stores';
@@ -21,7 +21,7 @@
 </script>
 
 <div
-	class="group w-full px-[6%] md:py-1 lg:py-0 sticky top-0 left-0 flex items-center justify-between text-white duration-500 z-50"
+	class="group sticky left-0 top-0 z-50 flex w-full items-center justify-between px-[6%] text-white duration-500 md:py-1 lg:py-0"
 	in:fly={{ y: -20 }}
 	class:active={$scrollTop > 0 || solidBG}
 	bind:clientHeight
@@ -38,22 +38,22 @@
 		>
 	</div> -->
 
-	<h1 class="text-xl py-2 md:py-1 group-[.active]:text-black transition-all">
+	<h1 class="py-2 text-xl transition-all group-[.active]:text-black md:py-1">
 		<a
 			href="/"
 			class=" flex items-center"
-			role
+			role="button"
 			onmouseenter={() => (animateIcon = true)}
 			onmouseleave={() => (animateIcon = false)}
 		>
 			<div
-				class="w-8 inline-block origin-top transition-transform duration-300"
+				class="inline-block w-8 origin-top transition-transform duration-300"
 				class:scale-[2]={$scrollTop < 1 && !solidBG}
 			>
 				<Brand mono={$scrollTop < 1 && !solidBG} animate={animateIcon} />
 			</div>
 			<span
-				class="transition-transform duration-300 font-semibold"
+				class="font-semibold transition-transform duration-300"
 				class:translate-x-5={$scrollTop < 1 && !solidBG}
 			>
 				petakon
@@ -64,7 +64,7 @@
 	<div class="block lg:hidden">
 		<button
 			aria-label="Navigation Bar"
-			class="rounded-sm transition-transform text-md
+			class="text-md rounded-sm transition-transform
 			active:scale-95
 			group-[.active]:text-slate-700"
 			onclick={drawerToggle}
@@ -73,15 +73,15 @@
 		>
 	</div>
 
-	<nav class="lg:block hidden">
+	<nav class="hidden lg:block">
 		{#each mainLinks as { href, title, icon }}
 			<a
 				{href}
-				class="hidden py-5 mx-3 relative transition-all
-				lg:inline-flex
-				after:bg-white after:w-full after:scale-x-0 after:h-[.15rem] after:absolute after:bottom-0 after:left-0 after:rounded-t-md after:transition-transform after:duration-300
-				hover:after:scale-x-100
-				group-[.active]:text-black group-[.active]:after:bg-sky-500 has-[.isOpen]:after:scale-x-100"
+				class="relative mx-3 hidden py-5 transition-all
+				after:absolute
+				after:bottom-0 after:left-0 after:h-[.15rem] after:w-full after:scale-x-0 after:rounded-t-md after:bg-white after:transition-transform after:duration-300 hover:after:scale-x-100
+				group-[.active]:text-black
+				group-[.active]:after:bg-sky-500 has-[.isOpen]:after:scale-x-100 lg:inline-flex"
 			>
 				<span class:isOpen={href === $page.route.id}> <i class="fasl {icon}"></i> {title} </span>
 			</a>

@@ -18,7 +18,7 @@ export function preventDefault(fn) {
  */
 export function self(fn) {
 	return function (...args) {
-		var event = /** @type {Event} */ (args[0]);
+		var event = /** @type {Event} */ args[0];
 		// @ts-ignore
 		if (event.target === this) {
 			// @ts-ignore
@@ -34,7 +34,7 @@ export function self(fn) {
  */
 export function stopPropagation(fn) {
 	return function (...args) {
-		var event = /** @type {Event} */ (args[0]);
+		var event = /** @type {Event} */ args[0];
 		event.stopPropagation();
 		return fn?.apply(this, args);
 	};
@@ -61,7 +61,7 @@ export function once(fn) {
  */
 export function stopImmediatePropagation(fn) {
 	return function (...args) {
-		var event = /** @type {Event} */ (args[0]);
+		var event = /** @type {Event} */ args[0];
 		event.stopImmediatePropagation();
 		return fn?.apply(this, args);
 	};

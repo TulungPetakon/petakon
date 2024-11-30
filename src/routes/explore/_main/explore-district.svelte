@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { districtList } from '$lib/helpers/kecamatan.helper';
 	import img from '$images/beach/jurang-senggani.jpg';
 	import Districts from '$comp/svgs/Districts.svelte';

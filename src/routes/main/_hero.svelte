@@ -1,18 +1,25 @@
-<script>
+<script lang="ts">
 	import { fade, fly, scale } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import Splide from '@splidejs/splide';
-	import destinasi from '$images/destinations/pantai-molang.jpg?format=webp';
-	import kuliner from '$images/spotlight/lodho.jpg?format=webp';
-	import karnaval from '$images/events/karnaval.jpg?format=webp';
-	import jaranan from '$images/events/budaya.jpg?format=webp';
+	import destinasi from '$images/destinations/pantai-molang.jpg?format=webp&img';
+	import kuliner from '$images/spotlight/lodho.jpg?format=webp&img';
+	import karnaval from '$images/events/karnaval.jpg?format=webp&img';
+	import jaranan from '$images/events/budaya.jpg?format=webp&img';
 
-	let height = $state(0);
-	let active = $state(0);
-	let activeIndicator = $state(0);
-	let splide;
+	let height: number = $state(0);
+	let active:number = $state(0);
+	let activeIndicator: number = $state(0);
+	let splide: Splide;
 
-	const wisata = [
+	interface WisataList {
+		title: string
+		img: string
+		tmbl: string
+		description:string
+	}
+
+	const wisata: WisataList[] = [
 		{
 			title: 'Event dan Festival',
 			img: karnaval,

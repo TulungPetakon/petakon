@@ -1,4 +1,4 @@
-const loadPost = async (k = '') => {
+const loadPost = async (k: App.District = null) => {
 	if (!k) return '';
 	try {
 		const { default: raw } = await import(`$post/kecamatan/${k}.md?raw`);

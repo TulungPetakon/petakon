@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { navigating } from '$app/stores';
 	import { cubicOut } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
@@ -12,17 +12,19 @@
 		easing: cubicOut
 	});
 
-	$effect(async () => {
-		const { complete, from, to } = $navigating || {};
-		if (from?.route.id === to?.route.id) return;
+	$effect(() => {
+		(async () => {
+			const { complete, from, to } = $navigating || {};
+			if (from?.route.id === to?.route.id) return;
 
-		show = true;
-		progress.set(0.7);
-		await complete; // waiting to be fulfilled
+			show = true;
+			progress.set(0.7);
+			await complete; // waiting to be fulfilled
 
-		progress.set(1, { duration: 500 });
-		await delay(500);
-		show = false; // hide progress
+			progress.set(1, { duration: 500 });
+			await delay(500);
+			show = false; // hide progress
+		})();
 	});
 </script>
 
@@ -30,12 +32,12 @@
 	<div
 		out:fade
 		onoutroend={() => progress.set(0, { duration: 1 } /** Reset Progress */)}
-		class="fixed top-0 left-0 h-1 w-full z-[100]"
+		class="fixed left-0 top-0 z-[100] h-1 w-full"
 	>
 		<div
-			class="w-[var(--width)] h-full bg-gradient-to-r
-    from-sky-500 via-yellow-500 to-sky-500
-    background-animate rounded-full"
+			class="background-animate h-full w-[var(--width)]
+    rounded-full bg-gradient-to-r from-sky-500
+    via-yellow-500 to-sky-500"
 			style={`--width: ${$progress * 100}%`}
 		></div>
 	</div>

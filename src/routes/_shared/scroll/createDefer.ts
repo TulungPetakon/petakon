@@ -1,7 +1,7 @@
 import type { Props } from './OverlayScrollbarsComponent.types.js';
 
 export type Defer = [
-	requestDefer: (callback: () => any, options?: Props['defer']) => void,
+	requestDefer: (callback: () => void, options?: Props['defer']) => void,
 	cancelDefer: () => void
 ];
 
@@ -9,7 +9,6 @@ export const createDefer = (): Defer => {
 	/* c8 ignore start */
 	if (typeof window === 'undefined') {
 		// mock ssr calls with "noop"
-		// eslint-disable-next-line @typescript-eslint/no-empty-function
 		const noop = () => {};
 		return [noop, noop];
 	}

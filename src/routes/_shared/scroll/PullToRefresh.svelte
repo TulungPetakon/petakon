@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { spin } from '$lib/helpers/animation/transition';
 	import { scrollTop } from '$lib/stores/app-writable.svelte';
@@ -12,17 +12,18 @@
 	let status = $state('ready');
 	let touchDistance = $state(0);
 
-	const ontouchstart = (e) => {
+	const ontouchstart = (e: TouchEvent) => {
 		if (status !== 'ready') return;
 		touchstartY = e.touches[0].clientY;
 		scrollStart = $scrollTop;
 	};
 
-	const ontouchmove = (e) => {
+	const ontouchmove = (e: TouchEvent) => {
 		if (touchstartY > 80 || scrollStart > 0) return;
-		const elScrollY = e.currentTarget.parentElement.scrollTop | 0;
+		const elScrollY = (e.currentTarget as HTMLElement)?.parentElement?.scrollTop || 0;
 		const touchY = e.touches[0].clientY;
 		const touchDiff = touchY - touchstartY;
+
 
 		if (elScrollY === 0) {
 			const diff = touchDiff < 0 ? 0 : touchDiff;
@@ -34,7 +35,7 @@
 		}
 	};
 
-	const ontouchend = (e) => {
+	const ontouchend = (e: TouchEvent) => {
 		// If user dragged back to top
 		if (touchDistance <= 0) {
 			touchDistance = 0;
@@ -46,7 +47,9 @@
 		if (touchDistance >= 80) {
 			touchDistance = 50;
 			status = 'refreshing';
-			e.currentTarget.parentElement.parentElement.style.pointerEvents = 'none';
+			const el = (e.currentTarget as HTMLElement).parentElement?.parentElement;
+			if (!el) return;
+			el.style.pointerEvents = 'none'
 		}
 
 		if (touchDistance >= 50 && status === 'refreshing') return;
@@ -56,10 +59,11 @@
 		status = 'released';
 	};
 
-	const ptrComplete = (e) => {
-		if (!e.target.classList.contains('ptr')) return;
+	const ptrComplete = (e: TransitionEvent) => {
+		const target =e.target as HTMLElement 
+		if (!target.classList.contains('ptr')) return;
 		if (status == 'refreshing') return window.location.reload();
-		e.target.remove();
+		target.remove();
 		status = 'ready';
 	};
 </script>

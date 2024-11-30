@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { md } from '$lib/helpers/markdown.helper.js';
 	import { topbarHeight } from '$lib/stores/app-writable.svelte';
 
@@ -6,18 +6,18 @@
 	const { html, toc } = md(data.post);
 </script>
 
-<section class="relative flex px-[5%] md:px-[10%] py-10 mb-20">
+<section class="relative mb-20 flex px-[5%] py-10 md:px-[10%]">
 	<article class="pk-article basis-full md:basis-8/12">
 		{@html html}
 	</article>
 
-	<aside class="min-w-60 basis-4/12 hidden md:flex pl-10 relative">
-		<div class="ml-auto sticky right-0 h-fit pb-5" style="top:{$topbarHeight + 110}px;">
-			<h2 class="font-bold text-lg mb-2">Daftar Isi</h2>
+	<aside class="relative hidden min-w-60 basis-4/12 pl-10 md:flex">
+		<div class="sticky right-0 ml-auto h-fit pb-5" style="top:{$topbarHeight + 110}px;">
+			<h2 class="mb-2 text-lg font-bold">Daftar Isi</h2>
 			<ol class="capitalize">
 				{#each toc as { slug, text }}
 					<li class="py-1 leading-5">
-						<a href="#{slug}" class="hover:underline hover:text-black inline-block">
+						<a href="#{slug}" class="inline-block hover:text-black hover:underline">
 							{text}
 						</a>
 					</li>

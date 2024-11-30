@@ -1,11 +1,24 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
-	import { topbarHeight } from '$lib/stores/app-writable.svelte';
-	import { getContext, onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-	let { onclick, isMapOpen, district, height = $bindable() } = $props();
+	import { getContext, onMount } from 'svelte';
+	import { topbarHeight } from '$lib/stores/app-writable.svelte';
+	import type { MouseEventHandler } from 'svelte/elements';
+	import type { PKMap } from '$lib/types/map';
 
-	const mapToggle = getContext('mapToggle');
+	let {
+		onclick,
+		isMapOpen,
+		district,
+		height = $bindable()
+	}: {
+		onclick: MouseEventHandler<HTMLAnchorElement>;
+		isMapOpen: boolean;
+		district: App.District;
+		height: number;
+	} = $props();
+
+	const mapToggle: PKMap.Toggle = getContext('mapToggle');
 
 	const menu = $derived.by(() => {
 		const information = district ? [{ text: 'Informasi Umum', slug: 'information' }] : [];
@@ -20,7 +33,7 @@
 		];
 	});
 
-	const createLink = (slug) => {
+	const createLink = (slug: string) => {
 		let finalSlug = slug;
 		if (district) {
 			const infoSLug = `${district}/information`;
@@ -31,7 +44,7 @@
 		return href;
 	};
 
-	const checkActivePage = (slug) => {
+	const checkActivePage = (slug: string) => {
 		const { pathname } = $page.url;
 		const [, ctx = 'general'] = pathname.split('explore/');
 		if (ctx === district) return slug === 'activities';
@@ -40,16 +53,16 @@
 
 	let showNavLeft = $state(false);
 	let showNavRight = $state(false);
-	let scrollBox = $state(0);
-	let scrollContent = $state(0);
+	let scrollBox = $state() as HTMLElement;
+	let scrollContent = $state() as HTMLElement;
 
-	const scrollhandle = (to) => {
+	const scrollhandle = (to: string) => {
 		const distance = scrollContent.clientWidth / menu.length;
 		const left = to === 'left' ? distance * -1 : distance;
 		scrollBox.scrollBy({ left, behavior: 'smooth' });
 	};
 
-	const reposition = (e) => {
+	const reposition = (e: HTMLElement) => {
 		const isOverflow = scrollBox.clientWidth < scrollContent.clientWidth;
 		if (!isOverflow) {
 			showNavLeft = false;
@@ -69,18 +82,18 @@
 
 	onMount(() => {
 		reposition(scrollBox);
-		scrollBox.addEventListener('scroll', (e) => reposition(e.target));
+		scrollBox.addEventListener('scroll', (e) => reposition(e.target as HTMLElement));
 		window.addEventListener('resize', () => reposition(scrollBox));
 	});
 </script>
 
 <div
 	bind:clientHeight={height}
-	class="menu sticky px-[5%] md:px-[10%] left-0 bg-white flex border-b-2 font-semibold z-20"
+	class="menu sticky left-0 z-20 flex border-b-2 bg-white px-[5%] font-semibold md:px-[10%]"
 	style="top:{$topbarHeight - 1}px"
 >
-	<div class="block relative w-10/12 sm:w-9/12 lg:w-10/12 pr-3 md:pr-5">
-		{#snippet nav(position)}
+	<div class="relative block w-10/12 pr-3 sm:w-9/12 md:pr-5 lg:w-10/12">
+		{#snippet nav(position: string)}
 			{@const isLeft = position === 'left'}
 			{@const isRight = position === 'right'}
 			<div
@@ -91,13 +104,13 @@
 				class:right-2={isRight}
 				class:md:right-5={isRight}
 				class:justify-end={isRight}
-				class="absolute h-full w-14 md:w-20 from-white via-white z-10 flex items-center pointer-events-none"
+				class="pointer-events-none absolute z-10 flex h-full w-14 items-center from-white via-white md:w-20"
 			>
 				<button
 					onclick={() => scrollhandle(position)}
 					aria-label="show {position}"
-					class="bg-white w-8 md:w-10 aspect-square rounded-full border-2 shadow-lg text-base md:text-xl inline-flex items-center justify-center transition-all duration-300 pointer-events-auto
-				hover:text-orange-400 active:scale-90 hover:bg-slate-100"
+					class="pointer-events-auto inline-flex aspect-square w-8 items-center justify-center rounded-full border-2 bg-white text-base shadow-lg transition-all duration-300 hover:bg-slate-100 hover:text-orange-400
+				active:scale-90 md:w-10 md:text-xl"
 					style="line-height: 0"
 				>
 					<i class="fas fa-angle-{position}"></i>
@@ -112,8 +125,8 @@
 			{@render nav('right')}
 		{/if}
 
-		<div class="size-full sm:text-base overflow-scroll" bind:this={scrollBox}>
-			<ul class="flex h-full items-center w-fit" bind:this={scrollContent}>
+		<div class="size-full overflow-scroll sm:text-base" bind:this={scrollBox}>
+			<ul class="flex h-full w-fit items-center" bind:this={scrollContent}>
 				{#each menu as { slug, text }}
 					<li
 						class:active={checkActivePage(slug || 'general')}
@@ -121,9 +134,9 @@
 					>
 						<a
 							href={createLink(slug)}
-							class="w-max inline-block py-3 sm:py-4 px-1 relative
-							after:bg-orange-400 after:w-full after:scale-x-0 after:h-[.15rem] after:absolute after:bottom-0 after:left-0 after:rounded-t-md after:transition-transform after:duration-300
-							hover:after:scale-x-100 group-[.active]:after:scale-x-100"
+							class="relative inline-block w-max px-1 py-3 after:absolute
+							after:bottom-0 after:left-0 after:h-[.15rem] after:w-full after:scale-x-0 after:rounded-t-md after:bg-orange-400 after:transition-transform after:duration-300 hover:after:scale-x-100
+							group-[.active]:after:scale-x-100 sm:py-4"
 							{onclick}
 						>
 							{text}
@@ -133,17 +146,17 @@
 			</ul>
 		</div>
 	</div>
-	<div class="flex items-center ml-auto">
+	<div class="ml-auto flex items-center">
 		<button
-			class="flex items-center pk-button text-base hover:bg-slate-100 border-[0.075rem] border-slate-300"
-			onclick={mapToggle}
+			class="pk-button flex items-center border-[0.075rem] border-slate-300 text-base hover:bg-slate-100"
+			onclick={() => mapToggle()}
 		>
 			{#if isMapOpen}
 				<i class="fasl fa-list-ul inline-block sm:pr-2"></i>
-				<span class="hidden sm:inline-block w-max">Lihat List</span>
+				<span class="hidden w-max sm:inline-block">Lihat List</span>
 			{:else}
 				<i class="fasl fa-map inline-block sm:pr-2"></i>
-				<span class="hidden sm:inline-block w-max">Buka Peta</span>
+				<span class="hidden w-max sm:inline-block">Buka Peta</span>
 			{/if}
 		</button>
 	</div>

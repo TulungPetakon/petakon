@@ -1,4 +1,4 @@
-const delay = async (time) => {
+const delay = async (time: number) => {
 	return new Promise((resolve) => {
 		const t = setTimeout(() => {
 			resolve(true);

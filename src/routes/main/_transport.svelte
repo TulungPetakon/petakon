@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import antarjemput from '$images/utils/antarjemput.svg';
 	import sewa from '$images/utils/rental.svg';
 </script>

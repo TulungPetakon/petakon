@@ -1,20 +1,20 @@
-<script>
+<script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { screenSize } from '$lib/stores/app-readable.svelte';
 	import alun2 from '$images/destinations/tulungagung.jpg';
-	import img2 from '$images/beach/jls.jpg?format=webp';
+	import img2 from '$images/beach/jls.jpg?format=webp&img';
 	import TulungagungMap from '$comp/svgs/TulungagungMap.svelte';
 	import Tooltips from '$comp/utils/Tooltips.svelte';
 	import Brand from '$comp/svgs/Brand.svelte';
 
 	let isInteracted = $state(false);
-	let svg = $state();
+	let svg = $state() as HTMLElement;
 	let coordinates = $state({ x: 0, y: 0, w: 0, h: 0 });
-	let active = $state('tulungagung');
+	let active: App.District = $state('tulungagung');
 	let tooltip = $state(true);
 
 	const onclick = () => (tooltip = !tooltip);
-	const onhover = (kecamatan) => {
+	const onhover = (kecamatan: App.District) => {
 		active = kecamatan;
 		isInteracted = true;
 	};
@@ -34,12 +34,13 @@
 	const setTooltipPosition = () => {
 		if (!active) return;
 		const target = svg.querySelector(`path#${active}`);
+		if (!target) return
 		const b = svg.getBoundingClientRect();
 		const { width, height, left, top } = target.getBoundingClientRect();
 		coordinates = { x: left - b.left, y: top - b.top, w: width, h: height };
 	};
 
-	$effect(() => setTooltipPosition($screenSize));
+	$effect(() => !($screenSize) || setTooltipPosition());
 </script>
 
 <div class="relative">

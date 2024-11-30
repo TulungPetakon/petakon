@@ -1,14 +1,15 @@
-<script>
+<script lang="ts">
 	import { onDestroy, setContext } from 'svelte';
 	import { OverlayScrollbars } from 'overlayscrollbars';
 	import { createDefer } from './createDefer';
 	import { scrollTop } from '$lib/stores/app-writable.svelte';
 	import ScrollPositionControl from './ScrollPositionControl.svelte';
+	import type { Utils } from '$lib/types/utils';
 
 	const {
 		element = 'div',
 		options,
-		events = [],
+		events = {},
 		defer,
 		class: klass,
 		children,
@@ -16,10 +17,10 @@
 	} = $props();
 
 	// Contains client who listen scroll Event;
-	const scrollFnList = [];
+	const scrollFnList: unknown[] = [];
 	setContext('scrollHandler', {
-		add: (fn) => scrollFnList.push(fn),
-		remove: (fn) => {
+		add: (fn: () => void) => scrollFnList.push(fn),
+		remove: (fn: () => void) => {
 			const index = scrollFnList.indexOf(fn);
 			if (index < 0) return;
 			scrollFnList.splice(index, 1);
@@ -27,21 +28,22 @@
 	});
 
 	// Since we use Overlayscrollbar instead of native scrollbar, Scroll event won't be retrived from window element
-	events['scroll'] = (el, event) => {
-		scrollTop.set(event.target.scrollTop);
-		scrollFnList.forEach((fn) => fn(event));
+	events['scroll'] = (el: HTMLElement, event: Event) => {
+		scrollTop.set((event?.target as HTMLElement)?.scrollTop);
+		scrollFnList.forEach((fn) => (fn as (e: Event) => void)(event));
 
 		if (!properties['onscroll']) return;
 		properties['onscroll'](event);
 	};
 
-	let scrollControl = $state({ reset: false, scrollTo: 0 });
-	setContext('scrollControl', (val) => (scrollControl = val));
+	let scrollControlparam: Utils.ScrollControlParam = $state({ reset: false, scrollTo: 0 });
+	const scrollControl: Utils.scrollControl = (val) => (scrollControlparam = val);
+	setContext('scrollControl', scrollControl);
 
 	// OverlayScrollBar
-	let instance = $state();
+	let instance = $state() as OverlayScrollbars;
 	let elementRef = $state(null);
-	let slotRef = $state(null);
+	let slotRef = $state() as HTMLElement;
 	let combinedEvents = $state();
 	let prevElement = $state();
 
@@ -116,15 +118,18 @@
 
 	const currEvents = $derived(events || {});
 	$effect(() => {
-		combinedEvents = Object.keys(dispatchEvents).reduce((obj, name) => {
-			const eventName = name.replace('on', '');
-			const eventListener = currEvents[eventName];
-			obj[eventName] = [
-				(...args) => (properties[name] || (() => 0))(args),
-				...(Array.isArray(eventListener) ? eventListener : [eventListener]).filter(Boolean)
-			];
-			return obj;
-		}, {});
+		combinedEvents = Object.keys(dispatchEvents).reduce(
+			(obj: { [key: string]: unknown[] }, name) => {
+				const eventName = name.replace('on', '');
+				const eventListener = currEvents[eventName];
+				obj[eventName] = [
+					(...args: unknown[]) => (properties[name] || (() => 0))(args),
+					...(Array.isArray(eventListener) ? eventListener : [eventListener]).filter(Boolean)
+				];
+				return obj;
+			},
+			{}
+		);
 	});
 
 	$effect(() => {
@@ -140,7 +145,7 @@
 	});
 </script>
 
-<ScrollPositionControl target="div[data-overlayscrollbars-contents]" {...scrollControl} />
+<ScrollPositionControl target="div[data-overlayscrollbars-contents]" {...scrollControlparam} />
 
 <svelte:element
 	this={element}

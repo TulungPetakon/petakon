@@ -1,6 +1,6 @@
-<script>
-	import img from '$images/beach/buper.jpg?format=webp';
-	let { district, height = $bindable() } = $props();
+<script lang="ts">
+	import img from '$images/beach/buper.jpg?format=webp&img';
+	let { district, height = $bindable() }: {district: App.District, height: number} = $props();
 </script>
 
 <div
@@ -8,7 +8,7 @@
 	style="background-image: url({img});"
 	bind:clientHeight={height}
 >
-	{#snippet breadcrumbs(text, active = false)}
+	{#snippet breadcrumbs(text: string, active: boolean = false)}
 		<span
 			class="transition-all capitalize"
 			class:text-blue-300={active}

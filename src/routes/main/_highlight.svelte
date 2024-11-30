@@ -1,5 +1,5 @@
-<script>
-	import hiburan from '$images/beach/pathok.jpeg?format=webp';
+<script lang="ts">
+	import hiburan from '$images/beach/pathok.jpeg?format=webp&img';
 
 	const kategori = [
 		{ name: 'Air Terjun Jurang Senggani', slug: 'jurang-senggani' },
@@ -11,7 +11,7 @@
 		{ name: 'Pantai Kelinci', slug: 'pantai-kelinci' }
 	];
 
-	const getThumb = async (slug) => {
+	const getThumb = async (slug: string) => {
 		const { default: raw } = await import(`$images/destinations/${slug}.jpg?format=webp`);
 		return raw;
 	};

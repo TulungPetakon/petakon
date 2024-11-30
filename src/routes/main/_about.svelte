@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { md } from '$lib/helpers/markdown.helper';
 	import MiniMap from '../about-tulungagung/MiniMap.svelte';
 	import article from '$post/tulungagung.md?raw';
@@ -23,7 +23,7 @@
 			</h2>
 		</div>
 
-		<div class="mt-10 pk-article">
+		<div class="mt-10 prose-lg">
 			{@html html}
 		</div>
 

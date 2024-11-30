@@ -1,5 +1,5 @@
 <script>
-	const { mono = false, mode = 'light', animate, nobase = false } = $props();
+	const { mono = false, mode = 'light', animate = false, nobase = false } = $props();
 </script>
 
 <svg
@@ -7,7 +7,7 @@
 	xml:space="preserve"
 	style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
 	viewBox="0 0 87.88 87.88"
-	class="max-w-52 max-h-52 w-full h-full aspect-square"
+	class="aspect-square h-full max-h-52 w-full max-w-52"
 >
 	<path
 		class:animate
