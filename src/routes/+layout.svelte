@@ -5,14 +5,15 @@
 	import { onMount } from 'svelte';
 	import { isMobile, screenSize } from '$lib/stores/app-readable.svelte';
 
-	import ScrollArea from '$comp/scroll/ScrollArea.svelte';
-	import NavBarTop from '$comp/menu/NavBarTop.svelte';
-	import Footer from '$comp/footer/Footer.svelte';
-	import PageProgress from '$comp/loading/PageProgress.svelte';
+	// import ScrollArea from '$comp/scroll/ScrollArea.svelte';
+	// import NavBarTop from '$comp/menu/NavBarTop.svelte';
+	// import Footer from '$comp/footer/Footer.svelte';
+	// import PageProgress from '$comp/loading/PageProgress.svelte';
 	import Loader from '$comp/loading/Loader.svelte';
-	import PullToRefresh from '$comp/scroll/PullToRefresh.svelte';
+	// import PullToRefresh from '$comp/scroll/PullToRefresh.svelte';
+	import Brand from '$comp/svgs/Brand.svelte';
 
-	const { children } = $props();
+	// const { children } = $props();
 	const { height, width } = $derived($screenSize);
 
 	let loaded: boolean = $state(false);
@@ -24,11 +25,11 @@
 {/if}
 
 <main
-	class="w-screen relative min-h-screen"
+	class="relative min-h-screen w-screen"
 	class:mobile={$isMobile}
 	style="--app-height:{height}px;--app-width:{width}px"
 >
-	<PageProgress />
+	<!-- <PageProgress />
 
 	<ScrollArea
 		defer
@@ -40,7 +41,21 @@
 			{@render children()}
 			<Footer />
 		</PullToRefresh>
-	</ScrollArea>
+	</ScrollArea> -->
+
+	<div
+		class="flex !h-[var(--app-height)] w-full items-center justify-center bg-slate-100 text-center"
+	>
+		<div class="">
+			<div class="mx-auto my-5 flex w-40 items-end">
+				<div class="w-12">
+					<Brand />
+				</div>
+				<div class="h1 font-bold">PETAKON</div>
+			</div>
+			<h1 class="text-4xl font-bold">COMING SOON!</h1>
+		</div>
+	</div>
 </main>
 
 <style lang="postcss">
@@ -51,7 +66,7 @@
 		h4,
 		h5,
 		h6 {
-			@apply font-bold py-4 first:pt-0;
+			@apply py-4 font-bold first:pt-0;
 		}
 
 		h1 {
@@ -66,13 +81,13 @@
 
 		ul,
 		ol {
-			@apply mb-5 space-y-1 ml-10;
+			@apply mb-5 ml-10 space-y-1;
 		}
 		ul {
-			@apply list-disc list-outside;
+			@apply list-outside list-disc;
 		}
 		ol {
-			@apply list-decimal list-outside;
+			@apply list-outside list-decimal;
 		}
 		li {
 			@apply pb-2;
