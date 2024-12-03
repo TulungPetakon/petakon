@@ -2,21 +2,25 @@
 	import '../app.css';
 	import '@splidejs/splide/dist/css/splide-core.min.css';
 	import 'overlayscrollbars/overlayscrollbars.css';
+	import { building } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { isMobile, screenSize } from '$lib/stores/app-readable.svelte';
 
-	// import ScrollArea from '$comp/scroll/ScrollArea.svelte';
-	// import NavBarTop from '$comp/menu/NavBarTop.svelte';
-	// import Footer from '$comp/footer/Footer.svelte';
-	// import PageProgress from '$comp/loading/PageProgress.svelte';
+	import ScrollArea from '$comp/scroll/ScrollArea.svelte';
+	import NavBarTop from '$comp/menu/NavBarTop.svelte';
+	import Footer from '$comp/footer/Footer.svelte';
+	import PageProgress from '$comp/loading/PageProgress.svelte';
 	import Loader from '$comp/loading/Loader.svelte';
-	// import PullToRefresh from '$comp/scroll/PullToRefresh.svelte';
-	import Brand from '$comp/svgs/Brand.svelte';
+	import PullToRefresh from '$comp/scroll/PullToRefresh.svelte';
+	import Login from './_login.svelte';
+	// import Brand from '$comp/svgs/Brand.svelte';
 
-	// const { children } = $props();
+	const { children } = $props();
 	const { height, width } = $derived($screenSize);
 
-	let loaded: boolean = $state(false);
+	let loggedIn = $state(building || false);
+	let loaded = $state(false);
+	const onLogged = () => (loggedIn = true);
 	onMount(() => (loaded = true));
 </script>
 
@@ -29,21 +33,27 @@
 	class:mobile={$isMobile}
 	style="--app-height:{height}px;--app-width:{width}px"
 >
-	<!-- <PageProgress />
+	<PageProgress />
 
-	<ScrollArea
-		defer
-		class="!h-[var(--app-height)]"
-		options={{ scrollbars: { theme: 'os-theme-dark', autoHide: 'scroll', autoHideSuspend: true } }}
-	>
-		<PullToRefresh>
-			<NavBarTop />
-			{@render children()}
-			<Footer />
-		</PullToRefresh>
-	</ScrollArea> -->
+	{#if loggedIn}
+		<ScrollArea
+			defer
+			class="!h-[var(--app-height)]"
+			options={{
+				scrollbars: { theme: 'os-theme-dark', autoHide: 'scroll', autoHideSuspend: true }
+			}}
+		>
+			<PullToRefresh>
+				<NavBarTop />
+				{@render children()}
+				<Footer />
+			</PullToRefresh>
+		</ScrollArea>
+	{:else}
+		<Login {onLogged} />
+	{/if}
 
-	<div
+	<!-- <div
 		class="flex !h-[var(--app-height)] w-full items-center justify-center bg-slate-100 text-center"
 	>
 		<div class="">
@@ -55,7 +65,7 @@
 			</div>
 			<h1 class="text-4xl font-bold">COMING SOON!</h1>
 		</div>
-	</div>
+	</div> -->
 </main>
 
 <style lang="postcss">
