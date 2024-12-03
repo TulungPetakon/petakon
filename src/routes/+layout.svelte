@@ -2,7 +2,7 @@
 	import '../app.css';
 	import '@splidejs/splide/dist/css/splide-core.min.css';
 	import 'overlayscrollbars/overlayscrollbars.css';
-	import { building } from '$app/environment';
+	import { building, dev } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { isMobile, screenSize } from '$lib/stores/app-readable.svelte';
 
@@ -21,8 +21,20 @@
 	let loggedIn = $state(building || false);
 	let loaded = $state(false);
 	const onLogged = () => (loggedIn = true);
-	onMount(() => (loaded = true));
+
+	onMount(() => {
+		loaded = true;
+		if ('serviceWorker' in navigator && !dev) {
+			navigator.serviceWorker.register('/sw.js'); // /dev-sw.js?dev-sw
+		}
+	});
 </script>
+
+<svelte:head>
+	{#if !dev}
+		<link rel="manifest" href="/appmanifest.json" />
+	{/if}
+</svelte:head>
 
 {#if !loaded}
 	<Loader />

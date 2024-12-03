@@ -5,11 +5,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Petakon | Peta Konektivitas</title>
 
-		<link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/png" href="/icons/96x96.png" sizes="96x96" />
 		<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
 		<meta name="apple-mobile-web-app-title" content="Petakon" />
+		<link rel="mask-icon" href="/icons/favicon.svg" color="#5bbad5" />
+		<meta name="msapplication-TileColor" content="#2d89ef" />
+		<meta name="theme-color" content="#ffffff" />
 
 		<link href="/fonts/all.css" rel="stylesheet" />
 		<link href="/fonts/petakon-icon.css" rel="stylesheet" />
@@ -19,6 +22,10 @@
 			href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
 			rel="stylesheet"
 		/>
+
+		<script>
+			window.cdnUrl = (filename) => 'https://tulung.petakon.id/static/' + filename;
+		</script>
 
 		%sveltekit.head%
 	</head>
