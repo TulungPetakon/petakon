@@ -30,6 +30,11 @@
 
 	const mapToggle: PKMap.Toggle = getContext('mapToggle');
 	const openMap = () => mapToggle({ action: 'open', location: { 0: 0 } });
+
+	let saved = $state(false);
+	const saveContent = () => {
+		saved = !saved;
+	};
 </script>
 
 <div class="mb-4 flex flex-wrap items-center px-2 sm:flex-nowrap">
@@ -70,8 +75,8 @@
 </div>
 
 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3">
-	{#each list as { name, slug, address }}
-		<div class="h-30 px-2 pb-4">
+	{#each list as { name, slug, address, id }}
+		<a href="/activities/{id}-{slug}" class="h-30 px-2 pb-4">
 			<div class="h-full overflow-hidden rounded bg-white shadow-lg">
 				<div class="aspect-[5/3.5] w-full overflow-hidden bg-gray-200">
 					{#await getThumb(slug) then img}
@@ -91,6 +96,7 @@
 								class="pk-button !p-0 text-2xl leading-none"
 								aria-label="Save for Later"
 								title="Save for Later"
+								onclick={stopPropagation(preventDefault(saveContent))}
 							>
 								<i class="fasl fa-bookmark"></i></button
 							>
@@ -105,7 +111,7 @@
 					</button>
 				</div>
 			</div>
-		</div>
+		</a>
 	{/each}
 </div>
 

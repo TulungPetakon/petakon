@@ -25,3 +25,8 @@ export const listActivities = ({ district, limit = 12, page = 1 }: ActivitiesPar
 	});
 	return paging(filtered, limit, page);
 };
+
+export const getActivity = (id: number) => {
+	const result = activities.find(({ id: dbID }) => dbID === id);
+	return result;
+};
