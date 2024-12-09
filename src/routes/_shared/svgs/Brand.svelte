@@ -1,5 +1,11 @@
-<script>
-	const { mono = false, mode = 'light', animate = false, nobase = false } = $props();
+<script lang="ts">
+	interface BrandProps {
+		mono?: boolean;
+		mode?: 'light' | 'dark';
+		animate?: boolean;
+		nobase?: boolean;
+	}
+	const { mono = false, mode = 'light', animate = false, nobase = false }: BrandProps = $props();
 </script>
 
 <svg

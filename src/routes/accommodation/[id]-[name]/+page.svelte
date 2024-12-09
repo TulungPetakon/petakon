@@ -44,7 +44,7 @@
 			<span> / </span>
 			<a href="/accommodation" class=" transition-all hover:text-black">Accomodation</a>
 			<span> / </span>
-			<span class="font-bold text-black">Front Hotel Tulungagung</span>
+			<span class="font-bold text-black">{name}</span>
 		</div>
 
 		<div class="ml-auto flex text-base md:text-sm">
@@ -59,7 +59,6 @@
 			<button
 				class="pk-button mr-2 inline-flex aspect-square w-10 items-center justify-center !rounded-full
 				bg-white/80 !px-2 text-black sm:block sm:aspect-auto sm:w-auto sm:bg-transparent sm:text-gray-600 sm:hover:text-black"
-				class:motion-preset-confetti={saved}
 				aria-label="save"
 				onclick={saveContent}
 			>
@@ -91,13 +90,15 @@
 
 			<div class="h-72 w-full sm:h-80 md:h-96 lg:h-[25rem] lg:pr-1">
 				<div class="size-full overflow-hidden bg-gray-200">
-					{#if type === 'video'}
-						<video src={url} controls class="size-full"> <track kind="captions" /></video>
-					{:else}
-						{#await getThumb(slug) then src}
+					{#await getThumb(slug) then src}
+						{#if type === 'video'}
+							<video src={url} poster={src} controls class="size-full">
+								<track kind="captions" />
+							</video>
+						{:else}
 							<img {src} alt={name} class="size-full" />
-						{/await}
-					{/if}
+						{/if}
+					{/await}
 				</div>
 			</div>
 			<div class="hidden h-24 w-full pt-1 sm:block lg:h-[25rem] lg:pl-1 lg:pt-0">
