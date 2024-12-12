@@ -2,6 +2,13 @@ import { error } from '@sveltejs/kit';
 
 import { building } from '$app/environment';
 import { listActivities } from '$lib/helpers/activity.helper';
+import { districtList } from '$lib/helpers/kecamatan.helper.js';
+import type { RouteParams } from './$types.js';
+
+export const entries = () => {
+	const result = districtList.map((name) => ({ kecamatan: name })) as unknown as RouteParams[];
+	return result;
+};
 
 export const load = async ({ parent, url }) => {
 	const { district } = await parent();

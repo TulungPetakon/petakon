@@ -12,15 +12,15 @@
 	import PageProgress from '$comp/loading/PageProgress.svelte';
 	import Loader from '$comp/loading/Loader.svelte';
 	import PullToRefresh from '$comp/scroll/PullToRefresh.svelte';
-	// import Login from './_login.svelte';
-	// import Brand from '$comp/svgs/Brand.svelte';
+	import Login from './_login.svelte';
+	import Brand from '$comp/svgs/Brand.svelte';
 
 	const { children } = $props();
 	const { height, width } = $derived($screenSize);
 
 	let loaded = $state(false);
-	// let loggedIn = $state(building || false);
-	// const onLogged = () => (loggedIn = true);
+	let loggedIn = $state(building || false);
+	const onLogged = () => (loggedIn = true);
 
 	onMount(() => {
 		loaded = true;
@@ -47,25 +47,25 @@
 >
 	<PageProgress />
 
-	<!-- {#if loggedIn} -->
-	<ScrollArea
-		defer
-		class="!h-[var(--app-height)]"
-		options={{
-			scrollbars: { theme: 'os-theme-dark', autoHide: 'scroll', autoHideSuspend: true }
-		}}
-	>
-		<PullToRefresh>
-			<NavBarTop />
-			{@render children()}
-			<Footer />
-		</PullToRefresh>
-	</ScrollArea>
-	<!-- {:else}
+	<!-- {#if loggedIn}
+		<ScrollArea
+			defer
+			class="!h-[var(--app-height)]"
+			options={{
+				scrollbars: { theme: 'os-theme-dark', autoHide: 'scroll', autoHideSuspend: true }
+			}}
+		>
+			<PullToRefresh>
+				<NavBarTop />
+				{@render children()}
+				<Footer />
+			</PullToRefresh>
+		</ScrollArea>
+	{:else}
 		<Login {onLogged} />
 	{/if} -->
 
-	<!-- <div
+	<div
 		class="flex !h-[var(--app-height)] w-full items-center justify-center bg-slate-100 text-center"
 	>
 		<div class="">
@@ -76,8 +76,9 @@
 				<div class="h1 font-bold">PETAKON</div>
 			</div>
 			<h1 class="text-4xl font-bold">COMING SOON!</h1>
+			<a href="https://dev.petakon.id" class="underline hover:text-sky-600">Developer Preview</a>
 		</div>
-	</div> -->
+	</div>
 </main>
 
 <style lang="postcss">
