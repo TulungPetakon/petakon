@@ -1,16 +1,16 @@
 <script lang="ts">
-	import img from '$images/beach/buper.jpg?format=webp&img';
-	let { district, height = $bindable() }: {district: App.District, height: number} = $props();
+	import img from '$images/destinations/hero-sendang.jpg?format=webp&img';
+	let { district, height = $bindable() }: { district: App.District; height: number } = $props();
 </script>
 
 <div
-	class="pk-overlay bg-cover bg-center bg-fixed w-full h-fit relative"
+	class="pk-overlay relative h-fit w-full bg-cover bg-fixed bg-center"
 	style="background-image: url({img});"
 	bind:clientHeight={height}
 >
 	{#snippet breadcrumbs(text: string, active: boolean = false)}
 		<span
-			class="transition-all capitalize"
+			class="capitalize transition-all"
 			class:text-blue-300={active}
 			class:font-bold={active}
 			class:hover:text-orange-300={!active}
@@ -19,8 +19,8 @@
 		</span>
 	{/snippet}
 
-	<div class="relative px-[5%] md:px-[10%] py-7 text-white z-10">
-		<div class="hidden md:block text-sm text-slate-200 pb-8">
+	<div class="relative z-10 px-[5%] py-7 text-white md:px-[10%]">
+		<div class="hidden pb-8 text-sm text-slate-200 md:block">
 			<a href="/"> {@render breadcrumbs('Home')} </a>
 			<span> / </span>
 			{#if !district}
@@ -37,13 +37,13 @@
 			{/if}
 		</div>
 
-		<div class="flex flex-col sm:flex-row pb-3">
-			<h1 class="pb-3 w-[85%]">
+		<div class="flex flex-col pb-3 sm:flex-row">
+			<h1 class="w-[85%] pb-3">
 				{#if district}
-					<span class="block text-lg md:text-2xl pb-2">Jelajahi Kecamatan</span>
-					<span class="block capitalize text-3xl md:text-5xl font-bold">{district} </span>
+					<span class="block pb-2 text-lg md:text-2xl">Jelajahi Kecamatan</span>
+					<span class="block text-3xl font-bold capitalize md:text-5xl">{district} </span>
 				{:else}
-					<span class="block text-2xl md:text-4xl font-bold max-w-2xl" style="line-height: 130%;">
+					<span class="block max-w-2xl text-2xl font-bold md:text-4xl" style="line-height: 130%;">
 						Jelajahi <u>Tulungagung</u> dan Ciptakan Kenangan tak Terlupakan
 					</span>
 				{/if}
@@ -52,11 +52,11 @@
 			{#if district}
 				<div class="flex items-center">
 					<button
-						class="pk-button bg-black/20 rounded-full inline-flex items-center hover:bg-orange-400 group"
+						class="pk-button group inline-flex items-center rounded-full bg-black/20 hover:bg-orange-400"
 					>
 						<span>Ganti</span>
 						<i
-							class="fas fa-angle-down block ml-2 text-xl text-orange-400 group-hover:text-white transition-all"
+							class="fas fa-angle-down ml-2 block text-xl text-orange-400 transition-all group-hover:text-white"
 							style="line-height: 0;"
 						></i>
 					</button>

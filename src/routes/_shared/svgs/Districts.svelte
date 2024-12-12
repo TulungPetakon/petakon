@@ -1,5 +1,5 @@
 <script>
-	const { name } = $props();
+	const { name, active = false } = $props();
 
 	const list = {
 		bandung: {
@@ -89,6 +89,6 @@
 	{viewBox}
 >
 	<g id="Layer_x0020_1">
-		<path class="fill-slate-400/80" {d} />
+		<path class:fill-slate-400={!active} class:fill-orange-400={active} {d} />
 	</g>
 </svg>

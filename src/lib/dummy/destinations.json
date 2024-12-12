@@ -376,5 +376,23 @@
 		"rating": 5,
 		"category": "sejarah",
 		"slug": "penampihan"
+	},
+	{
+		"id": 20043,
+		"name": "Bumi Perkemahan Jurang Senggani",
+		"address": "Nglurup, Kec. Sendang, Kabupaten Tulungagung, Jawa Timur 66254",
+		"description": "",
+		"rating": 5,
+		"category": "taman",
+		"slug": "buper-senggani"
+	},
+	{
+		"id": 20044,
+		"name": "Ori Green",
+		"address": "Sendang",
+		"description": "",
+		"rating": 5,
+		"category": "taman",
+		"slug": "ori-green"
 	}
 ]
