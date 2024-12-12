@@ -1,10 +1,8 @@
-![Sendang](/images/blog/highlight-sendang.jpg)
+![Sendang](/images/blog/budaya-sendang.jpg)
 
 ## Tentang Sendang
 
 Sendang merupakan surga bagi para pecinta alam. Wilayah ini berada di 26 kilometer dari pusat Kota Tulungagung. Terletak di lereng Gunung Wilis sehingga menghadirkan panorama alam yang memukau dengan mayoritas penduduknya bekerja sebagai petani dan peternak sapi perah. Setiap hari desa ini menghasilkan produksi susu rata-rata 10-15 liter perhari yang menjadikan desa ini penghasil susu terbesar di Tulungagung. Akses menuju desa Sendang cukup baik dan mudah dijangkau menggunakan kendaraan pribadi atau angkutan umum. Desa wisata Sendang dirintis sejak tahun 2010 dan berganti nama menjadi Desa Wisata Budaya Sendang pada awal tahun 2021. Berawal dari mimpi untuk memperkenalkan kearifan lokal desa, kami terus berbenah dan menjadikan Desa Wisata yang mengangkat budaya dan kearifan lokal yang unik dan berbeda.
-
-![Sendang](/images/blog/budaya-sendang.jpg)
 
 Nama "Sendang" sendiri diambil dari keberadaan mata air yang sangat jernih di lereng timur Gunung Wilis. Mata air ini merupakan pusat kehidupan bagi masyarakat sekitar dan dianggap sakral. Menurut cerita rakyat, R.A Woro Niken Wigati dan P.A Wido Tetuko menemukan mata air ini dalam pengembaraan mereka dan akhirnya tempat itu diberi nama Desa Sendang.
 Kecamatan Sendang menyimpan banyak peninggalan sejarah yang menjadi bukti peradaban yang pernah ada di daerah ini. Salah satu yang paling terkenal adalah situs Mbah Bodho. Di situs ini terdapat sisa-sisa peninggalan Kerajaan Majapahit seperti arca Ganesha, lesung, jaladwara, vas, dan lain-lain. Hal ini menunjukkan bahwa daerah Sendang pernah menjadi bagian dari kerajaan Majapahit dan memiliki peran penting dalam sejarah Jawa Timur.
