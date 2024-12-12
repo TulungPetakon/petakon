@@ -1,10 +1,10 @@
 import { setCacheNameDetails, skipWaiting, clientsClaim } from 'workbox-core';
 import { precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
+import { CacheFirst, NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies';
 import { ExpirationPlugin } from 'workbox-expiration/ExpirationPlugin';
 
-const cacheVersion = 'v1';
+const cacheVersion = 'v2';
 const maxAgeSeconds = 7 * 24 * 60 * 60; // 7 Days
 const maxEntries = 60;
 
@@ -20,8 +20,10 @@ setCacheNameDetails({
 
 // @ts-ignore
 let precache = self.__WB_MANIFEST;
-precache = ['/'];
+precache = [];
 precacheAndRoute(precache, { ignoreURLParametersMatching: [/.*/] });
+
+registerRoute('/', new NetworkFirst({ cacheName: `PK-Static-${cacheVersion}` }));
 
 registerRoute(
 	({ url, request }) => {
