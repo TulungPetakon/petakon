@@ -13,7 +13,7 @@
 	import Loader from '$comp/loading/Loader.svelte';
 	import PullToRefresh from '$comp/scroll/PullToRefresh.svelte';
 	import Login from './_login.svelte';
-	import Brand from '$comp/svgs/Brand.svelte';
+	// import Brand from '$comp/svgs/Brand.svelte';
 
 	const { children } = $props();
 	const { height, width } = $derived($screenSize);
@@ -47,7 +47,7 @@
 >
 	<PageProgress />
 
-	<!-- {#if loggedIn}
+	{#if loggedIn}
 		<ScrollArea
 			defer
 			class="!h-[var(--app-height)]"
@@ -63,9 +63,9 @@
 		</ScrollArea>
 	{:else}
 		<Login {onLogged} />
-	{/if} -->
+	{/if}
 
-	<div
+	<!-- <div
 		class="flex !h-[var(--app-height)] w-full items-center justify-center bg-slate-100 text-center"
 	>
 		<div class="">
@@ -78,7 +78,7 @@
 			<h1 class="text-4xl font-bold">COMING SOON!</h1>
 			<a href="https://dev.petakon.id" class="underline hover:text-sky-600">Developer Preview</a>
 		</div>
-	</div>
+	</div> -->
 </main>
 
 <style lang="postcss">
