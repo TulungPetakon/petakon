@@ -3,14 +3,15 @@
 	import { topBarMode } from '$lib/stores/app-writable.svelte';
 	import { md } from '$lib/helpers/markdown.helper';
 	import type { Acc } from '$lib/types/accomodation';
+	import type { Glob } from '$lib/types/global';
 
 	const { data } = $props();
-	const { html } = md(data.post);
-	const description = $derived(`${(html as string).substring(0, 800)}...`);
+	const { html } = md(`${data.post.substring(0, 800)}...`);
+	const description = $derived(html);
 
 	const { accomodation } = $derived(data);
 	const { name, gallery, location, slug } = $derived(accomodation) as unknown as Acc.Accomodation;
-	const { type, url } = $derived(gallery?.[0] || {}) as Acc.Gallery;
+	const { type, url } = $derived(gallery?.[0] || {}) as Glob.Gallery;
 
 	const getThumb = async (slug: string) => {
 		const { default: raw } = await import(`$images/accomodations/${slug}.jpg?format=webp`);

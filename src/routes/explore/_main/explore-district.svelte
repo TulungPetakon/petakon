@@ -18,7 +18,7 @@
 				href="/explore/{name}"
 				onmouseenter={() => (hovered = name)}
 				onmouseleave={() => (hovered = '')}
-				class="pk-overlay relative block overflow-hidden rounded bg-cover bg-center px-5 py-7 text-xl font-bold capitalize text-white hover:text-orange-400"
+				class="pk-overlay relative block overflow-hidden rounded border-[.15rem] border-transparent bg-cover bg-center px-5 py-7 text-xl font-bold capitalize text-white transition-all duration-300 hover:border-orange-400 hover:text-orange-400 hover:shadow-md"
 				style="background-image: url({img})"
 			>
 				<span class="relative z-10">{name} </span>

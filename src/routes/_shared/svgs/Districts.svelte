@@ -89,6 +89,11 @@
 	{viewBox}
 >
 	<g id="Layer_x0020_1">
-		<path class:fill-slate-400={!active} class:fill-orange-400={active} {d} />
+		<path
+			class="transition-all duration-300"
+			class:fill-slate-400={!active}
+			class:fill-orange-400={active}
+			{d}
+		/>
 	</g>
 </svg>
