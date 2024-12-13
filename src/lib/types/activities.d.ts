@@ -1,3 +1,5 @@
+import type { Glob } from './global';
+
 export namespace Activities {
 	export interface Item {
 		id: number | string;
@@ -7,6 +9,7 @@ export namespace Activities {
 		rating: number | string;
 		category: string;
 		slug: string;
+		gallery?: Glob.Gallery[];
 	}
 
 	export interface PaginationList {

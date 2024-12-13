@@ -1,11 +1,22 @@
 <script lang="ts">
+	import Modal from '$comp/utils/Modal.svelte';
+	import { md } from '$lib/helpers/markdown.helper.js';
 	import type { Activities } from '$lib/types/activities';
 	const { data } = $props();
 	const activity = data.activity as unknown as Activities.Item;
-	const { address, description, name, rating, slug } = activity;
+	const { address, description, name, rating, slug, gallery } = activity;
+
+	const readPost = (full = false) => {
+		if (!data.post) return description;
+		if (full) return md(data.post).html;
+
+		const part = `${data.post.substring(0, 750)}...`;
+		const { html: partialResult } = md(part, true);
+		return partialResult;
+	};
 
 	const getThumb = async (slug: string) => {
-		const { default: raw } = await import(`$images/destinations/${slug}.jpg?w=300?format=webp`);
+		const { default: raw } = await import(`$images/destinations/${slug}.jpg?format=webp`);
 		return raw;
 	};
 
@@ -13,7 +24,18 @@
 	const saveContent = () => {
 		saved = !saved;
 	};
+
+	let showModal = $state(false);
+	const toggleModal = () => (showModal = !showModal);
 </script>
+
+{#if showModal}
+	<Modal {toggleModal}>
+		<article class="pk-article">
+			{@html readPost(true)}
+		</article>
+	</Modal>
+{/if}
 
 <section class="relative">
 	<!-- TopBar -->
@@ -86,11 +108,9 @@
 			</div>
 			<div class="hidden h-24 w-full pt-1 sm:block lg:h-[25rem] lg:pl-1 lg:pt-0">
 				<div class="grid size-full grid-cols-5 grid-rows-1 lg:grid-cols-2 lg:grid-rows-2">
-					<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
-					{#each Array(4) as _}
+					{#snippet pic(slug: string)}
 						<div
-							class="size-full
-						lg:first:pb-1 lg:last:pt-1 lg:odd:pr-1 lg:even:pl-1 lg:[&:nth-child(2)]:pb-1 lg:[&:nth-child(3)]:pt-1"
+							class="size-full lg:first:pb-1 lg:last:pt-1 lg:odd:pr-1 lg:even:pl-1 lg:[&:nth-child(2)]:pb-1 lg:[&:nth-child(3)]:pt-1"
 						>
 							<div class="size-full overflow-hidden px-[1px]">
 								{#await getThumb(slug) then src}
@@ -98,7 +118,19 @@
 								{/await}
 							</div>
 						</div>
-					{/each}
+					{/snippet}
+					{#if gallery}
+						{#each gallery as { url }, i}
+							{#if i > 0}
+								{@render pic(url)}
+							{/if}
+						{/each}
+					{:else}
+						<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
+						{#each Array(4) as _}
+							{@render pic(slug)}
+						{/each}
+					{/if}
 				</div>
 			</div>
 		</div>
@@ -123,9 +155,9 @@
 
 				<div class="border-b py-10">
 					<article class="pk-article text-gray-600">
-						{@html description}
+						{@html readPost()}
 					</article>
-					<button class="inline-flex items-center text-black">
+					<button class="inline-flex items-center text-black" onclick={toggleModal}>
 						<span class="underline">Baca Selengkapnya</span>
 						<i class="fasl fa-angle-right ml-2 leading-none"></i>
 					</button>

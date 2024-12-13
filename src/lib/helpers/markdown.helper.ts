@@ -6,7 +6,7 @@ interface TOC {
 	text: string;
 }
 
-export const md = (markdown: string) => {
+export const md = (markdown: string, plain = false) => {
 	const txt = markdown.replaceAll('Tulungagung', '<ins>Tulungagung</ins>');
 	const toc: TOC[] = [];
 	const renderer = new marked.Renderer();
@@ -14,6 +14,7 @@ export const md = (markdown: string) => {
 		const parsed = raw.toLowerCase().replace(/[^\w]+/g, ' ');
 		const slug = parsed.trim().replaceAll(' ', '-');
 		toc.push({ slug, depth, text });
+		if (plain) return '<span' + depth + ' id="' + slug + '">' + text + '</span' + depth + '>\n';
 		return '<h' + depth + ' id="' + slug + '">' + text + '</h' + depth + '>\n';
 	};
 

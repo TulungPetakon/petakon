@@ -372,7 +372,7 @@
 		"id": 20042,
 		"name": "Candi Penampihan",
 		"address": "Penampihan, kec. Sendang",
-		"description": "",
+		"description": "post-penampihan",
 		"rating": 5,
 		"category": "sejarah",
 		"slug": "penampihan"
@@ -381,7 +381,7 @@
 		"id": 20043,
 		"name": "Bumi Perkemahan Jurang Senggani",
 		"address": "Nglurup, Kec. Sendang, Kabupaten Tulungagung, Jawa Timur 66254",
-		"description": "",
+		"description": "post-buper-senggani",
 		"rating": 5,
 		"category": "taman",
 		"slug": "buper-senggani"
@@ -394,5 +394,30 @@
 		"rating": 5,
 		"category": "taman",
 		"slug": "ori-green"
+	},
+	{
+		"id": 20045,
+		"name": "Ancala Integrated Farm",
+		"address": "Dsn. Turi, Ds. Geger, Kec. Sendang",
+		"description": "post-ancala",
+		"rating": 5,
+		"category": "camp",
+		"slug": "ancala-1",
+		"gallery": [
+			{ "type": "picture", "url": "ancala-1" },
+			{ "type": "picture", "url": "ancala-2" },
+			{ "type": "picture", "url": "ancala-3" },
+			{ "type": "picture", "url": "ancala-4" },
+			{ "type": "picture", "url": "ancala-5" }
+		]
+	},
+	{
+		"id": 20046,
+		"name": "Embung Pandan Wangi",
+		"address": "Dsn. Turi, Ds. Geger, Kec. Sendang",
+		"description": "",
+		"rating": 5,
+		"category": "camp",
+		"slug": "embung-pandan-wangi"
 	}
 ]

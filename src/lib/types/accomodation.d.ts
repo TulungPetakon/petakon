@@ -1,9 +1,6 @@
-export namespace Acc {
-	export interface Gallery {
-		type: string;
-		url: string;
-	}
+import type { Glob } from './global';
 
+export namespace Acc {
 	export interface Accomodation {
 		id: number;
 		name: string;
@@ -13,6 +10,6 @@ export namespace Acc {
 			kecamatan: string;
 			address: string;
 		};
-		gallery?: Gallery[];
+		gallery?: Glob.Gallery[];
 	}
 }
