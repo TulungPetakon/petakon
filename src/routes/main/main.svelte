@@ -1,5 +1,6 @@
 <script lang="ts">
 	import About from './_about.svelte';
+	import Events from './_events.svelte';
 	import Hero from './_hero.svelte';
 	import Highlight from './_highlight.svelte';
 	// import Insight from './_insight.svelte';
@@ -9,6 +10,8 @@
 </script>
 
 <Hero />
+
+<Events />
 
 <!-- <Trending /> -->
 
