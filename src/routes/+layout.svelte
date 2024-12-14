@@ -2,7 +2,7 @@
 	import '../app.css';
 	import '@splidejs/splide/dist/css/splide-core.min.css';
 	import 'overlayscrollbars/overlayscrollbars.css';
-	import { building, dev } from '$app/environment';
+	import { dev } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { isMobile, screenSize } from '$lib/stores/app-readable.svelte';
 
@@ -12,15 +12,15 @@
 	import PageProgress from '$comp/loading/PageProgress.svelte';
 	import Loader from '$comp/loading/Loader.svelte';
 	import PullToRefresh from '$comp/scroll/PullToRefresh.svelte';
-	import Login from './_login.svelte';
+	// import Login from './_login.svelte';
 	// import Brand from '$comp/svgs/Brand.svelte';
 
 	const { children } = $props();
 	const { height, width } = $derived($screenSize);
 
 	let loaded = $state(false);
-	let loggedIn = $state(building || false);
-	const onLogged = () => (loggedIn = true);
+	// let loggedIn = $state(building || false);
+	// const onLogged = () => (loggedIn = true);
 
 	onMount(() => {
 		loaded = true;
@@ -47,23 +47,23 @@
 >
 	<PageProgress />
 
-	{#if loggedIn}
-		<ScrollArea
-			defer
-			class="!h-[var(--app-height)]"
-			options={{
-				scrollbars: { theme: 'os-theme-dark', autoHide: 'scroll', autoHideSuspend: true }
-			}}
-		>
-			<PullToRefresh>
-				<NavBarTop />
-				{@render children()}
-				<Footer />
-			</PullToRefresh>
-		</ScrollArea>
-	{:else}
+	<!-- {#if loggedIn} -->
+	<ScrollArea
+		defer
+		class="!h-[var(--app-height)]"
+		options={{
+			scrollbars: { theme: 'os-theme-dark', autoHide: 'scroll', autoHideSuspend: true }
+		}}
+	>
+		<PullToRefresh>
+			<NavBarTop />
+			{@render children()}
+			<Footer />
+		</PullToRefresh>
+	</ScrollArea>
+	<!-- {:else}
 		<Login {onLogged} />
-	{/if}
+	{/if} -->
 
 	<!-- <div
 		class="flex !h-[var(--app-height)] w-full items-center justify-center bg-slate-100 text-center"
