@@ -49,6 +49,7 @@
 
 	<!-- {#if loggedIn} -->
 	<ScrollArea
+		main
 		defer
 		class="!h-[var(--app-height)]"
 		options={{

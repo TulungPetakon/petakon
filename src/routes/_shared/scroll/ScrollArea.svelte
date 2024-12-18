@@ -3,7 +3,7 @@
 	import { OverlayScrollbars } from 'overlayscrollbars';
 	import { createDefer } from './createDefer';
 	import { scrollTop } from '$lib/stores/app-writable.svelte';
-	import ScrollPositionControl from './ScrollPositionControl.svelte';
+	import ScrollPositionControl, { scrollTargetPosition } from './ScrollPositionControl.svelte';
 	import type { Utils } from '$lib/types/utils';
 
 	const {
@@ -11,10 +11,13 @@
 		options,
 		events = {},
 		defer,
+		main = false,
 		class: klass,
 		children,
 		...properties
 	} = $props();
+
+	const areaElement = 'div[data-overlayscrollbars-contents]';
 
 	// Contains client who listen scroll Event;
 	const scrollFnList: unknown[] = [];
@@ -29,8 +32,8 @@
 
 	// Since we use Overlayscrollbar instead of native scrollbar, Scroll event won't be retrived from window element
 	events['scroll'] = (el: HTMLElement, event: Event) => {
-		scrollTop.set((event?.target as HTMLElement)?.scrollTop);
 		scrollFnList.forEach((fn) => (fn as (e: Event) => void)(event));
+		if (main) scrollTop.set((event?.target as HTMLElement)?.scrollTop);
 
 		if (!properties['onscroll']) return;
 		properties['onscroll'](event);
@@ -39,6 +42,7 @@
 	let scrollControlparam: Utils.ScrollControlParam = $state({ reset: false, scrollTo: 0 });
 	const scrollControl: Utils.scrollControl = (val) => (scrollControlparam = val);
 	setContext('scrollControl', scrollControl);
+	setContext('getTargetPosition', (t: string) => scrollTargetPosition(areaElement, t));
 
 	// OverlayScrollBar
 	let instance = $state() as OverlayScrollbars;
@@ -145,7 +149,7 @@
 	});
 </script>
 
-<ScrollPositionControl target="div[data-overlayscrollbars-contents]" {...scrollControlparam} />
+<ScrollPositionControl target={areaElement} {...scrollControlparam} />
 
 <svelte:element
 	this={element}

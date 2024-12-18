@@ -15,7 +15,7 @@
 	let menuHeight = $state(0);
 	const mapHeight = $derived($screenSize.height - $topbarHeight - menuHeight);
 	const scrollControl: Utils.scrollControl = getContext('scrollControl');
-	const onclick = () => scrollControl({ scrollTo: heroHeight });
+	const onclick = () => scrollControl({ scrollTo: heroHeight, duration: 400 });
 
 	let isMapOpen = $state(false);
 	let mapData: PKMap.Location = $state({});

@@ -27,9 +27,7 @@
 		<ScrollArea
 			defer
 			class="!max-h-[calc(0.75*var(--app-height))]"
-			options={{
-				scrollbars: { theme: 'os-theme-dark', autoHide: 'scroll', autoHideSuspend: true }
-			}}
+			options={{ scrollbars: { theme: 'os-theme-dark' } }}
 		>
 			<div class="px-7">
 				{@render children()}
