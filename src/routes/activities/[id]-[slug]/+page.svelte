@@ -1,54 +1,33 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import { fly } from 'svelte/transition';
-	import { md } from '$lib/helpers/markdown.helper.js';
 	import { isMobile, screenSize } from '$lib/stores/app-readable.svelte.js';
 	import { scrollTop, topbarHeight, topBarMode } from '$lib/stores/app-writable.svelte.js';
 	import type { Activities } from '$lib/types/activities';
 	import type { Utils } from '$lib/types/utils.js';
-	import Modal from '$comp/utils/Modal.svelte';
+	import placeholder from '$images/utils/petakon-placeholder.webp';
+
+	import BreadCrumbs from '$comp/utils/BreadCrumbs.svelte';
+	import ProductPreview from '$comp/gallery/ProductPreview.svelte';
+	import Description from './_/Description.svelte';
 
 	const { data } = $props();
 	const activity = data.activity as unknown as Activities.Item;
 	const { address, description, name, rating, slug, gallery } = activity;
-
-	const readPost = (full = false) => {
-		if (!data.post) return description;
-		if (full) return md(data.post).html;
-
-		const part = `${data.post.substring(0, 500)}...`;
-		const { html: partialResult } = md(part, true);
-		return partialResult;
-	};
-
-	const getThumb = async (slug: string) => {
-		const { default: raw } = await import(`$images/destinations/${slug}.jpg?format=webp`);
-		return raw;
-	};
 
 	let saved = $state(false);
 	const saveContent = () => {
 		saved = !saved;
 	};
 
-	let showModal = $state(false);
-	const toggleModal = () => (showModal = !showModal);
 	$effect(() => topBarMode.set($isMobile ? 'hidden' : 'default')); // Change TopBar on mobile screen
 	$effect.pre(() => () => topBarMode.set('default')); // Set back to default Topbar after leaving the page
 
 	const scrollControl: Utils.scrollControl = getContext('scrollControl');
 	const getTargetPosition: (x: string) => number = getContext('getTargetPosition');
-	const targetPos = () => getTargetPosition('#tickets') - $topbarHeight;
+	const targetPos = () => getTargetPosition('#offers') - $topbarHeight;
 	const scroll = () => scrollControl({ instant: true, scrollTo: targetPos() });
 </script>
-
-{#if showModal}
-	<Modal {toggleModal}>
-		<article class="pk-article">
-			{@html readPost(true)}
-		</article>
-	</Modal>
-{/if}
 
 <section class="relative">
 	<!-- TopBar -->
@@ -63,13 +42,13 @@
 				<i class="fasl fa-angle-left"></i>
 			</button>
 		</div>
-		<div class="hidden text-sm text-gray-600 sm:block">
-			<a href="/" class="transition-all hover:text-black"> Home</a>
-			<span> / </span>
-			<a href="/activities" class=" transition-all hover:text-black">Activities</a>
-			<span> / </span>
-			<span class="font-bold text-black">{name}</span>
-		</div>
+		<BreadCrumbs
+			structure={[
+				{ text: 'Home', href: '/' },
+				{ text: 'Activities', href: '/activities' },
+				{ text: name, active: true }
+			]}
+		/>
 
 		<div class="ml-auto flex text-base md:text-sm">
 			<button
@@ -95,59 +74,8 @@
 		</div>
 	</div>
 
-	<!-- Photos -->
-	<div class="md:px-[6.5%] xl:px-[15%]">
-		<div class="relative grid grid-cols-1 overflow-hidden rounded-md lg:grid-cols-2">
-			<button
-				class="pk-button absolute bottom-5 right-3 hidden bg-white !px-3 !py-1 text-sm
-				hover:bg-gray-200 sm:hidden lg:block"
-			>
-				<i class="fasl fa-image"></i>
-				<span>Lihat Galeri</span>
-			</button>
-
-			<span
-				class="absolute bottom-5 right-2 rounded-md bg-black/35 px-3 py-1 text-sm text-white sm:hidden"
-			>
-				1 / 5
-			</span>
-
-			<div class="h-72 w-full sm:h-80 lg:h-[22rem] lg:pr-1">
-				<div class="size-full overflow-hidden bg-gray-200">
-					{#await getThumb(slug) then src}
-						<img {src} alt={name} class="size-full" />
-					{/await}
-				</div>
-			</div>
-			<div class="hidden h-24 w-full pt-1 sm:block lg:h-[22rem] lg:pl-1 lg:pt-0">
-				<div class="grid size-full grid-cols-5 grid-rows-1 lg:grid-cols-2 lg:grid-rows-2">
-					{#snippet pic(slug: string)}
-						<div
-							class="size-full lg:first:pb-1 lg:last:pt-1 lg:odd:pr-1 lg:even:pl-1 lg:[&:nth-child(2)]:pb-1 lg:[&:nth-child(3)]:pt-1"
-						>
-							<div class="size-full overflow-hidden px-[1px]">
-								{#await getThumb(slug) then src}
-									<img {src} alt={name} class="size-full" />
-								{/await}
-							</div>
-						</div>
-					{/snippet}
-					{#if gallery}
-						{#each gallery as { url }, i}
-							{#if i > 0}
-								{@render pic(url)}
-							{/if}
-						{/each}
-					{:else}
-						<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
-						{#each Array(4) as _}
-							{@render pic(slug)}
-						{/each}
-					{/if}
-				</div>
-			</div>
-		</div>
-	</div>
+	<!-- Photo Gallery -->
+	<ProductPreview {gallery} {slug} title={name} />
 
 	<!-- Details -->
 	<div class="relative px-[5%] py-2 sm:py-5 md:px-[6.5%] xl:px-[15%]">
@@ -156,7 +84,7 @@
 				<div id="general" class="border-b pb-7">
 					<h1 class=" pb-1 pt-2 text-2xl font-semibold md:text-3xl">{name}</h1>
 					<div class="flex items-center">
-						{#each ['Edukasi', 'Alam'] as tag, i}
+						{#each ['Edukasi', 'Alam', 'Glamping'] as tag, i}
 							<a
 								href="./#"
 								class="mr-1 inline-block text-lg leading-tight text-gray-500 transition-all duration-300 hover:text-black hover:underline"
@@ -227,22 +155,83 @@
 					</div>
 				</div>
 
-				<div class="border-b pb-10 pt-7">
-					<article class="pk-article text-gray-600">
-						{@html readPost()}
-					</article>
-					<button class="inline-flex items-center text-black" onclick={toggleModal}>
-						<span class="underline">Baca Selengkapnya</span>
-						<i class="fasl fa-angle-right ml-2 leading-none"></i>
-					</button>
+				<!-- Description -->
+				<Description text={data.post || description} />
+
+				<div class="border-b py-8">
+					<h2 class="text-xl font-semibold md:text-2xl" id="facilities">
+						Apa yang Ada di Tempat Ini
+					</h2>
+
+					<div class="mt-7 grid grid-cols-2">
+						<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
+						{#each Array(10) as _}
+							<div class="block pb-4">
+								<div class="group flex items-center">
+									<div class="w-12 text-left">
+										<i class="fasl fa-wifi inline-block text-2xl"></i>
+									</div>
+									<div class="text-left text-lg">Wi-fi</div>
+								</div>
+							</div>
+						{/each}
+					</div>
 				</div>
 
-				<div class="border-b py-10">
-					<h2 class="text-xl font-semibold md:text-2xl" id="facilities">Fasilitas</h2>
-				</div>
+				<div id="offers"></div>
 
-				<div class="py-10" id="tickets">
-					<h2 class="text-xl font-semibold md:text-2xl">Pilihan Tiket</h2>
+				<div class="py-8" id="tickets">
+					<h2 class="text-xl font-semibold md:text-2xl">Tiket Masuk</h2>
+
+					<div class="mt-5 flex items-center">
+						<div>
+							<button
+								class="pk-button rounded-lg border-2 border-sky-400 font-semibold text-sky-500"
+							>
+								Lihat Kalender
+							</button>
+						</div>
+						<div>
+							<button
+								class="pk-button ml-2 border border-gray-400 !px-4 !py-1 text-gray-500 hover:border-black hover:text-black"
+							>
+								Hari ini
+							</button>
+						</div>
+						<div>
+							<button
+								class="pk-button ml-2 border border-gray-400 !px-4 !py-1 text-gray-500 hover:border-black hover:text-black"
+							>
+								Besok
+							</button>
+						</div>
+					</div>
+
+					<div class="mt-5"></div>
+					{#each ['Dewasa', 'Anak-anak'] as val}
+						<div
+							class="my-3 flex items-center rounded border-2 border-gray-300 p-5 transition-colors hover:border-sky-400"
+						>
+							<div class="flex basis-8/12 flex-col">
+								<div class="text-xl font-semibold text-black">{val}</div>
+								<div>
+									<button class="text-gray-500 underline transition-colors hover:text-sky-600">
+										Lihat Detail
+									</button>
+								</div>
+							</div>
+							<div class="basis-4/12 text-right">
+								<span class="text-2xl font-semibold text-black">RP --.--</span>
+							</div>
+						</div>
+					{/each}
+
+					<div class="mb-2 mt-4 flex">
+						<button class="ml-auto text-gray-500 transition-colors hover:text-black">
+							<span>Kebijakan Biaya</span>
+							<i class="fasl fa-angle-right leading-none"></i>
+						</button>
+					</div>
 				</div>
 			</div>
 
@@ -259,7 +248,7 @@
 							class="pk-button rounded-full bg-orange-400 text-white md:w-full"
 							onclick={scroll}
 						>
-							<span><i class="fasl fa-ticket-perforated"></i> Penawaran</span>
+							<span><i class="fasl fa-ticket-perforated"></i> Penawaran </span>
 						</button>
 					</div>
 				</div>
@@ -279,23 +268,67 @@
 			{/if}
 		</div>
 
-		<div class="border-y py-10" id="essentials">
-			<h2 class="text-xl font-semibold md:text-2xl">Layanan Tambahan</h2>
+		<div class="border-y py-8" id="essentials">
+			<h2 class="text-xl font-semibold md:text-2xl">Penawaran Lainnya</h2>
+			<div class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+				{#each Array(4) as _}
+					<a href="#/" class="h-30 px-2 pb-4">
+						<div class="h-full overflow-hidden rounded bg-white shadow-lg">
+							<div class="aspect-[5/3.5] w-full overflow-hidden bg-gray-200">
+								<img src={placeholder} alt={'hubla'} class="size-full" />
+							</div>
+
+							<div class="px-4 pb-5 pt-3">
+								<h3
+									class="text-overflow py-2 text-base font-semibold md:text-lg"
+									style="line-height: 1.25;"
+								>
+									Produk Unggulan
+								</h3>
+							</div>
+						</div>
+					</a>
+				{/each}
+			</div>
 		</div>
 
-		<div class="border-b py-10" id="map">
-			<h2 class="text-xl font-semibold md:text-2xl">Dimana Kamu Akan Berkunjung</h2>
+		<div class="border-b py-8" id="map">
+			<h2 class="text-xl font-semibold md:text-2xl">Titik Lokasi</h2>
+			<div class="mt-8 flex h-96 w-full items-center justify-center bg-slate-100">
+				<iframe
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d505636.05801829736!2d111.5869938517723!3d-8.072724083247827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78e3b74eb610b9%3A0x3027a76e352be20!2sKabupaten%20Tulungagung%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1731827674308!5m2!1sid!2sid"
+					style="border:0;"
+					allowfullscreen={true}
+					loading="lazy"
+					class="size-full"
+					referrerpolicy="no-referrer-when-downgrade"
+					title="Tulungagung Map"
+				></iframe>
+			</div>
+			<div class="mt-8">
+				<h3 class="text-lg font-semibold">{address}</h3>
+				<p>
+					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum numquam eum officiis iure,
+					dolor soluta sed, veniam tempora pariatur voluptates tenetur nam. Adipisci, culpa voluptas
+					quaerat pariatur nisi harum reprehenderit. Nostrum iusto error rerum! Amet sit modi rerum,
+					esse omnis eveniet. Reprehenderit error quo, aliquid libero ut ipsa fugiat. Ipsam cum
+					impedit ex possimus placeat aliquam veniam quisquam magnam dolor, ut modi consectetur.
+					Quis, officiis reiciendis. Tenetur sed eveniet ut quos fuga, quasi sunt repellendus
+					placeat quae, laborum iste expedita alias nobis consequatur numquam obcaecati! Fugiat ut
+					dicta illum enim, nesciunt labore voluptates commodi quam vero suscipit rem ipsa ex.
+				</p>
+			</div>
 		</div>
 
-		<div class="border-y py-10" id="reviews">
+		<div class="border-y py-8" id="reviews">
 			<h2 class="text-xl font-semibold md:text-2xl">Review</h2>
 		</div>
 
-		<div class="border-y py-10" id="additional-info">
+		<div class="border-y py-8" id="additional-info">
 			<h2 class="text-xl font-semibold md:text-2xl">Informasi Tambahan</h2>
 		</div>
 
-		<div class="py-10" id="related">
+		<div class="py-8" id="related">
 			<h2 class="text-xl font-semibold md:text-2xl">Mungkin Menarik Untuk Anda</h2>
 		</div>
 	</div>
