@@ -257,12 +257,26 @@
 				class="ml-auto hidden w-full md:relative md:block md:w-96 lg:w-auto lg:basis-5/12 xl:basis-4/12"
 			>
 				<div class="right-0 top-24 mt-2 w-full md:sticky md:mb-10">
+					<div class="bg-sky-100 p-5">
+						<button
+							class="pk-button flex items-center justify-center rounded-full bg-sky-500 !py-3 leading-none text-white md:w-full"
+						>
+							<i class="fasl fa-calendar-lines-pen mr-1 inline-block"></i>
+							<span class="inline-block">Tambahkan ke Daftar Perjalanan</span>
+						</button>
+					</div>
 					{@render offer()}
 				</div>
 			</div>
 
 			{#if $screenSize.width < 768 && $scrollTop <= targetPos() - 10}
 				<div class="fixed bottom-0 left-0 z-10 w-full" transition:fly={{ duration: 250, y: 20 }}>
+					<div class="bg-sky-100 text-right">
+						<button class="px-2 py-1 text-xs text-sky-500">
+							<i class="fasl fa-calendar-lines-pen"></i>
+							<span>Tambahkan ke Daftar Perjalanan</span>
+						</button>
+					</div>
 					{@render offer()}
 				</div>
 			{/if}
