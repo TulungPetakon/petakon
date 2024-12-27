@@ -8,6 +8,19 @@
 	let activeIndicator = $state(0);
 	const events = [
 		{
+			title: 'Tulungagung End Year 2024',
+			date: '31 Dec 2024',
+			location: 'Halaman Kantor Bupati Tulungagung',
+			tags: '',
+			periode: '',
+			gallery: [
+				{
+					url: 'save-the-rock',
+					type: 'picture'
+				}
+			]
+		},
+		{
 			title: 'Toeloengagoeng Koeliner Jaman Doeloe',
 			date: '27 - 28 April',
 			location: '',
@@ -281,7 +294,7 @@
 			<div class="splide__track">
 				<ul class="splide__list">
 					{#await Promise.all(filtered) then data}
-						{#each data as { date, title, tags, gallery }}
+						{#each data as { date, title, tags, gallery, location }}
 							<li class="splide__slide group flex items-center p-1 sm:p-2 md:p-3 lg:p-4">
 								<div
 									class="relative flex aspect-[5/6] w-full overflow-hidden rounded-lg transition-all duration-300"
@@ -310,7 +323,7 @@
 											</div>
 											<div class="info px-1 text-sm sm:text-base">
 												<i class="fasl fa-location-dot text-orange-300"></i>
-												<span class="inline-block pl-1 text-white">--</span>
+												<span class="inline-block pl-1 text-white">{location || '--'}</span>
 											</div>
 										</div>
 									</div>
