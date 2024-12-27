@@ -18,27 +18,27 @@
 </script>
 
 <section class="pt-28">
-	<div class="w-full relative px-[5%] md:px-[6.5%]">
-		<span class="absolute bottom-full left-1/2 -translate-x-1/2 w-full text-center">
+	<div class="relative w-full px-[5%] md:px-[6.5%]">
+		<span class="absolute bottom-full left-1/2 w-full -translate-x-1/2 text-center">
 			Mungkin Menarik Untuk Anda
 		</span>
-		<h2 class="font-bold text-3xl uppercase text-center relative overflow-hidden">
+		<h2 class="relative overflow-hidden text-center text-3xl font-bold uppercase">
 			<span
-				class="relative inline-flex px-5 py-1 max-w-[80%] md:max-w-[30%]
-        before:absolute before:right-full before:top-1/2 before:-translate-y-1/2 before:h-[2px] before:w-[400%] before:bg-sky-950
-        after:absolute after:left-full after:top-1/2 after:-translate-y-1/2 after:h-[2px] after:w-[400%] after:bg-sky-950"
+				class="relative inline-flex max-w-[80%] px-5 py-1 before:absolute
+        before:right-full before:top-1/2 before:h-[2px] before:w-[400%] before:-translate-y-1/2 before:bg-sky-950 after:absolute
+        after:left-full after:top-1/2 after:h-[2px] after:w-[400%] after:-translate-y-1/2 after:bg-sky-950 md:max-w-[30%]"
 			>
-				Destinasi Pilihan
+				Pilihan Wisata
 			</span>
 		</h2>
 	</div>
 
-	<div class="flex flex-wrap mt-10">
+	<div class="mt-10 flex flex-wrap">
 		{#each kategori as { slug, name }, i}
 			<div
-				class="aspect-square relative group overflow-hidden basis-1/2
-				md:basis-1/3 lg:basis-1/4 sm:aspect-[16/9]
-				has-[#group7]:hidden md:has-[#group7]:block lg:has-[#group7]:hidden"
+				class="group relative aspect-square basis-1/2 overflow-hidden
+				has-[#group7]:hidden sm:aspect-[16/9] md:basis-1/3
+				md:has-[#group7]:block lg:basis-1/4 lg:has-[#group7]:hidden"
 			>
 				{#await getThumb(slug) then img}
 					<div
@@ -49,17 +49,17 @@
 				{/await}
 
 				<div
-					class="bg-black/30 backdrop-blur-sm absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center scale-150 opacity-0 transition-all duration-300
+					class="absolute left-0 top-0 flex h-full w-full scale-150 flex-col items-center justify-center bg-black/30 opacity-0 backdrop-blur-sm transition-all duration-300
 					group-hover:scale-100 group-hover:opacity-100"
 				>
-					<span class="text-white flex flex-col w-3/5 items-center justify-center text-center">
+					<span class="flex w-3/5 flex-col items-center justify-center text-center text-white">
 						<i class="fasl fa-location-dot text-xl"></i>
-						<span class="sm:text-lg text-sm leading-tight"> {name} </span>
+						<span class="text-sm leading-tight sm:text-lg"> {name} </span>
 					</span>
 					<a
 						href="/explore"
-						class="block text-white text-sm mt-2 px-4 py-1 rounded border-white border
-						hover:border-orange-400 hover:bg-orange-400 transition-all duration-300"
+						class="mt-2 block rounded border border-white px-4 py-1 text-sm text-white
+						transition-all duration-300 hover:border-orange-400 hover:bg-orange-400"
 					>
 						Lihat <i class="fasl fa-location-arrow"></i>
 					</a>
@@ -67,19 +67,19 @@
 			</div>
 		{/each}
 
-		<div class="basis-1/2 md:basis-1/3 lg:basis-1/4 relative aspect-[16/9] overflow-hidden">
+		<div class="relative aspect-[16/9] basis-1/2 overflow-hidden md:basis-1/3 lg:basis-1/4">
 			<div
-				class="h-full group bg-cover bg-center blur-sm scale-110
-			after:bg-sky-950/85 after:opacity-75 after:w-full after:h-full after:absolute after:top-0 after:left-0"
+				class="group h-full scale-110 bg-cover bg-center blur-sm
+			after:absolute after:left-0 after:top-0 after:h-full after:w-full after:bg-sky-950/85 after:opacity-75"
 				style="background-image: url({hiburan});"
 			></div>
 			<a
 				href="/explore"
-				class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pk-button !rounded text-white border-2 border-white text-xs flex items-center
-				md:text-lg hover:bg-white hover:text-orange-500"
+				class="pk-button absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center !rounded border-2 border-white text-xs text-white
+				hover:bg-white hover:text-orange-500 md:text-lg"
 			>
-				<span class="block w-full h-full uppercase"> Jelajahi </span>
-				<i class="fasl fa-arrow-right-long inline-block ml-2"></i>
+				<span class="block h-full w-full uppercase"> Jelajahi </span>
+				<i class="fasl fa-arrow-right-long ml-2 inline-block"></i>
 			</a>
 		</div>
 	</div>
