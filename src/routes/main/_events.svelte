@@ -3,6 +3,7 @@
 	import Splide from '@splidejs/splide';
 	import placeholder from '$images/utils/petakon-placeholder.webp';
 	import type { Glob } from '$lib/types/global';
+	import Modal from '$comp/utils/Modal.svelte';
 
 	let splide: Splide;
 	let activeIndicator = $state(0);
@@ -229,6 +230,14 @@
 		// }
 	];
 
+	let showModal = $state(false);
+	let selected: null | string = $state(null);
+	const toggleModal = (url: string) => {
+		showModal = !showModal;
+		if (!showModal) selected = '';
+		selected = url;
+	};
+
 	const getThumb = async (gallery: Glob.Gallery[]) => {
 		if (gallery.length < 1) return placeholder;
 
@@ -291,6 +300,12 @@
 	};
 </script>
 
+{#if showModal && selected}
+	<Modal {toggleModal}>
+		<img src={selected} alt="mantab" />
+	</Modal>
+{/if}
+
 <section class="pt-28">
 	<div class="relative flex w-full flex-wrap items-end px-[5%] md:px-[6.5%]">
 		<div class="relative w-full sm:w-1/2">
@@ -338,6 +353,7 @@
 									>
 										<div class="p-2 sm:p-5">
 											<a
+												onclick={() => toggleModal(gallery?.[0].url || '')}
 												href="/#"
 												class="text-overflow mb-2 text-lg leading-tight text-white transition-colors hover:text-orange-400 sm:text-2xl"
 											>
