@@ -8,6 +8,32 @@
 	let activeIndicator = $state(0);
 	const events = [
 		{
+			title: 'End Year Camp',
+			date: '31 Dec 2024',
+			location: 'Candi Urung',
+			tags: '',
+			periode: '',
+			gallery: [
+				{
+					url: 'end-year-camp',
+					type: 'picture'
+				}
+			]
+		},
+		{
+			title: 'BRILinkers Gayatri Tulungagung',
+			date: '31 Dec 2024',
+			location: 'Mbalong Kawuk',
+			tags: '',
+			periode: '',
+			gallery: [
+				{
+					url: 'bri-gayatri',
+					type: 'picture'
+				}
+			]
+		},
+		{
 			title: 'Tulungagung End Year 2024',
 			date: '31 Dec 2024',
 			location: 'Halaman Kantor Bupati Tulungagung',
